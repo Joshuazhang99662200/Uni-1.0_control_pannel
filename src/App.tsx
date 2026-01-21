@@ -85,6 +85,9 @@ import {
   Circle,
   Shield,
   Cloud,
+  Package,
+  Bell,
+  Link,
 } from "lucide-react";
 
 // ==========================================
@@ -227,153 +230,6 @@ const MOCK_OLD_DATA = {
 // ==========================================
 // --- 1.1 生态伙伴数据 ---
 // ==========================================
-const ECOSYSTEM_SERVICES = [
-  {
-    id: "ECO-001",
-    category: "投融资",
-    name: "红杉资本",
-    type: "投资机构",
-    icon: "DollarSign",
-    description: "专注于科技创新领域的顶级风险投资机构",
-    contactVia: "国信中数项目经理",
-    manager: "张经理",
-    phone: "138****8888",
-    status: "合作中",
-  },
-  {
-    id: "ECO-002",
-    category: "投融资",
-    name: "深创投",
-    type: "投资机构",
-    icon: "DollarSign",
-    description: "国内领先的创投机构，重点关注硬科技",
-    contactVia: "国信中数项目经理",
-    manager: "李经理",
-    phone: "139****9999",
-    status: "合作中",
-  },
-  {
-    id: "ECO-003",
-    category: "FA",
-    name: "华兴资本",
-    type: "财务顾问",
-    icon: "Briefcase",
-    description: "提供全方位的财务顾问服务，助力企业融资",
-    contactVia: "国信中数项目经理",
-    manager: "王经理",
-    phone: "137****7777",
-    status: "合作中",
-  },
-  {
-    id: "ECO-004",
-    category: "FA",
-    name: "易凯资本",
-    type: "财务顾问",
-    icon: "Briefcase",
-    description: "专业FA服务，深耕消费与科技赛道",
-    contactVia: "国信中数项目经理",
-    manager: "赵经理",
-    phone: "136****6666",
-    status: "合作中",
-  },
-  {
-    id: "ECO-005",
-    category: "猎头",
-    name: "猎聘网",
-    type: "猎头服务",
-    icon: "Users",
-    description: "高端人才猎头，专注于科技与金融行业",
-    contactVia: "国信中数项目经理",
-    manager: "刘经理",
-    phone: "135****5555",
-    status: "合作中",
-  },
-  {
-    id: "ECO-006",
-    category: "猎头",
-    name: "科锐国际",
-    type: "猎头服务",
-    icon: "Users",
-    description: "全球化人力资源解决方案提供商",
-    contactVia: "国信中数项目经理",
-    manager: "陈经理",
-    phone: "134****4444",
-    status: "合作中",
-  },
-  {
-    id: "ECO-007",
-    category: "会所",
-    name: "普华永道",
-    type: "会计师事务所",
-    icon: "Calculator",
-    description: "四大会计师事务所，提供审计与咨询服务",
-    contactVia: "国信中数项目经理",
-    manager: "周经理",
-    phone: "133****3333",
-    status: "合作中",
-  },
-  {
-    id: "ECO-008",
-    category: "律所",
-    name: "金杜律师事务所",
-    type: "法律服务",
-    icon: "Scale",
-    description: "顶级商事律所，专精于投融资法律服务",
-    contactVia: "国信中数项目经理",
-    manager: "吴经理",
-    phone: "132****2222",
-    status: "合作中",
-  },
-  {
-    id: "ECO-009",
-    category: "律所",
-    name: "君合律师事务所",
-    type: "法律服务",
-    icon: "Scale",
-    description: "提供企业法务与合规咨询服务",
-    contactVia: "国信中数项目经理",
-    manager: "郑经理",
-    phone: "131****1111",
-    status: "合作中",
-  },
-  {
-    id: "ECO-010",
-    category: "媒体",
-    name: "36氪",
-    type: "媒体传播",
-    icon: "Megaphone",
-    description: "科技创业媒体，助力品牌曝光与PR传播",
-    contactVia: "国信中数项目经理",
-    manager: "孙经理",
-    phone: "130****0000",
-    status: "合作中",
-  },
-  {
-    id: "ECO-011",
-    category: "孵化器",
-    name: "Y Combinator中国",
-    type: "孵化加速",
-    icon: "Building",
-    description: "全球顶级创业加速器，提供创业辅导与资源对接",
-    contactVia: "国信中数项目经理",
-    manager: "钱经理",
-    phone: "129****9900",
-    status: "合作中",
-  },
-  {
-    id: "ECO-012",
-    category: "孵化器",
-    name: "启迪之星",
-    type: "孵化加速",
-    icon: "Building",
-    description: "清华系孵化器，聚焦硬科技创业",
-    contactVia: "国信中数项目经理",
-    manager: "冯经理",
-    phone: "128****8800",
-    status: "合作中",
-  },
-];
-
 // ==========================================
 // --- 1.2 业务流水数据 ---
 // ==========================================
@@ -467,105 +323,409 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
   {
     id: "ECO-REQ-001",
     companyName: "智航低空物流网络",
-    serviceType: "投融资对接",
+    serviceType: "FA顾问",
+    serviceCategory: "增长与交易",
     requirementDetails:
       "寻求Pre-A轮融资，金额3000万元，用于扩大无人机物流网络覆盖范围",
-    potentialPartner: "红杉资本、深创投",
-    uploadTime: "2024-01-15 09:30",
+    potentialPartner: "华兴资本",
+    uploadTime: "2026-01-15 09:30",
     status: "对接成功",
-    createdAt: new Date("2024-01-15"),
+    createdAt: new Date("2026-01-15"),
   },
   {
     id: "ECO-REQ-002",
     companyName: "DeepSeeker 医疗影像大模型",
-    serviceType: "法律咨询",
+    serviceType: "法律/法务对接",
+    serviceCategory: "合规与生存",
     requirementDetails:
       "需要医疗AI领域合规审查，涉及数据安全和隐私保护相关法律咨询",
     potentialPartner: "金杜律师事务所",
-    uploadTime: "2024-01-16 14:20",
+    uploadTime: "2026-01-16 14:20",
     status: "需求匹配",
-    createdAt: new Date("2024-01-16"),
+    createdAt: new Date("2026-01-16"),
   },
   {
     id: "ECO-REQ-003",
     companyName: "绿能储能聚合平台",
-    serviceType: "财务咨询",
+    serviceType: "财税/审计对接",
+    serviceCategory: "合规与生存",
     requirementDetails: "准备上市辅导，需要财务审计和IPO咨询服务",
     potentialPartner: "普华永道",
-    uploadTime: "2024-01-17 10:15",
+    uploadTime: "2026-01-17 10:15",
     status: "需求匹配",
-    createdAt: new Date("2024-01-17"),
+    createdAt: new Date("2026-01-17"),
   },
   {
     id: "ECO-REQ-004",
     companyName: "星舰商业航天发射服务",
-    serviceType: "媒体对接",
+    serviceType: "品牌PR",
+    serviceCategory: "增长与交易",
     requirementDetails: "首次发射成功，需要进行品牌宣传和媒体报道",
     potentialPartner: "36氪",
-    uploadTime: "2024-01-18 16:45",
+    uploadTime: "2026-01-18 16:45",
     status: "对接成功",
-    createdAt: new Date("2024-01-18"),
+    createdAt: new Date("2026-01-18"),
   },
   {
     id: "ECO-REQ-005",
     companyName: "云边协同智能工厂",
-    serviceType: "猎头服务",
+    serviceType: "人才/猎头对接",
+    serviceCategory: "要素与基建",
     requirementDetails:
       "招聘CTO和技术总监各1名，要求有工业互联网和边缘计算背景",
     potentialPartner: "猎聘网、科锐国际",
-    uploadTime: "2024-01-19 11:30",
+    uploadTime: "2026-01-19 11:30",
     status: "需求对接",
-    createdAt: new Date("2024-01-19"),
+    createdAt: new Date("2026-01-19"),
   },
   {
     id: "ECO-REQ-006",
     companyName: "固态电池量产平台",
-    serviceType: "投融资对接",
+    serviceType: "FA顾问",
+    serviceCategory: "增长与交易",
     requirementDetails: "寻求A轮融资，金额1.5亿元，用于固态电池生产线建设",
     potentialPartner: "红杉资本",
-    uploadTime: "2024-01-20 08:00",
+    uploadTime: "2026-01-20 08:00",
     status: "需求匹配",
-    createdAt: new Date("2024-01-20"),
+    createdAt: new Date("2026-01-20"),
   },
   {
     id: "ECO-REQ-007",
     companyName: "脑机接口康复系统",
-    serviceType: "其他",
-    requirementDetails: "需要医疗器械认证咨询和临床试验合作伙伴对接",
+    serviceType: "知识产权",
+    serviceCategory: "合规与生存",
+    requirementDetails: "需要医疗器械认证咨询和专利申请相关法律咨询",
     potentialPartner: "待匹配",
-    uploadTime: "2024-01-21 15:20",
+    uploadTime: "2026-01-21 15:20",
     status: "需求对接",
-    createdAt: new Date("2024-01-21"),
+    createdAt: new Date("2026-01-21"),
   },
   {
     id: "ECO-REQ-008",
     companyName: "量子通信组网平台",
-    serviceType: "法律咨询",
+    serviceType: "知识产权",
+    serviceCategory: "合规与生存",
     requirementDetails: "需要知识产权保护和专利申请相关法律咨询",
     potentialPartner: "君合律师事务所",
-    uploadTime: "2024-01-22 13:40",
+    uploadTime: "2026-01-18 13:40",
     status: "对接成功",
-    createdAt: new Date("2024-01-22"),
+    createdAt: new Date("2026-01-18"),
   },
   {
     id: "ECO-REQ-009",
     companyName: "智慧农业IoT平台",
-    serviceType: "财务咨询",
-    requirementDetails: "需要财务规划和成本优化咨询，准备下一轮融资",
-    potentialPartner: "华兴资本",
-    uploadTime: "2024-01-18 09:00",
+    serviceType: "云资源与算力服务",
+    serviceCategory: "要素与基建",
+    requirementDetails: "需要云计算资源和大数据分析平台支持，优化农业数据处理",
+    potentialPartner: "阿里云、华为云",
+    uploadTime: "2026-01-19 09:00",
     status: "需求匹配",
-    createdAt: new Date("2024-01-18"),
+    createdAt: new Date("2026-01-19"),
   },
   {
     id: "ECO-REQ-010",
     companyName: "元宇宙虚拟会议平台",
-    serviceType: "媒体对接",
-    requirementDetails: "产品发布会宣传和行业媒体报道",
-    potentialPartner: "36氪",
-    uploadTime: "2024-01-19 14:30",
+    serviceType: "数据服务",
+    serviceCategory: "要素与基建",
+    requirementDetails: "需要用户行为分析和数据挖掘服务，优化产品体验",
+    potentialPartner: "神策数据",
+    uploadTime: "2026-01-20 14:30",
     status: "需求对接",
-    createdAt: new Date("2024-01-19"),
+    createdAt: new Date("2026-01-20"),
+  },
+  {
+    id: "ECO-REQ-011",
+    companyName: "新能源汽车充电网络",
+    serviceType: "政策申报",
+    serviceCategory: "合规与生存",
+    requirementDetails: "申请新能源基础设施补贴和地方政策扶持",
+    potentialPartner: "待匹配",
+    uploadTime: "2026-01-21 10:00",
+    status: "需求匹配",
+    createdAt: new Date("2026-01-21"),
+  },
+  {
+    id: "ECO-REQ-012",
+    companyName: "跨境电商供应链平台",
+    serviceType: "订单对接",
+    serviceCategory: "增长与交易",
+    requirementDetails: "寻找跨境电商大客户，建立长期供应链合作关系",
+    potentialPartner: "待匹配",
+    uploadTime: "2026-01-21 16:20",
+    status: "需求对接",
+    createdAt: new Date("2026-01-21"),
+  },
+];
+
+// ==========================================
+// --- 1.4 生态资源方数据 ---
+// ==========================================
+const ECOSYSTEM_PARTNERS = [
+  {
+    id: "PARTNER-001",
+    name: "猎聘",
+    category: "要素与基建",
+    serviceType: "人才/猎头对接",
+    contactPerson: "张经理",
+    phone: "138****8888",
+    email: "zhang@liepin.com",
+    cooperationStartDate: "2024-03-15",
+    lastActiveDate: "2026-01-18",
+    totalRevenue: 850000,
+    totalProfit: 127500, // 15% 分润
+    serviceCount: 8,
+    status: "active", // active, inactive
+  },
+  {
+    id: "PARTNER-002",
+    name: "金杜律师事务所",
+    category: "合规与生存",
+    serviceType: "法律/法务对接",
+    contactPerson: "李律师",
+    phone: "139****9999",
+    email: "li@kingandwood.com",
+    cooperationStartDate: "2024-01-10",
+    lastActiveDate: "2026-01-16",
+    totalRevenue: 1200000,
+    totalProfit: 180000,
+    serviceCount: 6,
+    status: "active",
+  },
+  {
+    id: "PARTNER-003",
+    name: "百宸律师事务所",
+    category: "合规与生存",
+    serviceType: "法律/法务对接",
+    contactPerson: "王律师",
+    phone: "137****7777",
+    email: "wang@baichen.com",
+    cooperationStartDate: "2023-08-20",
+    lastActiveDate: "2024-11-30",
+    totalRevenue: 580000,
+    totalProfit: 87000,
+    serviceCount: 4,
+    status: "inactive", // 超过一年未活跃
+  },
+  {
+    id: "PARTNER-004",
+    name: "普华永道",
+    category: "合规与生存",
+    serviceType: "财税/审计对接",
+    contactPerson: "周经理",
+    phone: "136****6666",
+    email: "zhou@pwc.com",
+    cooperationStartDate: "2024-02-01",
+    lastActiveDate: "2026-01-17",
+    totalRevenue: 2100000,
+    totalProfit: 315000,
+    serviceCount: 5,
+    status: "active",
+  },
+  {
+    id: "PARTNER-005",
+    name: "华兴资本",
+    category: "增长与交易",
+    serviceType: "FA顾问",
+    contactPerson: "赵总监",
+    phone: "135****5555",
+    email: "zhao@huaxing.com",
+    cooperationStartDate: "2024-05-10",
+    lastActiveDate: "2026-01-20",
+    totalRevenue: 3500000,
+    totalProfit: 525000,
+    serviceCount: 12,
+    status: "active",
+  },
+  {
+    id: "PARTNER-006",
+    name: "36氪",
+    category: "增长与交易",
+    serviceType: "品牌PR",
+    contactPerson: "孙编辑",
+    phone: "134****4444",
+    email: "sun@36kr.com",
+    cooperationStartDate: "2024-06-15",
+    lastActiveDate: "2026-01-18",
+    totalRevenue: 450000,
+    totalProfit: 67500,
+    serviceCount: 9,
+    status: "active",
+  },
+  {
+    id: "PARTNER-007",
+    name: "阿里云",
+    category: "要素与基建",
+    serviceType: "云资源与算力服务",
+    contactPerson: "陈经理",
+    phone: "133****3333",
+    email: "chen@aliyun.com",
+    cooperationStartDate: "2024-04-20",
+    lastActiveDate: "2026-01-19",
+    totalRevenue: 680000,
+    totalProfit: 102000,
+    serviceCount: 7,
+    status: "active",
+  },
+  {
+    id: "PARTNER-008",
+    name: "神策数据",
+    category: "要素与基建",
+    serviceType: "数据服务",
+    contactPerson: "刘总",
+    phone: "132****2222",
+    email: "liu@sensorsdata.cn",
+    cooperationStartDate: "2023-12-01",
+    lastActiveDate: "2024-10-15",
+    totalRevenue: 320000,
+    totalProfit: 48000,
+    serviceCount: 3,
+    status: "inactive", // 超过一年未活跃
+  },
+];
+
+// ==========================================
+// --- 1.5 生态服务记录数据 ---
+// ==========================================
+const ECOSYSTEM_SERVICE_RECORDS = [
+  {
+    id: "RECORD-001",
+    partnerId: "PARTNER-002",
+    partnerName: "金杜律师事务所",
+    projectName: "DeepSeeker 医疗影像大模型",
+    companyName: "DeepSeeker 医疗影像大模型",
+    serviceType: "法律/法务对接",
+    serviceDetail: "医疗AI合规审查、数据安全法律咨询",
+    serviceDate: "2026-01-16",
+    serviceAmount: 280000,
+    profitShare: 42000,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-002",
+    partnerId: "PARTNER-005",
+    partnerName: "华兴资本",
+    projectName: "智航低空物流网络",
+    companyName: "智航低空物流网络",
+    serviceType: "FA顾问",
+    serviceDetail: "Pre-A轮融资财务顾问服务",
+    serviceDate: "2026-01-15",
+    serviceAmount: 500000,
+    profitShare: 75000,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-003",
+    partnerId: "PARTNER-004",
+    partnerName: "普华永道",
+    projectName: "绿能储能聚合平台",
+    companyName: "绿能储能聚合平台",
+    serviceType: "财税/审计对接",
+    serviceDetail: "上市辅导、财务审计及IPO咨询",
+    serviceDate: "2026-01-17",
+    serviceAmount: 680000,
+    profitShare: 102000,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-004",
+    partnerId: "PARTNER-006",
+    partnerName: "36氪",
+    projectName: "星舰商业航天发射服务",
+    companyName: "星舰商业航天发射服务",
+    serviceType: "品牌PR",
+    serviceDetail: "首次发射成功品牌宣传、媒体报道",
+    serviceDate: "2026-01-18",
+    serviceAmount: 120000,
+    profitShare: 18000,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-005",
+    partnerId: "PARTNER-001",
+    partnerName: "猎聘",
+    projectName: "云边协同智能工厂",
+    companyName: "云边协同智能工厂",
+    serviceType: "人才/猎头对接",
+    serviceDetail: "招聘CTO和技术总监",
+    serviceDate: "2026-01-19",
+    serviceAmount: 180000,
+    profitShare: 27000,
+    profitRate: 0.15,
+    status: "进行中",
+  },
+  {
+    id: "RECORD-006",
+    partnerId: "PARTNER-005",
+    partnerName: "华兴资本",
+    projectName: "固态电池量产平台",
+    companyName: "固态电池量产平台",
+    serviceType: "FA顾问",
+    serviceDetail: "A轮融资财务顾问",
+    serviceDate: "2026-01-20",
+    serviceAmount: 800000,
+    profitShare: 120000,
+    profitRate: 0.15,
+    status: "进行中",
+  },
+  {
+    id: "RECORD-007",
+    partnerId: "PARTNER-007",
+    partnerName: "阿里云",
+    projectName: "智慧农业IoT平台",
+    companyName: "智慧农业IoT平台",
+    serviceType: "云资源与算力服务",
+    serviceDetail: "云计算资源、大数据分析平台",
+    serviceDate: "2026-01-19",
+    serviceAmount: 220000,
+    profitShare: 33000,
+    profitRate: 0.15,
+    status: "进行中",
+  },
+  {
+    id: "RECORD-008",
+    partnerId: "PARTNER-002",
+    partnerName: "金杜律师事务所",
+    projectName: "量子通信组网平台",
+    companyName: "量子通信组网平台",
+    serviceType: "法律/法务对接",
+    serviceDetail: "知识产权保护、专利申请咨询",
+    serviceDate: "2026-01-18",
+    serviceAmount: 350000,
+    profitShare: 52500,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-009",
+    partnerId: "PARTNER-003",
+    partnerName: "百宸律师事务所",
+    projectName: "区块链溯源平台",
+    companyName: "区块链溯源平台",
+    serviceType: "法律/法务对接",
+    serviceDetail: "合规审查、合同审核",
+    serviceDate: "2024-11-30",
+    serviceAmount: 150000,
+    profitShare: 22500,
+    profitRate: 0.15,
+    status: "已完成",
+  },
+  {
+    id: "RECORD-010",
+    partnerId: "PARTNER-008",
+    partnerName: "神策数据",
+    projectName: "元宇宙虚拟会议平台",
+    companyName: "元宇宙虚拟会议平台",
+    serviceType: "数据服务",
+    serviceDetail: "用户行为分析、数据挖掘",
+    serviceDate: "2024-10-15",
+    serviceAmount: 180000,
+    profitShare: 27000,
+    profitRate: 0.15,
+    status: "已完成",
   },
 ];
 
@@ -3830,7 +3990,7 @@ export default function App() {
         </div>
 
         <nav className="flex-1 px-4 overflow-y-auto space-y-8 pb-8 custom-scrollbar">
-          {/* 1. 数据展示 (Top) - 已包含业务流水订单 */}
+          {/* 1. 数据看板 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               数据看板
@@ -3847,40 +4007,16 @@ export default function App() {
                 <LayoutDashboard size={18} />
                 <span className="text-sm font-bold">仪表盘</span>
               </button>
-
-              {/* --- 移动到此处的业务流水按钮 --- */}
-              <button
-                onClick={() => setActiveTab("business_orders")}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "business_orders"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <Receipt size={18} />
-                <span className="text-sm font-bold">业务流水</span>
-              </button>
-            </div>
-          </div>
-
-          {/* 2. 核心业务 */}
-          <div>
-            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              核心业务
-            </div>
-            <div className="space-y-1">
               <button
                 onClick={() => setActiveTab("project_library")}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   activeTab === "project_library"
                     ? "bg-indigo-600 text-white"
                     : "text-slate-400 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <Database size={18} />
-                  <span className="text-sm font-bold">项目库</span>
-                </div>
+                <Database size={18} />
+                <span className="text-sm font-bold">项目库</span>
               </button>
             </div>
           </div>
@@ -3892,23 +4028,48 @@ export default function App() {
             </div>
             <div className="space-y-1">
               <button
-                onClick={() => setActiveTab("ecosystem_services")}
+                onClick={() => setActiveTab("ecosystem_connect")}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "ecosystem_services"
+                  activeTab === "ecosystem_connect"
                     ? "bg-indigo-600 text-white"
                     : "text-slate-400 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <Handshake size={18} />
-                <span className="text-sm font-bold">生态服务</span>
+                <span className="text-sm font-bold">生态对接</span>
               </button>
+              <button
+                onClick={() => setActiveTab("ecosystem_dashboard")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "ecosystem_dashboard"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <LayoutGrid size={18} />
+                <span className="text-sm font-bold">生态看板</span>
+              </button>
+              {/* 仅管理员可见：生态资源方 */}
+              {isAdmin && (
+                <button
+                  onClick={() => setActiveTab("ecosystem_partners")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    activeTab === "ecosystem_partners"
+                      ? "bg-indigo-600 text-white"
+                      : "text-slate-400 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  <Network size={18} />
+                  <span className="text-sm font-bold">生态资源方</span>
+                </button>
+              )}
             </div>
           </div>
 
-          {/* 3. 基础运营 */}
+          {/* 3. 基础运营工具 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              基础运营
+              基础运营工具
             </div>
             <div className="space-y-1">
               <button
@@ -3920,29 +4081,18 @@ export default function App() {
                 }`}
               >
                 <Receipt size={18} />
-                <span className="text-sm font-bold">业务流水订单</span>
+                <span className="text-sm font-bold">业务流水</span>
               </button>
-            </div>
-          </div>
-
-          {/* 4. 运营工具 */}
-          <div>
-            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              运营工具
-            </div>
-            <div className="space-y-1">
               <button
                 onClick={() => setActiveTab("configs")}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   activeTab === "configs"
                     ? "bg-indigo-600 text-white"
                     : "text-slate-400 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <Sliders size={18} />
-                  <span className="text-sm font-bold">配置管理器</span>
-                </div>
+                <Sliders size={18} />
+                <span className="text-sm font-bold">配置管理器</span>
               </button>
               <button
                 onClick={() => setActiveTab("orders")}
@@ -3993,27 +4143,6 @@ export default function App() {
               </button>
             </div>
           </div>
-
-          {/* 4. 生态服务 (Bottom) */}
-          <div>
-            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              生态服务
-            </div>
-            <div className="space-y-1">
-              {/* 业务流水已移走 */}
-              <button
-                onClick={() => setActiveTab("ecosystem_partners")}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "ecosystem_partners"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <Handshake size={18} />
-                <span className="text-sm font-bold">生态地图</span>
-              </button>
-            </div>
-          </div>
         </nav>
 
         {/* 身份切换器 */}
@@ -4037,10 +4166,14 @@ export default function App() {
                 ? "仪表盘"
                 : activeTab === "project_library"
                 ? "项目库"
-                : activeTab === "ecosystem_services"
-                ? "生态服务"
+                : activeTab === "ecosystem_connect"
+                ? "生态对接"
+                : activeTab === "ecosystem_dashboard"
+                ? "生态看板"
+                : activeTab === "ecosystem_partners"
+                ? "生态资源方"
                 : activeTab === "business_orders"
-                ? "业务流水订单"
+                ? "业务流水"
                 : activeTab === "configs"
                 ? "配置管理器"
                 : activeTab === "orders"
@@ -4051,14 +4184,6 @@ export default function App() {
                 ? "用户管理"
                 : activeTab === "quota"
                 ? "配额管理"
-                : activeTab === "project_library"
-                ? "项目库"
-                : activeTab === "configs"
-                ? "配置管理器"
-                : activeTab === "ecosystem_partners"
-                ? "生态地图"
-                : activeTab === "business_orders"
-                ? "业务流水"
                 : "运营中心"}
             </h2>
           </div>
@@ -4364,208 +4489,757 @@ export default function App() {
             </div>
           )}
 
-          {/* --- 生态地图页面 --- */}
-          {activeTab === "ecosystem_partners" && (
+          {/* --- 生态对接页面 --- */}
+          {activeTab === "ecosystem_connect" && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* 页面头部 */}
               <div className="flex justify-between items-end mb-6">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">
-                    生态地图
+                    生态对接
                   </h3>
                   <p className="text-slate-500 mt-2">
-                    管理企业生态服务需求，匹配优质生态伙伴资源
+                    管理园区内企业提交的生态服务需求，需要扶持时可联系BP诊断运营团队
                   </p>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
-                    <Phone size={16} className="text-indigo-600" />
-                    <div>
-                      <div className="text-[10px] text-indigo-400 font-bold">
-                        服务热线
-                      </div>
-                      <div className="text-sm font-black text-indigo-600">
-                        400-888-8888
-                      </div>
+                <div className="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
+                  <Phone size={16} className="text-indigo-600" />
+                  <div>
+                    <div className="text-[10px] text-indigo-400 font-bold">
+                      BP诊断运营热线
+                    </div>
+                    <div className="text-sm font-black text-indigo-600">
+                      400-888-8888
                     </div>
                   </div>
-                  <div className="bg-white rounded-2xl border border-slate-200 px-6 py-2 flex items-center gap-3">
-                    <div className="flex flex-col items-center">
-                      <div className="text-xl font-black text-slate-900 leading-none">
+                </div>
+              </div>
+
+              {/* 筛选和搜索栏 */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex-1 relative">
+                    <Search
+                      size={18}
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"
+                    />
+                    <input
+                      type="text"
+                      placeholder="搜索企业名称、需求明细..."
+                      className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                    />
+                  </div>
+                  <select className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                    <option value="">全部服务类型</option>
+                    <optgroup label="合规与生存">
+                      <option value="法律/法务对接">法律/法务对接</option>
+                      <option value="财税/审计对接">财税/审计对接</option>
+                      <option value="政策申报">政策申报</option>
+                      <option value="知识产权">知识产权</option>
+                    </optgroup>
+                    <optgroup label="增长与交易">
+                      <option value="订单对接">订单对接</option>
+                      <option value="FA顾问">FA顾问</option>
+                      <option value="品牌PR">品牌PR</option>
+                    </optgroup>
+                    <optgroup label="要素与基建">
+                      <option value="人才/猎头对接">人才/猎头对接</option>
+                      <option value="数据服务">数据服务</option>
+                      <option value="云资源与算力服务">云资源与算力服务</option>
+                    </optgroup>
+                  </select>
+                  <select className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                    <option value="">全部状态</option>
+                    <option value="需求对接">需求对接</option>
+                    <option value="需求匹配">需求匹配</option>
+                    <option value="对接成功">对接成功</option>
+                  </select>
+                  <button className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
+                    <Download size={16} />
+                    导出
+                  </button>
+                </div>
+              </div>
+
+              {/* 生态需求管理表格 */}
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                      <tr>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          企业名称
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          服务类型
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          需求明细
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          潜在匹配方
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          上传时间
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          对接状态
+                        </th>
+                        <th className="px-6 py-4 text-left text-xs font-black text-slate-600 uppercase tracking-wider">
+                          操作
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {ECOSYSTEM_SERVICE_REQUESTS.map((req) => (
+                        <tr
+                          key={req.id}
+                          className="hover:bg-slate-50 transition-colors"
+                        >
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="font-bold text-slate-900">
+                              {req.companyName}
+                            </div>
+                            <div className="text-xs text-slate-500">
+                              {req.id}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span
+                              className={`px-3 py-1 rounded-full text-xs font-bold ${
+                                req.serviceType.includes("法律") ||
+                                req.serviceType.includes("财税") ||
+                                req.serviceType.includes("政策") ||
+                                req.serviceType.includes("知识产权")
+                                  ? "bg-emerald-100 text-emerald-700"
+                                  : req.serviceType.includes("订单") ||
+                                    req.serviceType.includes("FA") ||
+                                    req.serviceType.includes("品牌") ||
+                                    req.serviceType.includes("媒体")
+                                  ? "bg-blue-100 text-blue-700"
+                                  : "bg-purple-100 text-purple-700"
+                              }`}
+                            >
+                              {req.serviceType}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 max-w-md">
+                            <div className="text-sm text-slate-700 line-clamp-2">
+                              {req.requirementDetails}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="text-sm text-slate-600 flex items-center gap-1">
+                              <Users size={14} className="text-slate-400" />
+                              {req.potentialPartner}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-slate-600">
+                              {req.uploadTime}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span
+                              className={`px-3 py-1 rounded-full text-xs font-bold ${
+                                req.status === "对接成功"
+                                  ? "bg-emerald-100 text-emerald-700"
+                                  : req.status === "需求匹配"
+                                  ? "bg-blue-100 text-blue-700"
+                                  : "bg-amber-100 text-amber-700"
+                              }`}
+                            >
+                              {req.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center gap-2">
+                              <button className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
+                                <Edit3 size={16} />
+                              </button>
+                              <button className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+                                <MoreHorizontal size={16} />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* 联系运营说明 */}
+              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                      <Phone size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-black">需要生态扶持？</h4>
+                      <p className="text-indigo-100 text-sm">
+                        如需为园区企业对接生态服务，请联系BP诊断运营团队：400-888-8888
+                      </p>
+                    </div>
+                  </div>
+                  <button className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-colors flex items-center gap-2">
+                    <Phone size={18} />
+                    联系运营
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- 生态看板页面 --- */}
+          {activeTab === "ecosystem_dashboard" && (
+            <div className="space-y-6 animate-in fade-in duration-500">
+              {/* 页面头部 */}
+              <div className="flex justify-between items-end mb-6">
+                <div>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    生态看板
+                  </h3>
+                  <p className="text-slate-500 mt-2">
+                    查看所有生态服务需求的匹配状态和进展
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveTab("ecosystem_connect")}
+                  className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-100 flex items-center gap-2"
+                >
+                  <Plus size={18} />
+                  提交新需求
+                </button>
+              </div>
+
+              {/* 统计卡片 */}
+              <div className="grid grid-cols-4 gap-6">
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">总需求数</div>
+                      <div className="text-2xl font-black text-slate-900 mt-1">
+                        {ECOSYSTEM_SERVICE_REQUESTS.length}
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center">
+                      <FileText size={24} className="text-slate-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">需求对接</div>
+                      <div className="text-2xl font-black text-amber-600 mt-1">
+                        {
+                          ECOSYSTEM_SERVICE_REQUESTS.filter(
+                            (r) => r.status === "需求对接"
+                          ).length
+                        }
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                      <Clock size={24} className="text-amber-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">需求匹配</div>
+                      <div className="text-2xl font-black text-blue-600 mt-1">
                         {
                           ECOSYSTEM_SERVICE_REQUESTS.filter(
                             (r) => r.status === "需求匹配"
                           ).length
                         }
                       </div>
-                      <div className="text-[10px] text-slate-500">需求匹配</div>
                     </div>
-                    <div className="w-px h-8 bg-slate-100"></div>
-                    <div className="flex flex-col items-center">
-                      <div className="text-xl font-black text-emerald-600 leading-none">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <Link size={24} className="text-blue-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">对接成功</div>
+                      <div className="text-2xl font-black text-emerald-600 mt-1">
                         {
                           ECOSYSTEM_SERVICE_REQUESTS.filter(
                             (r) => r.status === "对接成功"
                           ).length
                         }
                       </div>
-                      <div className="text-[10px] text-slate-500">对接成功</div>
+                    </div>
+                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                      <CheckCircle2 size={24} className="text-emerald-600" />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* 服务类型筛选 */}
-              <div className="flex flex-wrap gap-3 mb-6">
-                {[
-                  "全部",
-                  "投融资",
-                  "FA",
-                  "猎头",
-                  "会所",
-                  "律所",
-                  "媒体",
-                  "孵化器",
-                ].map((cat, idx) => (
-                  <button
-                    key={cat}
-                    className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
-                      idx === 0
-                        ? "bg-indigo-600 text-white shadow-lg shadow-indigo-100"
-                        : "bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+              {/* 数据可视化和分润分析 */}
+              <div className="grid grid-cols-10 gap-6">
+                {/* 左侧：需求新增数量&处理率 (70%) */}
+                <div className="col-span-7 bg-white rounded-2xl border border-slate-200 p-6">
+                  <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
+                    <BarChart3 size={20} className="text-indigo-600" />
+                    需求趋势与处理率分析
+                  </h4>
+                  {/* 模拟图表数据 */}
+                  {(() => {
+                    const monthsData = [
+                      { month: "9月", new: 8, processed: 7, rate: 87.5 },
+                      { month: "10月", new: 12, processed: 10, rate: 83.3 },
+                      { month: "11月", new: 15, processed: 14, rate: 93.3 },
+                      { month: "12月", new: 18, processed: 16, rate: 88.9 },
+                      { month: "1月", new: 12, processed: 11, rate: 91.7 },
+                    ];
+                    const maxNew = Math.max(...monthsData.map((d) => d.new));
+
+                    return (
+                      <div>
+                        <div className="flex items-end justify-between h-80 mb-4">
+                          {monthsData.map((data, idx) => (
+                            <div
+                              key={idx}
+                              className="flex flex-col items-center gap-2 flex-1"
+                            >
+                              {/* 折线图点（处理率） */}
+                              <div
+                                className="relative w-full flex justify-center"
+                                style={{
+                                  height: `${(data.rate / 100) * 280}px`,
+                                }}
+                              >
+                                <div className="absolute bottom-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-lg"></div>
+                                {idx < monthsData.length - 1 && (
+                                  <div
+                                    className="absolute left-1/2 w-full h-1 bg-emerald-400 origin-left"
+                                    style={{
+                                      transform: `rotate(${Math.atan2(
+                                        (monthsData[idx + 1].rate - data.rate) *
+                                          2.8,
+                                        100
+                                      )}rad)`,
+                                      width: "100%",
+                                    }}
+                                  ></div>
+                                )}
+                              </div>
+                              {/* 柱状图（新增需求） */}
+                              <div
+                                className="relative w-full flex flex-col items-center"
+                                style={{
+                                  marginTop: `-${(data.rate / 100) * 280}px`,
+                                }}
+                              >
+                                <div className="text-xs font-bold text-slate-700 mb-1">
+                                  {data.new}
+                                </div>
+                                <div
+                                  className="w-16 bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-lg"
+                                  style={{
+                                    height: `${(data.new / maxNew) * 200}px`,
+                                  }}
+                                ></div>
+                                <div className="mt-2 text-xs font-bold text-slate-600">
+                                  {data.month}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex items-center justify-center gap-8 pt-4 border-t border-slate-200">
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-indigo-500 rounded"></div>
+                            <span className="text-sm text-slate-600">
+                              新增需求
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
+                            <span className="text-sm text-slate-600">
+                              处理率
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* 右侧：分润数据 (30%) */}
+                <div className="col-span-3 space-y-6">
+                  {/* 处理中需求的预计分润 */}
+                  <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Clock size={20} />
+                      <h5 className="font-black">处理中预计分润</h5>
+                    </div>
+                    <div className="text-3xl font-black mb-2">
+                      ¥{" "}
+                      {(
+                        ECOSYSTEM_SERVICE_RECORDS.filter(
+                          (r) => r.status === "进行中"
+                        ).reduce((sum, r) => sum + r.profitShare, 0) / 10000
+                      ).toFixed(1)}
+                      万
+                    </div>
+                    <div className="text-blue-100 text-sm">
+                      {
+                        ECOSYSTEM_SERVICE_RECORDS.filter(
+                          (r) => r.status === "进行中"
+                        ).length
+                      }{" "}
+                      个项目进行中
+                    </div>
+                  </div>
+
+                  {/* 累计分润 */}
+                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Wallet size={20} />
+                      <h5 className="font-black">累计实现分润</h5>
+                    </div>
+                    <div className="text-3xl font-black mb-2">
+                      ¥{" "}
+                      {(
+                        ECOSYSTEM_SERVICE_RECORDS.filter(
+                          (r) => r.status === "已完成"
+                        ).reduce((sum, r) => sum + r.profitShare, 0) / 10000
+                      ).toFixed(1)}
+                      万
+                    </div>
+                    <div className="text-emerald-100 text-sm">
+                      {
+                        ECOSYSTEM_SERVICE_RECORDS.filter(
+                          (r) => r.status === "已完成"
+                        ).length
+                      }{" "}
+                      个项目已完成
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* 生态伙伴卡片网格 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {ECOSYSTEM_SERVICES.map((service) => (
-                  <div
-                    key={service.id}
-                    className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-indigo-200 transition-all group flex flex-col h-full"
-                  >
-                    {/* 卡片头部 */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                            service.category === "投融资"
-                              ? "bg-emerald-100"
-                              : service.category === "FA"
-                              ? "bg-blue-100"
-                              : service.category === "猎头"
-                              ? "bg-purple-100"
-                              : service.category === "会所"
-                              ? "bg-orange-100"
-                              : service.category === "律所"
-                              ? "bg-amber-100"
-                              : service.category === "媒体"
-                              ? "bg-pink-100"
-                              : "bg-cyan-100"
-                          }`}
-                        >
-                          {service.category === "投融资" && (
-                            <DollarSign
-                              size={24}
-                              className="text-emerald-600"
-                            />
-                          )}
-                          {service.category === "FA" && (
-                            <Briefcase size={24} className="text-blue-600" />
-                          )}
-                          {service.category === "猎头" && (
-                            <Users size={24} className="text-purple-600" />
-                          )}
-                          {service.category === "会所" && (
-                            <Calculator size={24} className="text-orange-600" />
-                          )}
-                          {service.category === "律所" && (
-                            <Scale size={24} className="text-amber-600" />
-                          )}
-                          {service.category === "媒体" && (
-                            <Megaphone size={24} className="text-pink-600" />
-                          )}
-                          {service.category === "孵化器" && (
-                            <Building size={24} className="text-cyan-600" />
-                          )}
+              {/* 高潜分润订单 */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h4 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <TrendingUp size={20} className="text-amber-600" />
+                    高潜分润订单 TOP 5
+                  </h4>
+                  <span className="text-xs text-slate-500">
+                    按预计分润金额排序
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  {ECOSYSTEM_SERVICE_RECORDS.sort(
+                    (a, b) => b.profitShare - a.profitShare
+                  )
+                    .slice(0, 5)
+                    .map((record, idx) => (
+                      <div
+                        key={record.id}
+                        className="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
+                      >
+                        <div className="flex items-center gap-4 flex-1">
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center font-black text-white ${
+                              idx === 0
+                                ? "bg-amber-500"
+                                : idx === 1
+                                ? "bg-slate-400"
+                                : idx === 2
+                                ? "bg-orange-600"
+                                : "bg-slate-300"
+                            }`}
+                          >
+                            {idx + 1}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-bold text-slate-900">
+                              {record.projectName}
+                            </div>
+                            <div className="text-xs text-slate-500 mt-1">
+                              {record.partnerName} · {record.serviceType}
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                            {service.name}
-                          </h4>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span
-                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                service.category === "投融资"
-                                  ? "bg-emerald-50 text-emerald-600"
-                                  : service.category === "FA"
-                                  ? "bg-blue-50 text-blue-600"
-                                  : service.category === "猎头"
-                                  ? "bg-purple-50 text-purple-600"
-                                  : service.category === "会所"
-                                  ? "bg-orange-50 text-orange-600"
-                                  : service.category === "律所"
-                                  ? "bg-amber-50 text-amber-600"
-                                  : service.category === "媒体"
-                                  ? "bg-pink-50 text-pink-600"
-                                  : "bg-cyan-50 text-cyan-600"
+                        <div className="text-right">
+                          <div className="text-lg font-black text-emerald-600">
+                            ¥{(record.profitShare / 10000).toFixed(2)}万
+                          </div>
+                          <div className="text-xs text-slate-500 mt-1">
+                            {record.status}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- 生态资源方管理页面 --- */}
+          {activeTab === "ecosystem_partners" && isAdmin && (
+            <div className="space-y-6 animate-in fade-in duration-500">
+              {/* 页面头部 */}
+              <div className="flex justify-between items-end mb-6">
+                <div>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    生态资源方管理
+                  </h3>
+                  <p className="text-slate-500 mt-2">
+                    管理三个货架的生态服务提供方及其服务记录
+                  </p>
+                </div>
+                <button className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-100 flex items-center gap-2">
+                  <Plus size={18} />
+                  新增资源方
+                </button>
+              </div>
+
+              {/* 统计卡片 */}
+              <div className="grid grid-cols-4 gap-6">
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">合作资源方</div>
+                      <div className="text-2xl font-black text-slate-900 mt-1">
+                        {ECOSYSTEM_PARTNERS.length}
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center">
+                      <Network size={24} className="text-slate-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">活跃资源方</div>
+                      <div className="text-2xl font-black text-emerald-600 mt-1">
+                        {
+                          ECOSYSTEM_PARTNERS.filter(
+                            (p) => p.status === "active"
+                          ).length
+                        }
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                      <CheckCircle2 size={24} className="text-emerald-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">不活跃资源方</div>
+                      <div className="text-2xl font-black text-amber-600 mt-1">
+                        {
+                          ECOSYSTEM_PARTNERS.filter(
+                            (p) => p.status === "inactive"
+                          ).length
+                        }
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                      <AlertTriangle size={24} className="text-amber-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">累计分润</div>
+                      <div className="text-2xl font-black text-indigo-600 mt-1">
+                        {(
+                          ECOSYSTEM_PARTNERS.reduce(
+                            (sum, p) => sum + p.totalProfit,
+                            0
+                          ) / 10000
+                        ).toFixed(0)}
+                        万
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                      <Wallet size={24} className="text-indigo-600" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 按货架分类展示资源方 */}
+              <div className="space-y-6">
+                {["合规与生存", "增长与交易", "要素与基建"].map((category) => {
+                  const categoryPartners = ECOSYSTEM_PARTNERS.filter(
+                    (p) => p.category === category
+                  );
+                  if (categoryPartners.length === 0) return null;
+
+                  return (
+                    <div
+                      key={category}
+                      className="bg-white rounded-2xl border border-slate-200 p-6"
+                    >
+                      <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+                        {category === "合规与生存" && (
+                          <Shield size={20} className="text-emerald-600" />
+                        )}
+                        {category === "增长与交易" && (
+                          <TrendingUp size={20} className="text-blue-600" />
+                        )}
+                        {category === "要素与基建" && (
+                          <Package size={20} className="text-purple-600" />
+                        )}
+                        {category} · {categoryPartners.length} 家资源方
+                      </h4>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {categoryPartners.map((partner) => {
+                          const partnerRecords =
+                            ECOSYSTEM_SERVICE_RECORDS.filter(
+                              (r) => r.partnerId === partner.id
+                            );
+                          const isInactive = partner.status === "inactive";
+
+                          return (
+                            <div
+                              key={partner.id}
+                              className={`border-2 rounded-xl p-5 hover:shadow-lg transition-all ${
+                                isInactive
+                                  ? "border-amber-200 bg-amber-50"
+                                  : "border-slate-200 bg-white hover:border-indigo-300"
                               }`}
                             >
-                              {service.category}
-                            </span>
-                            <span className="text-[10px] text-slate-400">
-                              {service.type}
-                            </span>
-                          </div>
-                        </div>
+                              {/* 资源方头部 */}
+                              <div className="flex items-start justify-between mb-4">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <h5 className="font-black text-slate-900">
+                                      {partner.name}
+                                    </h5>
+                                    {isInactive && (
+                                      <span className="px-2 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded">
+                                        不活跃
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-xs text-slate-500">
+                                    {partner.serviceType}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* 统计数据 */}
+                              <div className="grid grid-cols-2 gap-3 mb-4">
+                                <div className="bg-slate-50 rounded-lg p-3">
+                                  <div className="text-xs text-slate-500">
+                                    服务次数
+                                  </div>
+                                  <div className="text-lg font-black text-slate-900">
+                                    {partner.serviceCount}
+                                  </div>
+                                </div>
+                                <div className="bg-slate-50 rounded-lg p-3">
+                                  <div className="text-xs text-slate-500">
+                                    累计分润
+                                  </div>
+                                  <div className="text-lg font-black text-emerald-600">
+                                    ¥{(partner.totalProfit / 10000).toFixed(1)}
+                                    万
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* 联系信息 */}
+                              <div className="mb-4 text-xs text-slate-600 space-y-1">
+                                <div className="flex items-center gap-2">
+                                  <User size={12} />
+                                  {partner.contactPerson}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Phone size={12} />
+                                  {partner.phone}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Calendar size={12} />
+                                  最后活跃: {partner.lastActiveDate}
+                                </div>
+                              </div>
+
+                              {/* 操作按钮 */}
+                              <div className="flex gap-2">
+                                <button className="flex-1 px-3 py-2 bg-indigo-50 text-indigo-600 rounded-lg text-sm font-bold hover:bg-indigo-100 transition-colors">
+                                  查看记录
+                                </button>
+                                {isInactive && (
+                                  <button className="px-3 py-2 bg-amber-500 text-white rounded-lg text-sm font-bold hover:bg-amber-600 transition-colors flex items-center gap-1">
+                                    <X size={14} />
+                                    解除合作
+                                  </button>
+                                )}
+                              </div>
+
+                              {/* 服务记录预览（折叠） */}
+                              {partnerRecords.length > 0 && (
+                                <details className="mt-4">
+                                  <summary className="text-xs font-bold text-slate-600 cursor-pointer hover:text-indigo-600">
+                                    查看 {partnerRecords.length} 条服务记录 ▼
+                                  </summary>
+                                  <div className="mt-3 space-y-2 max-h-60 overflow-y-auto">
+                                    {partnerRecords.map((record) => (
+                                      <div
+                                        key={record.id}
+                                        className="bg-slate-50 rounded-lg p-3 text-xs"
+                                      >
+                                        <div className="font-bold text-slate-900 mb-1">
+                                          {record.projectName}
+                                        </div>
+                                        <div className="text-slate-600 mb-2">
+                                          {record.serviceDetail}
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                          <span className="text-slate-500">
+                                            {record.serviceDate}
+                                          </span>
+                                          <span className="font-bold text-emerald-600">
+                                            分润: ¥
+                                            {(
+                                              record.profitShare / 10000
+                                            ).toFixed(2)}
+                                            万
+                                          </span>
+                                        </div>
+                                        <div className="mt-1">
+                                          <span
+                                            className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                                              record.status === "已完成"
+                                                ? "bg-emerald-100 text-emerald-700"
+                                                : "bg-blue-100 text-blue-700"
+                                            }`}
+                                          >
+                                            {record.status}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </details>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
-
-                    {/* 描述 */}
-                    <p className="text-sm text-slate-500 mb-4 line-clamp-2 flex-grow">
-                      {service.description}
-                    </p>
-
-                    {/* 联系信息 */}
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 mt-auto">
-                      <div className="text-[10px] text-slate-400 font-bold mb-2">
-                        对接方式
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
-                            <User size={14} className="text-indigo-600" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-700">
-                              {service.manager}
-                            </div>
-                            <div className="text-[10px] text-indigo-600">
-                              {service.contactVia}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
-                {/* 招募卡片 */}
-                <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 flex flex-col justify-center items-center text-center text-white h-full min-h-[300px]">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
-                    <HeartHandshake size={32} />
-                  </div>
-                  <h3 className="text-2xl font-black mb-2">成为生态合作伙伴</h3>
-                  <p className="text-indigo-100 text-sm mb-6 max-w-[200px]">
-                    加入国信中数创新生态网络，共同赋能优秀创业企业。
-                  </p>
-                  <button className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-colors shadow-lg">
-                    立即申请入驻
-                  </button>
-                </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -5001,5 +5675,3 @@ export default function App() {
     </div>
   );
 }
-
-
