@@ -3609,17 +3609,6 @@ export default function App() {
                 <LayoutDashboard size={18} />
                 <span className="text-sm font-bold">仪表盘</span>
               </button>
-              <button
-                onClick={() => setActiveTab("tasks")}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "tasks"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <FileText size={18} />
-                <span className="text-sm font-bold">业务流水</span>
-              </button>
             </div>
           </div>
 
@@ -3721,17 +3710,6 @@ export default function App() {
             </div>
             <div className="space-y-1">
               <button
-                onClick={() => setActiveTab("ecosystem_partners")}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "ecosystem_partners"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <Handshake size={18} />
-                <span className="text-sm font-bold">生态伙伴服务</span>
-              </button>
-              <button
                 onClick={() => setActiveTab("business_orders")}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   activeTab === "business_orders"
@@ -3741,6 +3719,17 @@ export default function App() {
               >
                 <Receipt size={18} />
                 <span className="text-sm font-bold">业务流水订单</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("ecosystem_partners")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "ecosystem_partners"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Handshake size={18} />
+                <span className="text-sm font-bold">生态伙伴服务</span>
               </button>
             </div>
           </div>
@@ -3765,8 +3754,6 @@ export default function App() {
             <h2 className="font-bold text-xl text-slate-800">
               {activeTab === "dashboard"
                 ? "仪表盘"
-                : activeTab === "tasks"
-                ? "业务流水"
                 : activeTab === "orders"
                 ? "点数订单"
                 : activeTab === "tenants"
@@ -4391,52 +4378,6 @@ export default function App() {
             </div>
           )}
 
-          {/* --- 3. 基础运营模块 (业务流水) --- */}
-          {activeTab === "tasks" && (
-            <div className="bg-white rounded-[24px] border border-slate-200 shadow-sm overflow-hidden animate-in fade-in duration-500">
-              <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                <h3 className="font-bold text-slate-800">业务处理流水</h3>
-              </div>
-              <table className="w-full text-left text-sm">
-                <thead className="bg-slate-50 text-xs text-slate-500 font-bold uppercase tracking-wider">
-                  <tr>
-                    <th className="px-8 py-4">任务编号</th>
-                    <th className="px-8 py-4">项目文件</th>
-                    {/* 仅管理员可见：所属租户列 */}
-                    {isAdmin && <th className="px-8 py-4">所属租户</th>}
-                    <th className="px-8 py-4">状态</th>
-                    <th className="px-8 py-4 text-right">操作</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50">
-                  {MOCK_OLD_DATA.tasks.map((task) => (
-                    <tr
-                      key={task.id}
-                      className="hover:bg-slate-50 transition-colors"
-                    >
-                      <td className="px-8 py-5 font-mono text-slate-400 text-xs">
-                        {task.id}
-                      </td>
-                      <td className="px-8 py-5 font-bold text-slate-700">
-                        {task.fileName}
-                      </td>
-                      {isAdmin && (
-                        <td className="px-8 py-5 text-slate-500">
-                          {task.tenant}
-                        </td>
-                      )}
-                      <td className="px-8 py-5">
-                        <SmartStatusBadge status={task.status} />
-                      </td>
-                      <td className="px-8 py-5 text-right text-indigo-600 font-bold text-xs cursor-pointer hover:underline">
-                        详情
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
 
           {/* --- 4. 订单管理视图 --- */}
           {activeTab === "orders" && (
