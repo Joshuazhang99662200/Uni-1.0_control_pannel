@@ -223,7 +223,7 @@ const MOCK_OLD_DATA = {
 };
 
 // ==========================================
-// --- 1.1 生态伙伴服务数据 ---
+// --- 1.1 生态伙伴数据 ---
 // ==========================================
 const ECOSYSTEM_SERVICES = [
   {
@@ -373,7 +373,7 @@ const ECOSYSTEM_SERVICES = [
 ];
 
 // ==========================================
-// --- 1.2 业务流水订单数据 ---
+// --- 1.2 业务流水数据 ---
 // ==========================================
 const BUSINESS_ORDERS = [
   {
@@ -3006,7 +3006,8 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
              ======================= */}
           <div className="bg-white rounded-3xl border border-slate-200 p-6">
             <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Briefcase size={16} className="text-slate-400" /> 项目申请的生态服务需求
+              <Briefcase size={16} className="text-slate-400" />{" "}
+              项目申请的生态服务需求
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {/* 投融资对接 - 已申请 */}
@@ -3014,7 +3015,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-emerald-200 transition-colors">
                   <DollarSign size={20} className="text-emerald-600" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">投融资对接</h4>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">
+                  投融资对接
+                </h4>
                 <p className="text-xs text-slate-500">寻求战略投资、股权融资</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
                   <CheckCircle2 size={12} /> 已申请服务
@@ -3026,7 +3029,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-purple-200 transition-colors">
                   <Users size={20} className="text-purple-600" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">猎头服务</h4>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">
+                  猎头服务
+                </h4>
                 <p className="text-xs text-slate-500">高端人才招聘、团队组建</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-purple-600 font-bold">
                   <CheckCircle2 size={12} /> 已申请服务
@@ -3038,8 +3043,12 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
                   <Scale size={20} className="text-slate-400" />
                 </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">法律咨询</h4>
-                <p className="text-xs text-slate-400">合规咨询、合同审核、知识产权</p>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">
+                  法律咨询
+                </h4>
+                <p className="text-xs text-slate-400">
+                  合规咨询、合同审核、知识产权
+                </p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
                   <Circle size={12} /> 暂无需求
                 </div>
@@ -3050,7 +3059,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
                   <Calculator size={20} className="text-slate-400" />
                 </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">财务咨询</h4>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">
+                  财务咨询
+                </h4>
                 <p className="text-xs text-slate-400">FA服务、财务规划咨询</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
                   <Circle size={12} /> 暂无需求
@@ -3062,7 +3073,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
                   <Newspaper size={20} className="text-slate-400" />
                 </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">媒体对接</h4>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">
+                  媒体对接
+                </h4>
                 <p className="text-xs text-slate-400">品牌传播、媒体曝光</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
                   <Circle size={12} /> 暂无需求
@@ -3074,7 +3087,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                 <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
                   <MoreHorizontal size={20} className="text-slate-400" />
                 </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">其他服务</h4>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">
+                  其他服务
+                </h4>
                 <p className="text-xs text-slate-400">定制化服务需求</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
                   <Circle size={12} /> 暂无需求
@@ -3704,7 +3719,7 @@ export default function App() {
         </div>
 
         <nav className="flex-1 px-4 overflow-y-auto space-y-8 pb-8 custom-scrollbar">
-          {/* 1. 数据看板 */}
+          {/* 1. 数据展示 (Top) - 已包含业务流水订单 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               数据看板
@@ -3721,6 +3736,28 @@ export default function App() {
                 <LayoutDashboard size={18} />
                 <span className="text-sm font-bold">仪表盘</span>
               </button>
+
+              {/* --- 移动到此处的业务流水按钮 --- */}
+              <button
+                onClick={() => setActiveTab("business_orders")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "business_orders"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Receipt size={18} />
+                <span className="text-sm font-bold">业务流水</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 2. 核心业务 */}
+          <div>
+            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              核心业务
+            </div>
+            <div className="space-y-1">
               <button
                 onClick={() => setActiveTab("project_library")}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
@@ -3757,10 +3794,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* 3. 业务流水 */}
+          {/* 3. 基础运营 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              业务流水
+              基础运营
             </div>
             <div className="space-y-1">
               <button
@@ -3845,6 +3882,27 @@ export default function App() {
               </button>
             </div>
           </div>
+
+          {/* 4. 生态服务 (Bottom) */}
+          <div>
+            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              生态服务
+            </div>
+            <div className="space-y-1">
+              {/* 业务流水已移走 */}
+              <button
+                onClick={() => setActiveTab("ecosystem_partners")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "ecosystem_partners"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Handshake size={18} />
+                <span className="text-sm font-bold">生态地图</span>
+              </button>
+            </div>
+          </div>
         </nav>
 
         {/* 身份切换器 */}
@@ -3882,6 +3940,14 @@ export default function App() {
                 ? "用户管理"
                 : activeTab === "quota"
                 ? "配额管理"
+                : activeTab === "project_library"
+                ? "项目库"
+                : activeTab === "configs"
+                ? "配置管理器"
+                : activeTab === "ecosystem_partners"
+                ? "生态地图"
+                : activeTab === "business_orders"
+                ? "业务流水"
                 : "运营中心"}
             </h2>
           </div>
@@ -4187,80 +4253,27 @@ export default function App() {
             </div>
           )}
 
-          {/* --- 生态伙伴服务页面 --- */}
-          {activeTab === "ecosystem_services" && (
+          {/* --- 生态地图页面 --- */}
+          {activeTab === "ecosystem_partners" && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* 页面头部 */}
               <div className="flex justify-between items-end mb-6">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">
-                    生态服务
+                    生态地图
                   </h3>
                   <p className="text-slate-500 mt-2">
                     管理企业生态服务需求，匹配优质生态伙伴资源
                   </p>
                 </div>
-                <button className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all flex items-center gap-2">
-                  <Plus size={18} /> 新增服务需求
-                </button>
-              </div>
-
-              {/* 本周新增需求提醒 */}
-              {(() => {
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-                const thisWeekRequests = ECOSYSTEM_SERVICE_REQUESTS.filter(
-                  (req) => req.createdAt >= oneWeekAgo
-                );
-
-                if (thisWeekRequests.length > 0) {
-                  return (
-                    <div className="p-5 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-200 flex items-start gap-4">
-                      <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shrink-0">
-                        <AlertCircle size={20} className="text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-bold text-amber-900 mb-1">本周新增生态需求提醒</h4>
-                        <p className="text-sm text-amber-700">
-                          本周新增 <span className="font-black text-amber-900">{thisWeekRequests.length}</span> 条生态服务需求，请及时跟进对接
-                        </p>
-                      </div>
+                <div className="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
+                  <Phone size={16} className="text-indigo-600" />
+                  <div>
+                    <div className="text-[10px] text-indigo-400 font-bold">
+                      服务热线
                     </div>
-                  );
-                }
-                return null;
-              })()}
-
-              {/* 统计卡片 */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <Handshake size={24} className="text-blue-600" />
-                    </div>
-                  </div>
-                  <div className="text-3xl font-black text-slate-900 mb-1">
-                    {ECOSYSTEM_SERVICE_REQUESTS.length}
-                  </div>
-                  <div className="text-sm text-slate-500">需求总数</div>
-                </div>
-
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                      <Clock size={24} className="text-amber-600" />
-                    </div>
-                  </div>
-                  <div className="text-3xl font-black text-slate-900 mb-1">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求对接").length}
-                  </div>
-                  <div className="text-sm text-slate-500">需求对接</div>
-                </div>
-
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
-                      <Target size={24} className="text-indigo-600" />
+                    <div className="text-sm font-black text-indigo-600">
+                      400-888-8888
                     </div>
                   </div>
                   <div className="text-3xl font-black text-slate-900 mb-1">
@@ -4284,7 +4297,16 @@ export default function App() {
 
               {/* 服务类型筛选 */}
               <div className="flex flex-wrap gap-3 mb-6">
-                {["全部", "投融资对接", "法律咨询", "财务咨询", "媒体对接", "猎头服务", "其他"].map((cat, idx) => (
+                {[
+                  "全部",
+                  "投融资",
+                  "FA",
+                  "猎头",
+                  "会所",
+                  "律所",
+                  "媒体",
+                  "孵化器",
+                ].map((cat, idx) => (
                   <button
                     key={cat}
                     className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
@@ -4298,54 +4320,85 @@ export default function App() {
                 ))}
               </div>
 
-              {/* 需求看板 - 按状态分类 */}
-              <div className="space-y-6">
-                {/* 需求对接 */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
-                    <h4 className="text-lg font-black text-slate-900">需求对接</h4>
-                    <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
-                      {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求对接").length}
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求对接").map((request) => (
-                      <div
-                        key={request.id}
-                        className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-lg hover:border-amber-300 transition-all"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex-1">
-                            <h5 className="font-bold text-slate-900 mb-1">{request.companyName}</h5>
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                request.serviceType === "投融资对接" ? "bg-emerald-50 text-emerald-600" :
-                                request.serviceType === "法律咨询" ? "bg-blue-50 text-blue-600" :
-                                request.serviceType === "财务咨询" ? "bg-purple-50 text-purple-600" :
-                                request.serviceType === "媒体对接" ? "bg-pink-50 text-pink-600" :
-                                request.serviceType === "猎头服务" ? "bg-orange-50 text-orange-600" :
-                                "bg-slate-50 text-slate-600"
-                              }`}>
-                                {request.serviceType}
-                              </span>
-                              <span className="px-2 py-0.5 bg-amber-50 text-amber-600 text-[10px] font-bold rounded">
-                                需求对接
-                              </span>
-                            </div>
-                          </div>
+              {/* 生态伙伴卡片网格 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {ECOSYSTEM_SERVICES.map((service) => (
+                  <div
+                    key={service.id}
+                    className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-indigo-200 transition-all group"
+                  >
+                    {/* 卡片头部 */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                            service.category === "投融资"
+                              ? "bg-emerald-100"
+                              : service.category === "FA"
+                              ? "bg-blue-100"
+                              : service.category === "猎头"
+                              ? "bg-purple-100"
+                              : service.category === "会所"
+                              ? "bg-orange-100"
+                              : service.category === "律所"
+                              ? "bg-amber-100"
+                              : service.category === "媒体"
+                              ? "bg-pink-100"
+                              : "bg-cyan-100"
+                          }`}
+                        >
+                          {service.category === "投融资" && (
+                            <DollarSign
+                              size={24}
+                              className="text-emerald-600"
+                            />
+                          )}
+                          {service.category === "FA" && (
+                            <Briefcase size={24} className="text-blue-600" />
+                          )}
+                          {service.category === "猎头" && (
+                            <Users size={24} className="text-purple-600" />
+                          )}
+                          {service.category === "会所" && (
+                            <Calculator size={24} className="text-orange-600" />
+                          )}
+                          {service.category === "律所" && (
+                            <Scale size={24} className="text-amber-600" />
+                          )}
+                          {service.category === "媒体" && (
+                            <Megaphone size={24} className="text-pink-600" />
+                          )}
+                          {service.category === "孵化器" && (
+                            <Building size={24} className="text-cyan-600" />
+                          )}
                         </div>
-                        <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                          {request.requirementDetails}
-                        </p>
-                        <div className="bg-slate-50 rounded-xl p-3 space-y-2">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-slate-400 font-bold">潜在匹配方</span>
-                            <span className="text-slate-700 font-bold">{request.potentialPartner}</span>
-                          </div>
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-slate-400 font-bold">提交时间</span>
-                            <span className="text-slate-700">{request.uploadTime}</span>
+                        <div>
+                          <h4 className="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                            {service.name}
+                          </h4>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                                service.category === "投融资"
+                                  ? "bg-emerald-50 text-emerald-600"
+                                  : service.category === "FA"
+                                  ? "bg-blue-50 text-blue-600"
+                                  : service.category === "猎头"
+                                  ? "bg-purple-50 text-purple-600"
+                                  : service.category === "会所"
+                                  ? "bg-orange-50 text-orange-600"
+                                  : service.category === "律所"
+                                  ? "bg-amber-50 text-amber-600"
+                                  : service.category === "媒体"
+                                  ? "bg-pink-50 text-pink-600"
+                                  : "bg-cyan-50 text-cyan-600"
+                              }`}
+                            >
+                              {service.category}
+                            </span>
+                            <span className="text-[10px] text-slate-400">
+                              {service.type}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -4353,52 +4406,28 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* 需求匹配 */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-                    <h4 className="text-lg font-black text-slate-900">需求匹配</h4>
-                    <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full">
-                      {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求匹配").length}
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求匹配").map((request) => (
-                      <div
-                        key={request.id}
-                        className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-lg hover:border-indigo-300 transition-all"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex-1">
-                            <h5 className="font-bold text-slate-900 mb-1">{request.companyName}</h5>
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                request.serviceType === "投融资对接" ? "bg-emerald-50 text-emerald-600" :
-                                request.serviceType === "法律咨询" ? "bg-blue-50 text-blue-600" :
-                                request.serviceType === "财务咨询" ? "bg-purple-50 text-purple-600" :
-                                request.serviceType === "媒体对接" ? "bg-pink-50 text-pink-600" :
-                                request.serviceType === "猎头服务" ? "bg-orange-50 text-orange-600" :
-                                "bg-slate-50 text-slate-600"
-                              }`}>
-                                {request.serviceType}
-                              </span>
-                              <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] font-bold rounded">
-                                需求匹配
-                              </span>
+                    {/* 描述 */}
+                    <p className="text-sm text-slate-500 mb-4 line-clamp-2">
+                      {service.description}
+                    </p>
+
+                    {/* 联系信息 */}
+                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                      <div className="text-[10px] text-slate-400 font-bold mb-2">
+                        对接方式
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <User size={14} className="text-indigo-600" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-700">
+                              {service.manager}
                             </div>
-                          </div>
-                        </div>
-                        <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                          {request.requirementDetails}
-                        </p>
-                        <div className="bg-slate-50 rounded-xl p-3 space-y-2">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-slate-400 font-bold">潜在匹配方</span>
-                            <span className="text-slate-700 font-bold">{request.potentialPartner}</span>
-                          </div>
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-slate-400 font-bold">提交时间</span>
-                            <span className="text-slate-700">{request.uploadTime}</span>
+                            <div className="text-[10px] text-indigo-600">
+                              {service.contactVia}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -4415,61 +4444,27 @@ export default function App() {
                       {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "对接成功").length}
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "对接成功").map((request) => (
-                      <div
-                        key={request.id}
-                        className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-lg hover:border-emerald-300 transition-all"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex-1">
-                            <h5 className="font-bold text-slate-900 mb-1">{request.companyName}</h5>
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                request.serviceType === "投融资对接" ? "bg-emerald-50 text-emerald-600" :
-                                request.serviceType === "法律咨询" ? "bg-blue-50 text-blue-600" :
-                                request.serviceType === "财务咨询" ? "bg-purple-50 text-purple-600" :
-                                request.serviceType === "媒体对接" ? "bg-pink-50 text-pink-600" :
-                                request.serviceType === "猎头服务" ? "bg-orange-50 text-orange-600" :
-                                "bg-slate-50 text-slate-600"
-                              }`}>
-                                {request.serviceType}
-                              </span>
-                              <span className="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded flex items-center gap-1">
-                                <CheckCircle2 size={10} /> 对接成功
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                          {request.requirementDetails}
-                        </p>
-                        <div className="bg-emerald-50 rounded-xl p-3 space-y-2 border border-emerald-100">
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-emerald-600 font-bold">匹配方</span>
-                            <span className="text-emerald-700 font-bold">{request.potentialPartner}</span>
-                          </div>
-                          <div className="flex items-center justify-between text-xs">
-                            <span className="text-emerald-600 font-bold">提交时间</span>
-                            <span className="text-emerald-700">{request.uploadTime}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                  <div>
+                    <h4 className="font-bold text-slate-900">
+                      成为国信中数生态伙伴
+                    </h4>
+                    <p className="text-sm text-slate-500 mt-1">
+                      加入我们的生态合作网络，共同服务创新企业
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* --- 业务流水订单页面 --- */}
+          {/* --- 业务流水页面 --- */}
           {activeTab === "business_orders" && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* 页面头部 */}
               <div className="flex justify-between items-end mb-6">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">
-                    业务流水订单
+                    业务流水
                   </h3>
                   <p className="text-slate-500 mt-2">
                     查看所有服务订单的详细信息和支付状态
@@ -4488,7 +4483,9 @@ export default function App() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-sm text-slate-500">订单总数</div>
-                      <div className="text-2xl font-black text-slate-900 mt-1">{BUSINESS_ORDERS.length}</div>
+                      <div className="text-2xl font-black text-slate-900 mt-1">
+                        {BUSINESS_ORDERS.length}
+                      </div>
                     </div>
                     <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
                       <Receipt size={24} className="text-indigo-600" />
@@ -4500,7 +4497,10 @@ export default function App() {
                     <div>
                       <div className="text-sm text-slate-500">已完成</div>
                       <div className="text-2xl font-black text-emerald-600 mt-1">
-                        {BUSINESS_ORDERS.filter(o => o.status === "已完成").length}
+                        {
+                          BUSINESS_ORDERS.filter((o) => o.status === "已完成")
+                            .length
+                        }
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
@@ -4513,7 +4513,12 @@ export default function App() {
                     <div>
                       <div className="text-sm text-slate-500">处理中</div>
                       <div className="text-2xl font-black text-amber-600 mt-1">
-                        {BUSINESS_ORDERS.filter(o => o.status === "处理中" || o.status === "待支付").length}
+                        {
+                          BUSINESS_ORDERS.filter(
+                            (o) =>
+                              o.status === "处理中" || o.status === "待支付"
+                          ).length
+                        }
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
@@ -4526,7 +4531,14 @@ export default function App() {
                     <div>
                       <div className="text-sm text-slate-500">总金额</div>
                       <div className="text-2xl font-black text-slate-900 mt-1">
-                        ¥{(BUSINESS_ORDERS.reduce((acc, o) => acc + o.amount, 0) / 10000).toFixed(1)}万
+                        ¥
+                        {(
+                          BUSINESS_ORDERS.reduce(
+                            (acc, o) => acc + o.amount,
+                            0
+                          ) / 10000
+                        ).toFixed(1)}
+                        万
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
@@ -4582,22 +4594,32 @@ export default function App() {
                             <div className="w-7 h-7 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xs font-bold">
                               {order.uploader[0]}
                             </div>
-                            <span className="font-bold text-slate-700">{order.uploader}</span>
+                            <span className="font-bold text-slate-700">
+                              {order.uploader}
+                            </span>
                           </div>
                         </td>
                         <td className="px-6 py-5 text-slate-500 text-xs">
                           {order.uploadTime}
                         </td>
-                        <td className="px-6 py-5 text-slate-700 font-medium text-xs max-w-[180px] truncate" title={order.projectName}>
+                        <td
+                          className="px-6 py-5 text-slate-700 font-medium text-xs max-w-[180px] truncate"
+                          title={order.projectName}
+                        >
                           {order.projectName}
                         </td>
                         <td className="px-6 py-5">
-                          <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                            order.serviceType === "Uni" ? "bg-blue-50 text-blue-600" :
-                            order.serviceType === "DUO" ? "bg-purple-50 text-purple-600" :
-                            order.serviceType === "Tri" ? "bg-amber-50 text-amber-600" :
-                            "bg-emerald-50 text-emerald-600"
-                          }`}>
+                          <span
+                            className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                              order.serviceType === "Uni"
+                                ? "bg-blue-50 text-blue-600"
+                                : order.serviceType === "DUO"
+                                ? "bg-purple-50 text-purple-600"
+                                : order.serviceType === "Tri"
+                                ? "bg-amber-50 text-amber-600"
+                                : "bg-emerald-50 text-emerald-600"
+                            }`}
+                          >
                             {order.serviceType}
                           </span>
                         </td>
@@ -4611,12 +4633,17 @@ export default function App() {
                           ¥{order.amount.toLocaleString()}
                         </td>
                         <td className="px-6 py-5">
-                          <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                            order.status === "已完成" ? "bg-emerald-50 text-emerald-600" :
-                            order.status === "处理中" ? "bg-amber-50 text-amber-600" :
-                            order.status === "待支付" ? "bg-blue-50 text-blue-600" :
-                            "bg-red-50 text-red-600"
-                          }`}>
+                          <span
+                            className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                              order.status === "已完成"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : order.status === "处理中"
+                                ? "bg-amber-50 text-amber-600"
+                                : order.status === "待支付"
+                                ? "bg-blue-50 text-blue-600"
+                                : "bg-red-50 text-red-600"
+                            }`}
+                          >
                             {order.status}
                           </span>
                         </td>
@@ -4627,7 +4654,6 @@ export default function App() {
               </div>
             </div>
           )}
-
 
           {/* --- 4. 订单管理视图 --- */}
           {activeTab === "orders" && (
@@ -4862,3 +4888,4 @@ export default function App() {
     </div>
   );
 }
+
