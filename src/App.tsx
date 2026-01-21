@@ -83,6 +83,8 @@ import {
   Globe,
   Newspaper,
   Circle,
+  Shield,
+  Cloud,
 } from "lucide-react";
 
 // ==========================================
@@ -1455,7 +1457,7 @@ const SEED_PROJECTS = [
 // --- Mock Data Expansion Logic (数据扩充逻辑) ---
 // 目标：将种子数据扩充到 100+ 个，保持逻辑一致性但具有唯一ID
 const generateExtendedProjects = () => {
-  const extended = [];
+  const extended: any[] = [];
 
   // 辅助数组，用于随机化
   const locations = [
@@ -1515,7 +1517,7 @@ const generateExtendedProjects = () => {
 const MOCK_EXTENDED_PROJECTS = generateExtendedProjects();
 
 // --- 环形图组件 (SVG Donut Chart) ---
-const DonutChart = ({ data, size = 160, thickness = 20 }) => {
+const DonutChart = ({ data, size = 160, thickness = 20 }: { data: any[], size?: number, thickness?: number }) => {
   const total = data.reduce((acc, item) => acc + item.value, 0);
   let currentAngle = 0;
   const radius = (size - thickness) / 2;
@@ -1592,7 +1594,7 @@ const DonutChart = ({ data, size = 160, thickness = 20 }) => {
 // --- Components ---
 // ==========================================
 
-const SmartStatusBadge = ({ score, status }) => {
+const SmartStatusBadge = ({ score, status }: { score?: any, status?: any }) => {
   if (score !== undefined) {
     let colorClass = "bg-slate-100 text-slate-600";
     let text = "C级";
@@ -2094,7 +2096,7 @@ const ConfigDetailEditor = ({
   const [activeTab, setActiveTab] = useState("weights");
   const [isOverride, setIsOverride] = useState(false);
   const [promptChatInput, setPromptChatInput] = useState("");
-  const [promptChatHistory, setPromptChatHistory] = useState([]);
+  const [promptChatHistory, setPromptChatHistory] = useState<Array<{role: string, content: string}>>([]);
 
   // 计算总权重
   const totalWeight = useMemo(
@@ -2891,97 +2893,177 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
           </div>
 
           {/* =======================
-              4. 项目申请的生态服务需求 (Ecosystem Service Requests)
+              4. 项目申请的生态服务需求 (Ecosystem Service Requests) - 三货架设计
              ======================= */}
           <div className="bg-white rounded-3xl border border-slate-200 p-6">
             <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
               <Briefcase size={16} className="text-slate-400" />{" "}
               项目申请的生态服务需求
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {/* 投融资对接 - 已申请 */}
-              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100 hover:shadow-md transition-all cursor-pointer group">
-                <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-emerald-200 transition-colors">
-                  <DollarSign size={20} className="text-emerald-600" />
+
+            {/* 货架1：合规与生存 */}
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-4 bg-amber-500 rounded-full"></div>
+                <h4 className="text-xs font-bold text-slate-700">合规与生存</h4>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {/* 法律/法务对接 - 已申请 */}
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-100 hover:shadow-md transition-all cursor-pointer group">
+                  <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-amber-200 transition-colors">
+                    <Scale size={20} className="text-amber-600" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">
+                    法律/法务对接
+                  </h4>
+                  <p className="text-xs text-slate-500">合规咨询、合同审核</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-amber-600 font-bold">
+                    <CheckCircle2 size={12} /> 已申请服务
+                  </div>
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">
-                  投融资对接
-                </h4>
-                <p className="text-xs text-slate-500">寻求战略投资、股权融资</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
-                  <CheckCircle2 size={12} /> 已申请服务
+
+                {/* 财税/审计对接 - 已申请 */}
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-4 border border-orange-100 hover:shadow-md transition-all cursor-pointer group">
+                  <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-orange-200 transition-colors">
+                    <Calculator size={20} className="text-orange-600" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">
+                    财税/审计对接
+                  </h4>
+                  <p className="text-xs text-slate-500">财务规划、税务筹划</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-orange-600 font-bold">
+                    <CheckCircle2 size={12} /> 已申请服务
+                  </div>
+                </div>
+
+                {/* 政策申报 - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <FileText size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    政策申报
+                  </h4>
+                  <p className="text-xs text-slate-400">政策咨询、项目申报</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
+                </div>
+
+                {/* 知识产权 - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <Shield size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    知识产权
+                  </h4>
+                  <p className="text-xs text-slate-400">专利申请、商标注册</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* 猎头服务 - 已申请 */}
-              <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-4 border border-purple-100 hover:shadow-md transition-all cursor-pointer group">
-                <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-purple-200 transition-colors">
-                  <Users size={20} className="text-purple-600" />
+            {/* 货架2：增长与交易 */}
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-4 bg-emerald-500 rounded-full"></div>
+                <h4 className="text-xs font-bold text-slate-700">增长与交易</h4>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {/* 订单对接 - 已申请 */}
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100 hover:shadow-md transition-all cursor-pointer group">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-emerald-200 transition-colors">
+                    <ShoppingCart size={20} className="text-emerald-600" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">
+                    订单对接
+                  </h4>
+                  <p className="text-xs text-slate-500">业务对接、订单撮合</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
+                    <CheckCircle2 size={12} /> 已申请服务
+                  </div>
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">
-                  猎头服务
-                </h4>
-                <p className="text-xs text-slate-500">高端人才招聘、团队组建</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-purple-600 font-bold">
-                  <CheckCircle2 size={12} /> 已申请服务
+
+                {/* FA顾问 - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <Briefcase size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    FA顾问
+                  </h4>
+                  <p className="text-xs text-slate-400">投融资顾问、资本对接</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
+                </div>
+
+                {/* 品牌PR - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <Megaphone size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    品牌PR
+                  </h4>
+                  <p className="text-xs text-slate-400">品牌传播、媒体曝光</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* 法律咨询 - 未申请（灰色） */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
-                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
-                  <Scale size={20} className="text-slate-400" />
-                </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">
-                  法律咨询
-                </h4>
-                <p className="text-xs text-slate-400">
-                  合规咨询、合同审核、知识产权
-                </p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Circle size={12} /> 暂无需求
-                </div>
+            {/* 货架3：要素与基建 */}
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-4 bg-blue-500 rounded-full"></div>
+                <h4 className="text-xs font-bold text-slate-700">要素与基建</h4>
               </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {/* 人才/猎头对接 - 已申请 */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100 hover:shadow-md transition-all cursor-pointer group">
+                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-200 transition-colors">
+                    <Users size={20} className="text-blue-600" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">
+                    人才/猎头对接
+                  </h4>
+                  <p className="text-xs text-slate-500">高端人才招聘、团队组建</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-blue-600 font-bold">
+                    <CheckCircle2 size={12} /> 已申请服务
+                  </div>
+                </div>
 
-              {/* 财务咨询 - 未申请（灰色） */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
-                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
-                  <Calculator size={20} className="text-slate-400" />
+                {/* 数据服务 - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <Database size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    数据服务
+                  </h4>
+                  <p className="text-xs text-slate-400">数据分析、市场洞察</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
                 </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">
-                  财务咨询
-                </h4>
-                <p className="text-xs text-slate-400">FA服务、财务规划咨询</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Circle size={12} /> 暂无需求
-                </div>
-              </div>
 
-              {/* 媒体对接 - 未申请（灰色） */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
-                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
-                  <Newspaper size={20} className="text-slate-400" />
-                </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">
-                  媒体对接
-                </h4>
-                <p className="text-xs text-slate-400">品牌传播、媒体曝光</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Circle size={12} /> 暂无需求
-                </div>
-              </div>
-
-              {/* 其他服务 - 未申请（灰色） */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
-                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
-                  <MoreHorizontal size={20} className="text-slate-400" />
-                </div>
-                <h4 className="font-bold text-slate-500 text-sm mb-1">
-                  其他服务
-                </h4>
-                <p className="text-xs text-slate-400">定制化服务需求</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Circle size={12} /> 暂无需求
+                {/* 云资源与算力服务 - 未申请 */}
+                <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                  <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                    <Cloud size={20} className="text-slate-400" />
+                  </div>
+                  <h4 className="font-bold text-slate-500 text-sm mb-1">
+                    云资源与算力
+                  </h4>
+                  <p className="text-xs text-slate-400">云服务、算力支持</p>
+                  <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                    <Circle size={12} /> 暂无需求
+                  </div>
                 </div>
               </div>
             </div>
