@@ -81,6 +81,8 @@ import {
   CreditCard,
   Network,
   Globe,
+  Newspaper,
+  Circle,
 } from "lucide-react";
 
 // ==========================================
@@ -2889,159 +2891,84 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
           </div>
 
           {/* =======================
-              4. 项目方业务需求 (Business Needs)
+              4. 项目申请的生态服务需求 (Ecosystem Service Requests)
              ======================= */}
           <div className="bg-white rounded-3xl border border-slate-200 p-6">
             <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Briefcase size={16} className="text-slate-400" /> 项目方业务需求
+              <Briefcase size={16} className="text-slate-400" /> 项目申请的生态服务需求
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {/* 投融资需求 */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {/* 投融资对接 - 已申请 */}
               <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-4 border border-emerald-100 hover:shadow-md transition-all cursor-pointer group">
                 <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-emerald-200 transition-colors">
                   <DollarSign size={20} className="text-emerald-600" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">投融资需求</h4>
+                <h4 className="font-bold text-slate-900 text-sm mb-1">投融资对接</h4>
                 <p className="text-xs text-slate-500">寻求战略投资、股权融资</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-emerald-600 font-bold">
-                  <CheckCircle2 size={12} /> 已提交需求
+                  <CheckCircle2 size={12} /> 已申请服务
                 </div>
               </div>
 
-              {/* 财务顾问需求 */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100 hover:shadow-md transition-all cursor-pointer group">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-200 transition-colors">
-                  <Calculator size={20} className="text-blue-600" />
-                </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">财务顾问</h4>
-                <p className="text-xs text-slate-500">FA服务、财务规划咨询</p>
-                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Plus size={12} /> 申请服务
-                </div>
-              </div>
-
-              {/* 猎头服务需求 */}
+              {/* 猎头服务 - 已申请 */}
               <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-4 border border-purple-100 hover:shadow-md transition-all cursor-pointer group">
                 <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-purple-200 transition-colors">
                   <Users size={20} className="text-purple-600" />
                 </div>
                 <h4 className="font-bold text-slate-900 text-sm mb-1">猎头服务</h4>
                 <p className="text-xs text-slate-500">高端人才招聘、团队组建</p>
+                <div className="mt-3 flex items-center gap-1 text-[10px] text-purple-600 font-bold">
+                  <CheckCircle2 size={12} /> 已申请服务
+                </div>
+              </div>
+
+              {/* 法律咨询 - 未申请（灰色） */}
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                  <Scale size={20} className="text-slate-400" />
+                </div>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">法律咨询</h4>
+                <p className="text-xs text-slate-400">合规咨询、合同审核、知识产权</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Plus size={12} /> 申请服务
+                  <Circle size={12} /> 暂无需求
                 </div>
               </div>
 
-              {/* 法律服务需求 */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-100 hover:shadow-md transition-all cursor-pointer group">
-                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mb-3 group-hover:bg-amber-200 transition-colors">
-                  <Scale size={20} className="text-amber-600" />
+              {/* 财务咨询 - 未申请（灰色） */}
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                  <Calculator size={20} className="text-slate-400" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm mb-1">法律服务</h4>
-                <p className="text-xs text-slate-500">合规咨询、合同审核、知识产权</p>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">财务咨询</h4>
+                <p className="text-xs text-slate-400">FA服务、财务规划咨询</p>
                 <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
-                  <Plus size={12} /> 申请服务
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* =======================
-              5. 生态地图 (Ecosystem Map)
-             ======================= */}
-          <div className="bg-white rounded-3xl border border-slate-200 p-6">
-            <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Globe size={16} className="text-slate-400" /> 生态地图
-              <span className="ml-auto text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">
-                国信中数生态服务
-              </span>
-            </h3>
-            <p className="text-xs text-slate-500 mb-4">
-              国信中数及生态伙伴提供的专业服务资源，所有联系均通过国信中数项目经理对接
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* 投融资匹配 */}
-              <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-slate-100 transition-colors cursor-pointer">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
-                  <DollarSign size={24} className="text-emerald-600" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-slate-900 text-sm">投融资匹配</h4>
-                  <p className="text-xs text-slate-500 truncate">红杉资本、深创投等头部机构</p>
-                </div>
-                <div className="text-right shrink-0">
-                  <div className="text-[10px] text-slate-400 font-bold">Via 国信中数</div>
-                  <button className="mt-1 text-xs text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-1">
-                    <Phone size={12} /> 联系经理
-                  </button>
+                  <Circle size={12} /> 暂无需求
                 </div>
               </div>
 
-              {/* FA匹配 */}
-              <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-slate-100 transition-colors cursor-pointer">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
-                  <Briefcase size={24} className="text-blue-600" />
+              {/* 媒体对接 - 未申请（灰色） */}
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                  <Newspaper size={20} className="text-slate-400" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-slate-900 text-sm">FA匹配</h4>
-                  <p className="text-xs text-slate-500 truncate">华兴资本、易凯资本等专业FA</p>
-                </div>
-                <div className="text-right shrink-0">
-                  <div className="text-[10px] text-slate-400 font-bold">Via 国信中数</div>
-                  <button className="mt-1 text-xs text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-1">
-                    <Phone size={12} /> 联系经理
-                  </button>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">媒体对接</h4>
+                <p className="text-xs text-slate-400">品牌传播、媒体曝光</p>
+                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                  <Circle size={12} /> 暂无需求
                 </div>
               </div>
 
-              {/* 猎头服务 */}
-              <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-slate-100 transition-colors cursor-pointer">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center shrink-0">
-                  <Users size={24} className="text-purple-600" />
+              {/* 其他服务 - 未申请（灰色） */}
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-4 border border-slate-200 transition-all cursor-pointer group opacity-60">
+                <div className="w-10 h-10 bg-slate-200 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                  <MoreHorizontal size={20} className="text-slate-400" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-slate-900 text-sm">猎头服务</h4>
-                  <p className="text-xs text-slate-500 truncate">猎聘网、科锐国际等猎头机构</p>
-                </div>
-                <div className="text-right shrink-0">
-                  <div className="text-[10px] text-slate-400 font-bold">Via 国信中数</div>
-                  <button className="mt-1 text-xs text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-1">
-                    <Phone size={12} /> 联系经理
-                  </button>
+                <h4 className="font-bold text-slate-500 text-sm mb-1">其他服务</h4>
+                <p className="text-xs text-slate-400">定制化服务需求</p>
+                <div className="mt-3 flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+                  <Circle size={12} /> 暂无需求
                 </div>
               </div>
-
-              {/* 法律服务 */}
-              <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-slate-100 transition-colors cursor-pointer">
-                <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
-                  <Scale size={24} className="text-amber-600" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-slate-900 text-sm">法律服务</h4>
-                  <p className="text-xs text-slate-500 truncate">金杜、君合等顶级律所</p>
-                </div>
-                <div className="text-right shrink-0">
-                  <div className="text-[10px] text-slate-400 font-bold">Via 国信中数</div>
-                  <button className="mt-1 text-xs text-indigo-600 font-bold hover:text-indigo-700 flex items-center gap-1">
-                    <Phone size={12} /> 联系经理
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* 底部提示 */}
-            <div className="mt-4 p-3 bg-indigo-50 rounded-xl border border-indigo-100 flex items-center gap-3">
-              <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
-                <HeartHandshake size={16} className="text-indigo-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-xs text-indigo-900 font-bold">需要更多生态服务？</p>
-                <p className="text-[10px] text-indigo-600">联系国信中数项目经理获取完整生态伙伴资源</p>
-              </div>
-              <button className="px-3 py-1.5 bg-indigo-600 text-white text-xs font-bold rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-1">
-                <Phone size={12} /> 立即咨询
-              </button>
             </div>
           </div>
         </div>
@@ -3665,10 +3592,10 @@ export default function App() {
         </div>
 
         <nav className="flex-1 px-4 overflow-y-auto space-y-8 pb-8 custom-scrollbar">
-          {/* 1. 基础运营 (Top) */}
+          {/* 1. 数据展示 (Top) */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              基础运营
+              数据展示
             </div>
             <div className="space-y-1">
               <button
@@ -3693,6 +3620,50 @@ export default function App() {
                 <FileText size={18} />
                 <span className="text-sm font-bold">业务流水</span>
               </button>
+            </div>
+          </div>
+
+          {/* 2. 核心业务 */}
+          <div>
+            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              核心业务
+            </div>
+            <div className="space-y-1">
+              <button
+                onClick={() => setActiveTab("project_library")}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "project_library"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <Database size={18} />
+                  <span className="text-sm font-bold">项目库</span>
+                </div>
+              </button>
+              <button
+                onClick={() => setActiveTab("configs")}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "configs"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <Sliders size={18} />
+                  <span className="text-sm font-bold">配置管理器</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* 3. 基础运营工具 */}
+          <div>
+            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              基础运营工具
+            </div>
+            <div className="space-y-1">
               <button
                 onClick={() => setActiveTab("orders")}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
@@ -3743,7 +3714,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 2. 生态服务 (Middle) */}
+          {/* 4. 生态服务 (Bottom) */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
               生态服务
@@ -3770,41 +3741,6 @@ export default function App() {
               >
                 <Receipt size={18} />
                 <span className="text-sm font-bold">业务流水订单</span>
-              </button>
-            </div>
-          </div>
-
-          {/* 3. 核心业务 (Bottom) */}
-          <div>
-            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              核心业务
-            </div>
-            <div className="space-y-1">
-              <button
-                onClick={() => setActiveTab("project_library")}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "project_library"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Database size={18} />
-                  <span className="text-sm font-bold">项目库</span>
-                </div>
-              </button>
-              <button
-                onClick={() => setActiveTab("configs")}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "configs"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Sliders size={18} />
-                  <span className="text-sm font-bold">配置管理器</span>
-                </div>
               </button>
             </div>
           </div>
