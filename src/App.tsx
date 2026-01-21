@@ -69,8 +69,8 @@ import {
   Calendar,
   Briefcase as BriefcaseIcon,
   Share2,
-  Phone, // 新增
-  UserCheck, // 新增
+  Phone,
+  UserCheck,
   Handshake,
   Receipt,
   Scale,
@@ -468,7 +468,8 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     id: "ECO-REQ-001",
     companyName: "智航低空物流网络",
     serviceType: "投融资对接",
-    requirementDetails: "寻求Pre-A轮融资，金额3000万元，用于扩大无人机物流网络覆盖范围",
+    requirementDetails:
+      "寻求Pre-A轮融资，金额3000万元，用于扩大无人机物流网络覆盖范围",
     potentialPartner: "红杉资本、深创投",
     uploadTime: "2024-01-15 09:30",
     status: "对接成功",
@@ -478,7 +479,8 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     id: "ECO-REQ-002",
     companyName: "DeepSeeker 医疗影像大模型",
     serviceType: "法律咨询",
-    requirementDetails: "需要医疗AI领域合规审查，涉及数据安全和隐私保护相关法律咨询",
+    requirementDetails:
+      "需要医疗AI领域合规审查，涉及数据安全和隐私保护相关法律咨询",
     potentialPartner: "金杜律师事务所",
     uploadTime: "2024-01-16 14:20",
     status: "需求匹配",
@@ -508,7 +510,8 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     id: "ECO-REQ-005",
     companyName: "云边协同智能工厂",
     serviceType: "猎头服务",
-    requirementDetails: "招聘CTO和技术总监各1名，要求有工业互联网和边缘计算背景",
+    requirementDetails:
+      "招聘CTO和技术总监各1名，要求有工业互联网和边缘计算背景",
     potentialPartner: "猎聘网、科锐国际",
     uploadTime: "2024-01-19 11:30",
     status: "需求对接",
@@ -1563,7 +1566,7 @@ const SEED_PROJECTS = [
 // --- Mock Data Expansion Logic (数据扩充逻辑) ---
 // 目标：将种子数据扩充到 100+ 个，保持逻辑一致性但具有唯一ID
 const generateExtendedProjects = () => {
-  const extended: any[] = [];
+  const extended = [];
 
   // 辅助数组，用于随机化
   const locations = [
@@ -1623,7 +1626,15 @@ const generateExtendedProjects = () => {
 const MOCK_EXTENDED_PROJECTS = generateExtendedProjects();
 
 // --- 环形图组件 (SVG Donut Chart) ---
-const DonutChart = ({ data, size = 160, thickness = 20 }: { data: any[], size?: number, thickness?: number }) => {
+const DonutChart = ({
+  data,
+  size = 160,
+  thickness = 20,
+}: {
+  data: any[];
+  size?: number;
+  thickness?: number;
+}) => {
   const total = data.reduce((acc, item) => acc + item.value, 0);
   let currentAngle = 0;
   const radius = (size - thickness) / 2;
@@ -1700,7 +1711,13 @@ const DonutChart = ({ data, size = 160, thickness = 20 }: { data: any[], size?: 
 // --- Components ---
 // ==========================================
 
-const SmartStatusBadge = ({ score, status }: { score?: number, status?: string }) => {
+const SmartStatusBadge = ({
+  score,
+  status,
+}: {
+  score?: number;
+  status?: string;
+}) => {
   if (score !== undefined) {
     let colorClass = "bg-slate-100 text-slate-600";
     let text = "C级";
@@ -1747,7 +1764,17 @@ const SmartStatusBadge = ({ score, status }: { score?: number, status?: string }
 };
 
 // 配额充值抽屉
-const QuotaDrawer = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => {
+const QuotaDrawer = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
@@ -2207,7 +2234,7 @@ const ConfigDetailEditor = ({
   const [activeTab, setActiveTab] = useState("weights");
   const [isOverride, setIsOverride] = useState(false);
   const [promptChatInput, setPromptChatInput] = useState("");
-  const [promptChatHistory, setPromptChatHistory] = useState<Array<{role: string, content: string}>>([]);
+  const [promptChatHistory, setPromptChatHistory] = useState([]);
 
   // 计算总权重
   const totalWeight = useMemo(
@@ -2515,7 +2542,7 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
     )}等场景已实现落地。${
       project.keyClients ? `主要服务客户包括${project.keyClients}。` : ""
     }作为${
-      project.tags[0]
+      project.tags?.[0] || ""
     }代表性企业，团队拥有深厚的技术积累，致力于通过技术创新解决行业核心痛点。目前公司已获得${
       project.investors
     }等知名机构投资，营收规模达到${
@@ -2586,7 +2613,7 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                       <span className="px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded text-xs font-bold">
                         {project.track}
                       </span>
-                      {project.tags.map((t) => (
+                      {project.tags?.map((t) => (
                         <span
                           key={t}
                           className="px-2 py-0.5 bg-slate-100 text-slate-600 border border-slate-200 rounded text-xs font-medium"
@@ -3143,7 +3170,9 @@ const ProjectDetailModal = ({ project, config, onClose }) => {
                   <h4 className="font-bold text-slate-900 text-sm mb-1">
                     人才/猎头对接
                   </h4>
-                  <p className="text-xs text-slate-500">高端人才招聘、团队组建</p>
+                  <p className="text-xs text-slate-500">
+                    高端人才招聘、团队组建
+                  </p>
                   <div className="mt-3 flex items-center gap-1 text-[10px] text-blue-600 font-bold">
                     <CheckCircle2 size={12} /> 已申请服务
                   </div>
@@ -3202,9 +3231,9 @@ const TenantDashboard = ({ projects }) => {
   const trackDistribution = projects.reduce((acc, curr) => {
     acc[curr.track] = (acc[curr.track] || 0) + 1;
     return acc;
-  }, {} as Record<string, number>);
+  }, {});
   const trackData = Object.entries(trackDistribution)
-    .map(([name, value]) => ({ name, value: value as number }))
+    .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
   // B. 融资轮次分布
@@ -3217,9 +3246,9 @@ const TenantDashboard = ({ projects }) => {
     else if (curr.funding.includes("B轮")) key = "B轮及以后";
     acc[key] = (acc[key] || 0) + 1;
     return acc;
-  }, {} as Record<string, number>);
+  }, {});
   const fundingData = Object.entries(fundingDistribution)
-    .map(([name, value]) => ({ name, value: value as number }))
+    .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
   // C. 区域来源分布 (环形图逻辑)
@@ -3236,10 +3265,10 @@ const TenantDashboard = ({ projects }) => {
 
     acc[region] = (acc[region] || 0) + 1;
     return acc;
-  }, {} as Record<string, number>);
+  }, {});
 
   let locationDataSorted = Object.entries(locationDistribution)
-    .map(([name, value]) => ({ name, value: value as number }))
+    .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value);
 
   if (locationDataSorted.length > 6) {
@@ -3500,13 +3529,13 @@ const TenantDashboard = ({ projects }) => {
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {Object.entries(qualityStats).map(([key, val]) => {
-            const labels: Record<string, string> = {
+            const labels = {
               s: "S级 (极优)",
               a: "A级 (推荐)",
               b: "B级 (储备)",
               c: "C级 (观察)",
             };
-            const colors: Record<string, string> = {
+            const colors = {
               s: "text-rose-600 bg-rose-50",
               a: "text-indigo-600 bg-indigo-50",
               b: "text-emerald-600 bg-emerald-50",
@@ -3524,7 +3553,7 @@ const TenantDashboard = ({ projects }) => {
                     colors[key].split(" ")[0]
                   }`}
                 >
-                  {val as number}
+                  {val}
                 </span>
                 <span className="text-xs font-bold text-slate-500 uppercase tracking-wider opacity-80">
                   {labels[key]}
@@ -3549,14 +3578,14 @@ export default function App() {
   // 状态管理
   const [isAdmin, setIsAdmin] = useState(false); // 默认为租户视角
   const [showPromptOptimizer, setShowPromptOptimizer] = useState(false);
-  const [editingConfig, setEditingConfig] = useState<any>(null);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [editingConfig, setEditingConfig] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [activeTenant, setActiveTenant] = useState<any>(null);
+  const [activeTenant, setActiveTenant] = useState(null);
 
   // 筛选器状态
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const [filterConditions, setFilterConditions] = useState<any[]>([]);
+  const [filterConditions, setFilterConditions] = useState([]);
 
   const currentConfig = useMemo(
     () => configs.find((c) => c.id === activeConfigId) || configs[0],
@@ -4348,32 +4377,41 @@ export default function App() {
                     管理企业生态服务需求，匹配优质生态伙伴资源
                   </p>
                 </div>
-                <div className="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
-                  <Phone size={16} className="text-indigo-600" />
-                  <div>
-                    <div className="text-[10px] text-indigo-400 font-bold">
-                      服务热线
-                    </div>
-                    <div className="text-sm font-black text-indigo-600">
-                      400-888-8888
-                    </div>
-                  </div>
-                  <div className="text-3xl font-black text-slate-900 mb-1">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "需求匹配").length}
-                  </div>
-                  <div className="text-sm text-slate-500">需求匹配</div>
-                </div>
-
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                      <CheckCircle2 size={24} className="text-emerald-600" />
+                <div className="flex gap-4">
+                  <div className="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
+                    <Phone size={16} className="text-indigo-600" />
+                    <div>
+                      <div className="text-[10px] text-indigo-400 font-bold">
+                        服务热线
+                      </div>
+                      <div className="text-sm font-black text-indigo-600">
+                        400-888-8888
+                      </div>
                     </div>
                   </div>
-                  <div className="text-3xl font-black text-slate-900 mb-1">
-                    {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "对接成功").length}
+                  <div className="bg-white rounded-2xl border border-slate-200 px-6 py-2 flex items-center gap-3">
+                    <div className="flex flex-col items-center">
+                      <div className="text-xl font-black text-slate-900 leading-none">
+                        {
+                          ECOSYSTEM_SERVICE_REQUESTS.filter(
+                            (r) => r.status === "需求匹配"
+                          ).length
+                        }
+                      </div>
+                      <div className="text-[10px] text-slate-500">需求匹配</div>
+                    </div>
+                    <div className="w-px h-8 bg-slate-100"></div>
+                    <div className="flex flex-col items-center">
+                      <div className="text-xl font-black text-emerald-600 leading-none">
+                        {
+                          ECOSYSTEM_SERVICE_REQUESTS.filter(
+                            (r) => r.status === "对接成功"
+                          ).length
+                        }
+                      </div>
+                      <div className="text-[10px] text-slate-500">对接成功</div>
+                    </div>
                   </div>
-                  <div className="text-sm text-slate-500">对接成功</div>
                 </div>
               </div>
 
@@ -4407,7 +4445,7 @@ export default function App() {
                 {ECOSYSTEM_SERVICES.map((service) => (
                   <div
                     key={service.id}
-                    className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-indigo-200 transition-all group"
+                    className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:border-indigo-200 transition-all group flex flex-col h-full"
                   >
                     {/* 卡片头部 */}
                     <div className="flex items-start justify-between mb-4">
@@ -4484,17 +4522,15 @@ export default function App() {
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
 
                     {/* 描述 */}
-                    <p className="text-sm text-slate-500 mb-4 line-clamp-2">
+                    <p className="text-sm text-slate-500 mb-4 line-clamp-2 flex-grow">
                       {service.description}
                     </p>
 
                     {/* 联系信息 */}
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 mt-auto">
                       <div className="text-[10px] text-slate-400 font-bold mb-2">
                         对接方式
                       </div>
@@ -4513,27 +4549,22 @@ export default function App() {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
+                ))}
 
-                {/* 对接成功 */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                    <h4 className="text-lg font-black text-slate-900">对接成功</h4>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full">
-                      {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === "对接成功").length}
-                    </span>
+                {/* 招募卡片 */}
+                <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 flex flex-col justify-center items-center text-center text-white h-full min-h-[300px]">
+                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
+                    <HeartHandshake size={32} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">
-                      成为国信中数生态伙伴
-                    </h4>
-                    <p className="text-sm text-slate-500 mt-1">
-                      加入我们的生态合作网络，共同服务创新企业
-                    </p>
-                  </div>
+                  <h3 className="text-2xl font-black mb-2">成为生态合作伙伴</h3>
+                  <p className="text-indigo-100 text-sm mb-6 max-w-[200px]">
+                    加入国信中数创新生态网络，共同赋能优秀创业企业。
+                  </p>
+                  <button className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-colors shadow-lg">
+                    立即申请入驻
+                  </button>
                 </div>
               </div>
             </div>
@@ -4970,4 +5001,5 @@ export default function App() {
     </div>
   );
 }
+
 
