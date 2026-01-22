@@ -3883,6 +3883,17 @@ export default function App() {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [filterConditions, setFilterConditions] = useState<any[]>([]);
 
+  // 生态对接筛选状态
+  const [ecoSearchText, setEcoSearchText] = useState("");
+  const [ecoServiceType, setEcoServiceType] = useState("");
+  const [ecoStatus, setEcoStatus] = useState("");
+
+  // 业务流水筛选状态
+  const [businessServiceType, setBusinessServiceType] = useState("全部");
+
+  // 生态流水筛选状态
+  const [ecosystemCategory, setEcosystemCategory] = useState("全部");
+
   const currentConfig = useMemo(
     () => configs.find((c) => c.id === activeConfigId) || configs[0],
     [configs, activeConfigId]
@@ -3984,6 +3995,69 @@ export default function App() {
 
     return projects;
   }, [currentConfig, filterConditions]);
+
+  // 生态对接筛选逻辑
+  const filteredEcosystemRequests = useMemo(() => {
+    let filtered = [...ECOSYSTEM_SERVICE_REQUESTS];
+
+    // 文本搜索：企业名称、需求明细
+    if (ecoSearchText.trim()) {
+      const searchLower = ecoSearchText.toLowerCase();
+      filtered = filtered.filter(
+        (req) =>
+          req.companyName.toLowerCase().includes(searchLower) ||
+          req.requirementDetails.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // 服务类型筛选
+    if (ecoServiceType) {
+      filtered = filtered.filter((req) => req.serviceType === ecoServiceType);
+    }
+
+    // 状态筛选
+    if (ecoStatus) {
+      filtered = filtered.filter((req) => req.status === ecoStatus);
+    }
+
+    return filtered;
+  }, [ecoSearchText, ecoServiceType, ecoStatus]);
+
+  // 业务流水筛选逻辑
+  const filteredBusinessOrders = useMemo(() => {
+    let filtered = [...BUSINESS_ORDERS];
+
+    // 服务类型筛选
+    if (businessServiceType !== "全部") {
+      filtered = filtered.filter(
+        (order) => order.serviceType === businessServiceType
+      );
+    }
+
+    return filtered;
+  }, [businessServiceType]);
+
+  // 生态流水筛选逻辑
+  const filteredEcosystemTransactions = useMemo(() => {
+    let filtered = [...ECOSYSTEM_TRANSACTIONS];
+
+    // 需求类别筛选
+    if (ecosystemCategory !== "全部") {
+      const categoryMap = {
+        "合规与生存": "合规与生存货架",
+        "增长与交易": "增长与交易货架",
+        "要素与基建": "要素与基建货架",
+      };
+      const mappedCategory = categoryMap[ecosystemCategory];
+      if (mappedCategory) {
+        filtered = filtered.filter(
+          (trans) => trans.demandCategory === mappedCategory
+        );
+      }
+    }
+
+    return filtered;
+  }, [ecosystemCategory]);
 
   const updateConfig = (id, newWeights, newPrompt, isNewVersion) => {
     if (isNewVersion) {
@@ -4685,9 +4759,15 @@ export default function App() {
                       type="text"
                       placeholder="搜索企业名称、需求明细..."
                       className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                      value={ecoSearchText}
+                      onChange={(e) => setEcoSearchText(e.target.value)}
                     />
                   </div>
-                  <select className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                  <select
+                    className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                    value={ecoServiceType}
+                    onChange={(e) => setEcoServiceType(e.target.value)}
+                  >
                     <option value="">全部服务类型</option>
                     <optgroup label="合规与生存">
                       <option value="法律/法务对接">法律/法务对接</option>
@@ -4706,7 +4786,11 @@ export default function App() {
                       <option value="云资源与算力服务">云资源与算力服务</option>
                     </optgroup>
                   </select>
-                  <select className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                  <select
+                    className="px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                    value={ecoStatus}
+                    onChange={(e) => setEcoStatus(e.target.value)}
+                  >
                     <option value="">全部状态</option>
                     <option value="需求对接">需求对接</option>
                     <option value="需求匹配">需求匹配</option>
@@ -4749,7 +4833,7 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
-                      {ECOSYSTEM_SERVICE_REQUESTS.map((req) => (
+                      {filteredEcosystemRequests.map((req) => (
                         <tr
                           key={req.id}
                           className="hover:bg-slate-50 transition-colors"
@@ -5522,7 +5606,7 @@ export default function App() {
                     <div>
                       <div className="text-sm text-slate-500">订单总数</div>
                       <div className="text-2xl font-black text-slate-900 mt-1">
-                        {BUSINESS_ORDERS.length}
+                        {filteredBusinessOrders.length}
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
@@ -5536,8 +5620,9 @@ export default function App() {
                       <div className="text-sm text-slate-500">已完成</div>
                       <div className="text-2xl font-black text-emerald-600 mt-1">
                         {
-                          BUSINESS_ORDERS.filter((o) => o.status === "已完成")
-                            .length
+                          filteredBusinessOrders.filter(
+                            (o) => o.status === "已完成"
+                          ).length
                         }
                       </div>
                     </div>
@@ -5552,7 +5637,7 @@ export default function App() {
                       <div className="text-sm text-slate-500">处理中</div>
                       <div className="text-2xl font-black text-amber-600 mt-1">
                         {
-                          BUSINESS_ORDERS.filter(
+                          filteredBusinessOrders.filter(
                             (o) =>
                               o.status === "处理中" || o.status === "待支付"
                           ).length
@@ -5571,7 +5656,7 @@ export default function App() {
                       <div className="text-2xl font-black text-slate-900 mt-1">
                         ¥
                         {(
-                          BUSINESS_ORDERS.reduce(
+                          filteredBusinessOrders.reduce(
                             (acc, o) => acc + o.amount,
                             0
                           ) / 10000
@@ -5591,11 +5676,12 @@ export default function App() {
                 <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                   <h3 className="font-bold text-slate-800">订单明细</h3>
                   <div className="flex gap-2">
-                    {["全部", "Uni", "DUO", "Tri", "Omni"].map((type, idx) => (
+                    {["全部", "Uni", "DUO", "Tri", "Omni"].map((type) => (
                       <button
                         key={type}
+                        onClick={() => setBusinessServiceType(type)}
                         className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                          idx === 0
+                          businessServiceType === type
                             ? "bg-indigo-600 text-white"
                             : "bg-white text-slate-500 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
                         }`}
@@ -5619,7 +5705,7 @@ export default function App() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
-                    {BUSINESS_ORDERS.map((order) => (
+                    {filteredBusinessOrders.map((order) => (
                       <tr
                         key={order.id}
                         className="hover:bg-slate-50 transition-colors"
@@ -5720,7 +5806,7 @@ export default function App() {
                     <div>
                       <div className="text-sm text-slate-500">交易总数</div>
                       <div className="text-2xl font-black text-slate-900 mt-1">
-                        {ECOSYSTEM_TRANSACTIONS.length}
+                        {filteredEcosystemTransactions.length}
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
@@ -5734,7 +5820,7 @@ export default function App() {
                       <div className="text-sm text-slate-500">已完成</div>
                       <div className="text-2xl font-black text-emerald-600 mt-1">
                         {
-                          ECOSYSTEM_TRANSACTIONS.filter(
+                          filteredEcosystemTransactions.filter(
                             (t) => t.dealStatus === "处理完成"
                           ).length
                         }
@@ -5751,7 +5837,7 @@ export default function App() {
                       <div className="text-sm text-slate-500">处理中</div>
                       <div className="text-2xl font-black text-amber-600 mt-1">
                         {
-                          ECOSYSTEM_TRANSACTIONS.filter(
+                          filteredEcosystemTransactions.filter(
                             (t) =>
                               t.dealStatus === "需求对接" ||
                               t.dealStatus === "需求匹配"
@@ -5771,9 +5857,9 @@ export default function App() {
                       <div className="text-2xl font-black text-slate-900 mt-1">
                         ¥
                         {(
-                          ECOSYSTEM_TRANSACTIONS.filter(
-                            (t) => t.progress === "分润完成"
-                          ).reduce((acc, t) => acc + t.profitShare, 0) / 10000
+                          filteredEcosystemTransactions
+                            .filter((t) => t.progress === "分润完成")
+                            .reduce((acc, t) => acc + t.profitShare, 0) / 10000
                         ).toFixed(1)}
                         万
                       </div>
@@ -5795,11 +5881,12 @@ export default function App() {
                       "合规与生存",
                       "增长与交易",
                       "要素与基建",
-                    ].map((type, idx) => (
+                    ].map((type) => (
                       <button
                         key={type}
+                        onClick={() => setEcosystemCategory(type)}
                         className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                          idx === 0
+                          ecosystemCategory === type
                             ? "bg-indigo-600 text-white"
                             : "bg-white text-slate-500 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
                         }`}
@@ -5824,7 +5911,7 @@ export default function App() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
-                    {ECOSYSTEM_TRANSACTIONS.map((transaction) => (
+                    {filteredEcosystemTransactions.map((transaction) => (
                       <tr
                         key={transaction.id}
                         className="hover:bg-slate-50 transition-colors"
