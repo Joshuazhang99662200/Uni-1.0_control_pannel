@@ -317,6 +317,142 @@ const BUSINESS_ORDERS = [
 ];
 
 // ==========================================
+// --- 1.2.1 生态流水数据 ---
+// ==========================================
+const ECOSYSTEM_TRANSACTIONS = [
+  {
+    id: "ECO-20240101-001",
+    projectName: "智航低空物流网络",
+    demandCategory: "合规与生存货架",
+    demandDetail: "法律/法务对接",
+    dealStatus: "处理完成",
+    progress: "分润完成",
+    partnerName: "盈科律师事务所",
+    amount: 50000,
+    profitShare: 7500,
+    createdAt: "2024-01-15",
+    updatedAt: "2024-02-20",
+  },
+  {
+    id: "ECO-20240102-002",
+    projectName: "DeepSeeker 医疗影像大模型",
+    demandCategory: "增长与交易货架",
+    demandDetail: "订单对接",
+    dealStatus: "处理完成",
+    progress: "分润完成",
+    partnerName: "华西医院集团",
+    amount: 120000,
+    profitShare: 18000,
+    createdAt: "2024-01-18",
+    updatedAt: "2024-03-10",
+  },
+  {
+    id: "ECO-20240103-003",
+    projectName: "绿能储能聚合平台",
+    demandCategory: "合规与生存货架",
+    demandDetail: "财税/审计对接",
+    dealStatus: "处理完成",
+    progress: "已付款待分润",
+    partnerName: "德勤会计师事务所",
+    amount: 80000,
+    profitShare: 12000,
+    createdAt: "2024-01-20",
+    updatedAt: "2024-03-15",
+  },
+  {
+    id: "ECO-20240104-004",
+    projectName: "星舰商业航天发射服务",
+    demandCategory: "要素与基建货架",
+    demandDetail: "人才/猎头对接",
+    dealStatus: "需求匹配",
+    progress: "已签约未付款",
+    partnerName: "海德思哲猎头",
+    amount: 150000,
+    profitShare: 22500,
+    createdAt: "2024-01-22",
+    updatedAt: "2024-03-18",
+  },
+  {
+    id: "ECO-20240105-005",
+    projectName: "云边协同智能工厂",
+    demandCategory: "要素与基建货架",
+    demandDetail: "云资源与算力服务",
+    dealStatus: "需求匹配",
+    progress: "待签约",
+    partnerName: "阿里云",
+    amount: 200000,
+    profitShare: 30000,
+    createdAt: "2024-01-25",
+    updatedAt: "2024-03-20",
+  },
+  {
+    id: "ECO-20240106-006",
+    projectName: "量子通信组网平台",
+    demandCategory: "合规与生存货架",
+    demandDetail: "知识产权",
+    dealStatus: "处理完成",
+    progress: "分润完成",
+    partnerName: "中科专利代理",
+    amount: 60000,
+    profitShare: 9000,
+    createdAt: "2024-01-28",
+    updatedAt: "2024-03-22",
+  },
+  {
+    id: "ECO-20240107-007",
+    projectName: "智航低空物流网络",
+    demandCategory: "增长与交易货架",
+    demandDetail: "品牌PR",
+    dealStatus: "需求对接",
+    progress: "待签约",
+    partnerName: "蓝色光标",
+    amount: 100000,
+    profitShare: 15000,
+    createdAt: "2024-02-01",
+    updatedAt: "2024-03-24",
+  },
+  {
+    id: "ECO-20240108-008",
+    projectName: "DeepSeeker 医疗影像大模型",
+    demandCategory: "合规与生存货架",
+    demandDetail: "政策申报",
+    dealStatus: "处理完成",
+    progress: "分润完成",
+    partnerName: "中关村科技园",
+    amount: 40000,
+    profitShare: 6000,
+    createdAt: "2024-02-05",
+    updatedAt: "2024-03-25",
+  },
+  {
+    id: "ECO-20240109-009",
+    projectName: "绿能储能聚合平台",
+    demandCategory: "增长与交易货架",
+    demandDetail: "FA顾问",
+    dealStatus: "需求匹配",
+    progress: "已签约未付款",
+    partnerName: "华兴资本",
+    amount: 180000,
+    profitShare: 27000,
+    createdAt: "2024-02-08",
+    updatedAt: "2024-03-26",
+  },
+  {
+    id: "ECO-20240110-010",
+    projectName: "星舰商业航天发射服务",
+    demandCategory: "要素与基建货架",
+    demandDetail: "数据服务",
+    dealStatus: "需求对接",
+    progress: "待签约",
+    partnerName: "明略科技",
+    amount: 90000,
+    profitShare: 13500,
+    createdAt: "2024-02-10",
+    updatedAt: "2024-03-27",
+  },
+];
+
+// ==========================================
 // --- 1.3 生态服务需求数据 (新设计) ---
 // ==========================================
 const ECOSYSTEM_SERVICE_REQUESTS = [
@@ -1726,7 +1862,7 @@ const SEED_PROJECTS = [
 // --- Mock Data Expansion Logic (数据扩充逻辑) ---
 // 目标：将种子数据扩充到 100+ 个，保持逻辑一致性但具有唯一ID
 const generateExtendedProjects = () => {
-  const extended = [];
+  const extended: any[] = [];
 
   // 辅助数组，用于随机化
   const locations = [
@@ -2394,7 +2530,7 @@ const ConfigDetailEditor = ({
   const [activeTab, setActiveTab] = useState("weights");
   const [isOverride, setIsOverride] = useState(false);
   const [promptChatInput, setPromptChatInput] = useState("");
-  const [promptChatHistory, setPromptChatHistory] = useState([]);
+  const [promptChatHistory, setPromptChatHistory] = useState<any[]>([]);
 
   // 计算总权重
   const totalWeight = useMemo(
@@ -3388,16 +3524,16 @@ const TenantDashboard = ({ projects }) => {
   // --- 1. 数据统计逻辑 ---
 
   // A. 赛道分布
-  const trackDistribution = projects.reduce((acc, curr) => {
+  const trackDistribution = projects.reduce((acc: any, curr) => {
     acc[curr.track] = (acc[curr.track] || 0) + 1;
     return acc;
   }, {});
   const trackData = Object.entries(trackDistribution)
-    .map(([name, value]) => ({ name, value }))
+    .map(([name, value]) => ({ name, value: value as number }))
     .sort((a, b) => b.value - a.value);
 
   // B. 融资轮次分布
-  const fundingDistribution = projects.reduce((acc, curr) => {
+  const fundingDistribution = projects.reduce((acc: any, curr) => {
     let key = "其他";
     if (curr.funding.includes("种子") || curr.funding.includes("天使"))
       key = "种子/天使轮";
@@ -3408,11 +3544,11 @@ const TenantDashboard = ({ projects }) => {
     return acc;
   }, {});
   const fundingData = Object.entries(fundingDistribution)
-    .map(([name, value]) => ({ name, value }))
+    .map(([name, value]) => ({ name, value: value as number }))
     .sort((a, b) => b.value - a.value);
 
   // C. 区域来源分布 (环形图逻辑)
-  const locationDistribution = projects.reduce((acc, curr) => {
+  const locationDistribution = projects.reduce((acc: any, curr) => {
     let region = curr.location.split("·")[0];
     if (curr.location.includes("北京")) region = "北京";
     else if (curr.location.includes("上海")) region = "上海";
@@ -3428,7 +3564,7 @@ const TenantDashboard = ({ projects }) => {
   }, {});
 
   let locationDataSorted = Object.entries(locationDistribution)
-    .map(([name, value]) => ({ name, value }))
+    .map(([name, value]) => ({ name, value: value as number }))
     .sort((a, b) => b.value - a.value);
 
   if (locationDataSorted.length > 6) {
@@ -3689,13 +3825,13 @@ const TenantDashboard = ({ projects }) => {
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {Object.entries(qualityStats).map(([key, val]) => {
-            const labels = {
+            const labels: any = {
               s: "S级 (极优)",
               a: "A级 (推荐)",
               b: "B级 (储备)",
               c: "C级 (观察)",
             };
-            const colors = {
+            const colors: any = {
               s: "text-rose-600 bg-rose-50",
               a: "text-indigo-600 bg-indigo-50",
               b: "text-emerald-600 bg-emerald-50",
@@ -3713,7 +3849,7 @@ const TenantDashboard = ({ projects }) => {
                     colors[key].split(" ")[0]
                   }`}
                 >
-                  {val}
+                  {val as number}
                 </span>
                 <span className="text-xs font-bold text-slate-500 uppercase tracking-wider opacity-80">
                   {labels[key]}
@@ -3738,14 +3874,14 @@ export default function App() {
   // 状态管理
   const [isAdmin, setIsAdmin] = useState(false); // 默认为租户视角
   const [showPromptOptimizer, setShowPromptOptimizer] = useState(false);
-  const [editingConfig, setEditingConfig] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [editingConfig, setEditingConfig] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [activeTenant, setActiveTenant] = useState(null);
+  const [activeTenant, setActiveTenant] = useState<any>(null);
 
   // 筛选器状态
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-  const [filterConditions, setFilterConditions] = useState([]);
+  const [filterConditions, setFilterConditions] = useState<any[]>([]);
 
   const currentConfig = useMemo(
     () => configs.find((c) => c.id === activeConfigId) || configs[0],
@@ -3786,10 +3922,10 @@ export default function App() {
         let result = true;
 
         for (let i = 0; i < filterConditions.length; i++) {
-          const cond = filterConditions[i];
+          const cond: any = filterConditions[i];
           let conditionMet = false;
 
-          const valStr = String(project[cond.field] || "");
+          const valStr = String((project as any)[cond.field] || "");
           const filterValStr = cond.value;
 
           if (["revenue", "profit"].includes(cond.field)) {
@@ -4028,17 +4164,6 @@ export default function App() {
             </div>
             <div className="space-y-1">
               <button
-                onClick={() => setActiveTab("ecosystem_connect")}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  activeTab === "ecosystem_connect"
-                    ? "bg-indigo-600 text-white"
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                <Handshake size={18} />
-                <span className="text-sm font-bold">生态对接</span>
-              </button>
-              <button
                 onClick={() => setActiveTab("ecosystem_dashboard")}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                   activeTab === "ecosystem_dashboard"
@@ -4048,6 +4173,17 @@ export default function App() {
               >
                 <LayoutGrid size={18} />
                 <span className="text-sm font-bold">生态看板</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("ecosystem_connect")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "ecosystem_connect"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <Handshake size={18} />
+                <span className="text-sm font-bold">生态对接</span>
               </button>
               {/* 仅管理员可见：生态资源方 */}
               {isAdmin && (
@@ -4066,10 +4202,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* 3. 基础运营工具 */}
+          {/* 3. 账单明细 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              基础运营工具
+              账单明细
             </div>
             <div className="space-y-1">
               <button
@@ -4083,6 +4219,26 @@ export default function App() {
                 <Receipt size={18} />
                 <span className="text-sm font-bold">业务流水</span>
               </button>
+              <button
+                onClick={() => setActiveTab("ecosystem_transactions")}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  activeTab === "ecosystem_transactions"
+                    ? "bg-indigo-600 text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <CreditCard size={18} />
+                <span className="text-sm font-bold">生态流水</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 4. 基础运营 */}
+          <div>
+            <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              基础运营
+            </div>
+            <div className="space-y-1">
               <button
                 onClick={() => setActiveTab("configs")}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
@@ -4174,6 +4330,8 @@ export default function App() {
                 ? "生态资源方"
                 : activeTab === "business_orders"
                 ? "业务流水"
+                : activeTab === "ecosystem_transactions"
+                ? "生态流水"
                 : activeTab === "configs"
                 ? "配置管理器"
                 : activeTab === "orders"
@@ -4782,7 +4940,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 数据可视化和分润分析 */}
+              {/* 数据可视化和三大货架需求分布 */}
               <div className="grid grid-cols-10 gap-6">
                 {/* 左侧：需求新增数量&处理率 (70%) */}
                 <div className="col-span-7 bg-white rounded-2xl border border-slate-200 p-6">
@@ -4873,57 +5031,150 @@ export default function App() {
                   })()}
                 </div>
 
-                {/* 右侧：分润数据 (30%) */}
-                <div className="col-span-3 space-y-6">
-                  {/* 处理中需求的预计分润 */}
-                  <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Clock size={20} />
-                      <h5 className="font-black">处理中预计分润</h5>
-                    </div>
-                    <div className="text-3xl font-black mb-2">
-                      ¥{" "}
-                      {(
-                        ECOSYSTEM_SERVICE_RECORDS.filter(
-                          (r) => r.status === "进行中"
-                        ).reduce((sum, r) => sum + r.profitShare, 0) / 10000
-                      ).toFixed(1)}
-                      万
-                    </div>
-                    <div className="text-blue-100 text-sm">
+                {/* 右侧：三大货架需求分布 (30%) */}
+                <div className="col-span-3 bg-white rounded-2xl border border-slate-200 p-6">
+                  <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
+                    <PieChart size={20} className="text-indigo-600" />
+                    需求分类分布
+                  </h4>
+                  {(() => {
+                    // 三大货架需求数据
+                    const shelfData = [
                       {
-                        ECOSYSTEM_SERVICE_RECORDS.filter(
-                          (r) => r.status === "进行中"
-                        ).length
-                      }{" "}
-                      个项目进行中
-                    </div>
-                  </div>
+                        name: "合规与生存货架",
+                        count: 18,
+                        color: "bg-blue-500",
+                        items: [
+                          { name: "法律/法务对接", count: 5 },
+                          { name: "财税/审计对接", count: 6 },
+                          { name: "政策申报", count: 4 },
+                          { name: "知识产权", count: 3 },
+                        ],
+                      },
+                      {
+                        name: "增长与交易货架",
+                        count: 15,
+                        color: "bg-emerald-500",
+                        items: [
+                          { name: "订单对接", count: 8 },
+                          { name: "FA顾问", count: 4 },
+                          { name: "品牌PR", count: 3 },
+                        ],
+                      },
+                      {
+                        name: "要素与基建货架",
+                        count: 12,
+                        color: "bg-amber-500",
+                        items: [
+                          { name: "人才/猎头对接", count: 5 },
+                          { name: "数据服务", count: 4 },
+                          { name: "云资源与算力服务", count: 3 },
+                        ],
+                      },
+                    ];
+                    const total = shelfData.reduce(
+                      (sum, item) => sum + item.count,
+                      0
+                    );
 
-                  {/* 累计分润 */}
-                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-white">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Wallet size={20} />
-                      <h5 className="font-black">累计实现分润</h5>
-                    </div>
-                    <div className="text-3xl font-black mb-2">
-                      ¥{" "}
-                      {(
-                        ECOSYSTEM_SERVICE_RECORDS.filter(
-                          (r) => r.status === "已完成"
-                        ).reduce((sum, r) => sum + r.profitShare, 0) / 10000
-                      ).toFixed(1)}
-                      万
-                    </div>
-                    <div className="text-emerald-100 text-sm">
-                      {
-                        ECOSYSTEM_SERVICE_RECORDS.filter(
-                          (r) => r.status === "已完成"
-                        ).length
-                      }{" "}
-                      个项目已完成
-                    </div>
-                  </div>
+                    return (
+                      <div className="space-y-6">
+                        {/* 饼图 */}
+                        <div className="flex justify-center">
+                          <div className="relative w-48 h-48">
+                            <svg
+                              viewBox="0 0 200 200"
+                              className="transform -rotate-90"
+                            >
+                              {(() => {
+                                let cumulativePercent = 0;
+                                return shelfData.map((shelf, idx) => {
+                                  const percent = shelf.count / total;
+                                  const circumference = 2 * Math.PI * 70;
+                                  const offset =
+                                    cumulativePercent * circumference;
+                                  const dashArray = `${
+                                    percent * circumference
+                                  } ${circumference}`;
+                                  cumulativePercent += percent;
+
+                                  const colors = [
+                                    "#3b82f6",
+                                    "#10b981",
+                                    "#f59e0b",
+                                  ];
+
+                                  return (
+                                    <circle
+                                      key={idx}
+                                      cx="100"
+                                      cy="100"
+                                      r="70"
+                                      fill="none"
+                                      stroke={colors[idx]}
+                                      strokeWidth="40"
+                                      strokeDasharray={dashArray}
+                                      strokeDashoffset={-offset}
+                                    />
+                                  );
+                                });
+                              })()}
+                            </svg>
+                            <div className="absolute inset-0 flex items-center justify-center flex-col">
+                              <div className="text-3xl font-black text-slate-900">
+                                {total}
+                              </div>
+                              <div className="text-xs text-slate-500">
+                                总需求
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 图例和明细 */}
+                        <div className="space-y-3">
+                          {shelfData.map((shelf, idx) => (
+                            <div key={idx} className="space-y-2">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <div
+                                    className={`w-3 h-3 rounded-full ${shelf.color}`}
+                                  ></div>
+                                  <span className="text-sm font-bold text-slate-700">
+                                    {shelf.name}
+                                  </span>
+                                </div>
+                                <div className="text-sm">
+                                  <span className="font-black text-slate-900">
+                                    {shelf.count}
+                                  </span>
+                                  <span className="text-slate-500 ml-1">
+                                    ({((shelf.count / total) * 100).toFixed(0)}
+                                    %)
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="pl-5 space-y-1">
+                                {shelf.items.map((item, itemIdx) => (
+                                  <div
+                                    key={itemIdx}
+                                    className="flex items-center justify-between text-xs"
+                                  >
+                                    <span className="text-slate-500">
+                                      · {item.name}
+                                    </span>
+                                    <span className="text-slate-600 font-semibold">
+                                      {item.count}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
 
@@ -5433,6 +5684,213 @@ export default function App() {
                           >
                             {order.status}
                           </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* --- 生态流水页面 --- */}
+          {activeTab === "ecosystem_transactions" && (
+            <div className="space-y-6 animate-in fade-in duration-500">
+              {/* 页面头部 */}
+              <div className="flex justify-between items-end mb-6">
+                <div>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    生态流水
+                  </h3>
+                  <p className="text-slate-500 mt-2">
+                    查看所有生态服务需求的交易记录和分润状态
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <button className="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-bold hover:border-indigo-300 hover:text-indigo-600 transition-colors flex items-center gap-2">
+                    <Download size={16} /> 导出报表
+                  </button>
+                </div>
+              </div>
+
+              {/* 统计卡片 */}
+              <div className="grid grid-cols-4 gap-6 mb-6">
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">交易总数</div>
+                      <div className="text-2xl font-black text-slate-900 mt-1">
+                        {ECOSYSTEM_TRANSACTIONS.length}
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                      <CreditCard size={24} className="text-indigo-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">已完成</div>
+                      <div className="text-2xl font-black text-emerald-600 mt-1">
+                        {
+                          ECOSYSTEM_TRANSACTIONS.filter(
+                            (t) => t.dealStatus === "处理完成"
+                          ).length
+                        }
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+                      <CheckCircle2 size={24} className="text-emerald-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">处理中</div>
+                      <div className="text-2xl font-black text-amber-600 mt-1">
+                        {
+                          ECOSYSTEM_TRANSACTIONS.filter(
+                            (t) =>
+                              t.dealStatus === "需求对接" ||
+                              t.dealStatus === "需求匹配"
+                          ).length
+                        }
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                      <Clock size={24} className="text-amber-600" />
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm text-slate-500">累计分润</div>
+                      <div className="text-2xl font-black text-slate-900 mt-1">
+                        ¥
+                        {(
+                          ECOSYSTEM_TRANSACTIONS.filter(
+                            (t) => t.progress === "分润完成"
+                          ).reduce((acc, t) => acc + t.profitShare, 0) / 10000
+                        ).toFixed(1)}
+                        万
+                      </div>
+                    </div>
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <Wallet size={24} className="text-blue-600" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 交易表格 */}
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                  <h3 className="font-bold text-slate-800">交易明细</h3>
+                  <div className="flex gap-2">
+                    {[
+                      "全部",
+                      "合规与生存",
+                      "增长与交易",
+                      "要素与基建",
+                    ].map((type, idx) => (
+                      <button
+                        key={type}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                          idx === 0
+                            ? "bg-indigo-600 text-white"
+                            : "bg-white text-slate-500 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-slate-50 text-xs text-slate-500 font-bold uppercase tracking-wider">
+                    <tr>
+                      <th className="px-6 py-4">交易编号</th>
+                      <th className="px-6 py-4">项目名称</th>
+                      <th className="px-6 py-4">需求类别</th>
+                      <th className="px-6 py-4">需求明细</th>
+                      <th className="px-6 py-4">资源方</th>
+                      <th className="px-6 py-4">处理状态</th>
+                      <th className="px-6 py-4">处理进度</th>
+                      <th className="px-6 py-4">交易金额</th>
+                      <th className="px-6 py-4">分润金额</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-50">
+                    {ECOSYSTEM_TRANSACTIONS.map((transaction) => (
+                      <tr
+                        key={transaction.id}
+                        className="hover:bg-slate-50 transition-colors"
+                      >
+                        <td className="px-6 py-5 font-mono text-slate-400 text-xs">
+                          {transaction.id}
+                        </td>
+                        <td
+                          className="px-6 py-5 text-slate-700 font-medium text-xs max-w-[180px] truncate"
+                          title={transaction.projectName}
+                        >
+                          {transaction.projectName}
+                        </td>
+                        <td className="px-6 py-5">
+                          <span
+                            className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                              transaction.demandCategory === "合规与生存货架"
+                                ? "bg-blue-50 text-blue-600"
+                                : transaction.demandCategory ===
+                                  "增长与交易货架"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : "bg-amber-50 text-amber-600"
+                            }`}
+                          >
+                            {transaction.demandCategory.replace("货架", "")}
+                          </span>
+                        </td>
+                        <td className="px-6 py-5 text-slate-600 text-xs">
+                          {transaction.demandDetail}
+                        </td>
+                        <td className="px-6 py-5 text-slate-700 font-medium text-xs">
+                          {transaction.partnerName}
+                        </td>
+                        <td className="px-6 py-5">
+                          <span
+                            className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                              transaction.dealStatus === "处理完成"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : transaction.dealStatus === "需求匹配"
+                                ? "bg-blue-50 text-blue-600"
+                                : "bg-amber-50 text-amber-600"
+                            }`}
+                          >
+                            {transaction.dealStatus}
+                          </span>
+                        </td>
+                        <td className="px-6 py-5">
+                          <span
+                            className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                              transaction.progress === "分润完成"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : transaction.progress === "已付款待分润"
+                                ? "bg-blue-50 text-blue-600"
+                                : transaction.progress === "已签约未付款"
+                                ? "bg-indigo-50 text-indigo-600"
+                                : "bg-slate-50 text-slate-600"
+                            }`}
+                          >
+                            {transaction.progress}
+                          </span>
+                        </td>
+                        <td className="px-6 py-5 text-slate-900 font-bold">
+                          ¥{(transaction.amount / 10000).toFixed(2)}万
+                        </td>
+                        <td className="px-6 py-5 text-emerald-600 font-bold">
+                          ¥{(transaction.profitShare / 10000).toFixed(2)}万
                         </td>
                       </tr>
                     ))}
