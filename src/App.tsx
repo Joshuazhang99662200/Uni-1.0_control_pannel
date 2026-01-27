@@ -242,7 +242,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "企业转账",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "智航低空物流网络",
   },
@@ -264,7 +264,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "微信支付",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "绿能储能聚合平台",
   },
@@ -286,7 +286,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "银行卡",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "云边协同智能工厂",
   },
@@ -308,7 +308,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "企业转账",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "脑机接口康复系统",
   },
@@ -330,7 +330,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "企业转账",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "AI内容生成平台",
   },
@@ -352,7 +352,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "微信支付",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "新能源车充电网络",
   },
@@ -374,7 +374,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "支付宝",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "社区团购SaaS",
   },
@@ -396,7 +396,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "企业转账",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "在线教育平台",
   },
@@ -418,7 +418,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "企业转账",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "智能客服系统",
   },
@@ -440,7 +440,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "支付宝",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "智慧城市管理平台",
   },
@@ -462,7 +462,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "微信支付",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "短视频营销工具",
   },
@@ -484,7 +484,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "企业转账",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "数据安全防护平台",
   },
@@ -506,7 +506,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Uni",
     paymentMethod: "支付宝",
     amount: 299,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "会员管理系统",
   },
@@ -528,7 +528,7 @@ const BUSINESS_ORDERS = [
     serviceType: "Tri",
     paymentMethod: "微信支付",
     amount: 1999,
-    profitRate: 0.30,
+    profitRate: 0.3,
     status: "已完成",
     projectName: "远程医疗服务平台",
   },
@@ -2067,7 +2067,7 @@ const SEED_PROJECTS = [
 ];
 
 // --- Mock Data Expansion Logic (数据扩充逻辑) ---
-// 目标：将种子数据扩充到 100+ 个，保持逻辑一致性但具有唯一ID
+// 目标：将种子数据精确扩充到 3596 个，保持逻辑一致性但具有唯一ID
 const generateExtendedProjects = () => {
   const extended: any[] = [];
 
@@ -2083,8 +2083,13 @@ const generateExtendedProjects = () => {
     "南京",
   ];
 
-  for (let i = 0; i < 6; i++) {
-    // 复制 6 轮
+  const targetCount = 3596; // 目标总数
+  const seedCount = SEED_PROJECTS.length; // 18个种子
+  const fullCycles = Math.floor(targetCount / seedCount); // 完整循环次数: 199
+  const remainder = targetCount % seedCount; // 剩余需要添加的: 14
+
+  // 完整循环
+  for (let i = 0; i < fullCycles; i++) {
     SEED_PROJECTS.forEach((project, index) => {
       const newId = `BP-${2400 + extended.length + 1}`;
       const isCopy = i > 0;
@@ -2094,12 +2099,12 @@ const generateExtendedProjects = () => {
         id: newId,
         // 如果是复制品，稍微改动一下名字和数据，避免完全重复的视觉疲劳
         name: isCopy
-          ? `${project.name} ${String.fromCharCode(65 + i)}`
+          ? `${project.name} ${String.fromCharCode(65 + (i % 26))}`
           : project.name,
         companyName: isCopy
           ? project.companyName.replace(
               "有限公司",
-              `(${String.fromCharCode(65 + i)})科技有限公司`
+              `(${String.fromCharCode(65 + (i % 26))})科技有限公司`
             )
           : project.companyName,
         revenue: isCopy
@@ -2123,6 +2128,36 @@ const generateExtendedProjects = () => {
       extended.push(newProject);
     });
   }
+
+  // 添加剩余项目以达到精确的3596个
+  for (let j = 0; j < remainder; j++) {
+    const project = SEED_PROJECTS[j];
+    const newId = `BP-${2400 + extended.length + 1}`;
+
+    const newProject = {
+      ...project,
+      id: newId,
+      name: `${project.name} Extra`,
+      companyName: project.companyName.replace(
+        "有限公司",
+        "(Extra)科技有限公司"
+      ),
+      revenue: `${
+        parseInt(project.revenue) + Math.floor(Math.random() * 100 - 50)
+      }万`,
+      location: `${locations[Math.floor(Math.random() * locations.length)]}`,
+      submitTime: `2024-02-${String(
+        Math.floor(Math.random() * 28) + 1
+      ).padStart(2, "0")} ${String(Math.floor(Math.random() * 23)).padStart(
+        2,
+        "0"
+      )}:${String(Math.floor(Math.random() * 59)).padStart(2, "0")}`,
+      score: parseFloat((project.score + (Math.random() * 4 - 2)).toFixed(1)),
+    };
+
+    extended.push(newProject);
+  }
+
   return extended;
 };
 
@@ -4102,7 +4137,11 @@ export default function App() {
   const [ecosystemCategory, setEcosystemCategory] = useState("全部");
 
   // 财务流水筛选状态
-  const [financialTransactionType, setFinancialTransactionType] = useState("全部");
+  const [financialTransactionType, setFinancialTransactionType] =
+    useState("全部");
+
+  // 生态服务分润的展开/折叠状态
+  const [isEcoServiceExpanded, setIsEcoServiceExpanded] = useState(false);
 
   const currentConfig = useMemo(
     () => configs.find((c) => c.id === activeConfigId) || configs[0],
@@ -4264,14 +4303,15 @@ export default function App() {
   // 财务流水筛选逻辑（合并业务流水和生态流水）
   const allFinancialTransactions = useMemo(() => {
     // 将业务流水转换为统一格式（计算分润金额）
-    const businessTrans = BUSINESS_ORDERS.map(order => ({
+    const businessTrans = BUSINESS_ORDERS.map((order) => ({
       id: order.id,
-      type: '科技产品',
+      type: "科技产品",
       projectName: order.projectName,
       category: order.serviceType,
       detail: `${order.serviceType}服务`,
       amount: order.amount,
-      profitShare: order.status === '已完成' ? order.amount * order.profitRate : 0, // 根据profitRate计算分润
+      profitShare:
+        order.status === "已完成" ? order.amount * order.profitRate : 0, // 根据profitRate计算分润
       time: order.uploadTime,
       status: order.status,
       uploader: order.uploader,
@@ -4279,9 +4319,9 @@ export default function App() {
     }));
 
     // 将生态流水转换为统一格式
-    const ecoTrans = ECOSYSTEM_TRANSACTIONS.map(trans => ({
+    const ecoTrans = ECOSYSTEM_TRANSACTIONS.map((trans) => ({
       id: trans.id,
-      type: '生态服务',
+      type: "生态服务",
       projectName: trans.projectName,
       category: trans.serviceType, // 直接使用serviceType（已去掉三大货架）
       detail: trans.serviceType,
@@ -4300,7 +4340,9 @@ export default function App() {
     let filtered = [...allFinancialTransactions];
 
     if (financialTransactionType !== "全部") {
-      filtered = filtered.filter(trans => trans.type === financialTransactionType);
+      filtered = filtered.filter(
+        (trans) => trans.type === financialTransactionType
+      );
     }
 
     return filtered;
@@ -5090,9 +5132,16 @@ export default function App() {
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className={`px-3 py-1 rounded-full text-xs font-bold ${
-                                ["法律", "财税", "政策申报", "知识产权"].includes(req.serviceType)
+                                [
+                                  "法律",
+                                  "财税",
+                                  "政策申报",
+                                  "知识产权",
+                                ].includes(req.serviceType)
                                   ? "bg-emerald-100 text-emerald-700"
-                                  : ["订单对接", "FA顾问", "品牌PR"].includes(req.serviceType)
+                                  : ["订单对接", "FA顾问", "品牌PR"].includes(
+                                      req.serviceType
+                                    )
                                   ? "bg-blue-100 text-blue-700"
                                   : "bg-purple-100 text-purple-700"
                               }`}
@@ -5193,100 +5242,86 @@ export default function App() {
 
               {/* 统计卡片（大字报形式） */}
               <div className="grid grid-cols-4 gap-6">
-                <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-3xl p-6 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-80 mb-2">
+                <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-3xl p-5 text-white shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">
                     总需求数
                   </div>
-                  <div className="text-5xl font-black mb-1">
-                    {ECOSYSTEM_SERVICE_REQUESTS.length}
-                  </div>
-                  <div className="text-sm opacity-80">个需求</div>
+                  <div className="text-4xl font-black mb-1">2451</div>
+                  <div className="text-xs opacity-80">条</div>
                 </div>
-                <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-6 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-2">
+                <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-5 text-white shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
                     需求对接
                   </div>
-                  <div className="text-5xl font-black mb-1">
-                    {
-                      ECOSYSTEM_SERVICE_REQUESTS.filter(
-                        (r) => r.status === "需求对接"
-                      ).length
-                    }
-                  </div>
-                  <div className="text-sm opacity-90">进行中</div>
+                  <div className="text-4xl font-black mb-1">1044</div>
+                  <div className="text-xs opacity-90">条</div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-6 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-2">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-5 text-white shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
                     需求匹配
                   </div>
-                  <div className="text-5xl font-black mb-1">
-                    {
-                      ECOSYSTEM_SERVICE_REQUESTS.filter(
-                        (r) => r.status === "需求匹配"
-                      ).length
-                    }
-                  </div>
-                  <div className="text-sm opacity-90">匹配中</div>
+                  <div className="text-4xl font-black mb-1">560</div>
+                  <div className="text-xs opacity-90">条</div>
                 </div>
-                <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-3xl p-6 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-2">
+                <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-3xl p-5 text-white shadow-xl">
+                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
                     对接成功
                   </div>
-                  <div className="text-5xl font-black mb-1">
-                    {
-                      ECOSYSTEM_SERVICE_REQUESTS.filter(
-                        (r) => r.status === "对接成功"
-                      ).length
-                    }
-                  </div>
-                  <div className="text-sm opacity-90">已完成</div>
+                  <div className="text-4xl font-black mb-1">847</div>
+                  <div className="text-xs opacity-90">条</div>
                 </div>
               </div>
 
               {/* 数据可视化：按状态分布 + 按类目分布 */}
-              <div className="grid grid-cols-2 gap-6">
-                {/* 左侧：按状态分布饼图 */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+              <div className="grid grid-cols-4 gap-6">
+                {/* 左侧：按状态分布饼图 - 25% */}
+                <div className="col-span-1 bg-white rounded-2xl border border-slate-200 p-6">
                   <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
                     <PieChart size={20} className="text-indigo-600" />
                     需求状态分布
                   </h4>
                   {(() => {
-                    // 按状态统计
+                    // 按状态统计 - 使用固定数据与大字报一致
                     const statusData = [
                       {
-                        name: '对接成功',
-                        count: ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === '对接成功').length,
-                        color: 'bg-emerald-500',
-                        colorHex: '#10b981'
+                        name: "对接成功",
+                        count: 847,
+                        color: "bg-emerald-500",
+                        colorHex: "#10b981",
                       },
                       {
-                        name: '需求匹配',
-                        count: ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === '需求匹配').length,
-                        color: 'bg-blue-500',
-                        colorHex: '#3b82f6'
+                        name: "需求匹配",
+                        count: 560,
+                        color: "bg-blue-500",
+                        colorHex: "#3b82f6",
                       },
                       {
-                        name: '需求对接',
-                        count: ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === '需求对接').length,
-                        color: 'bg-amber-500',
-                        colorHex: '#f59e0b'
-                      }
+                        name: "需求对接",
+                        count: 1044,
+                        color: "bg-amber-500",
+                        colorHex: "#f59e0b",
+                      },
                     ];
-                    const total = statusData.reduce((sum, s) => sum + s.count, 0);
+                    const total = 2451; // 固定总需求数
 
                     return (
                       <div className="flex flex-col items-center">
                         {/* 饼图 */}
-                        <div className="relative w-56 h-56 mb-6">
-                          <svg viewBox="0 0 200 200" className="transform -rotate-90">
+                        <div className="relative w-40 h-40 mb-4">
+                          <svg
+                            viewBox="0 0 200 200"
+                            className="transform -rotate-90"
+                          >
                             {(() => {
                               let cumulativePercent = 0;
                               return statusData.map((status, idx) => {
                                 const percent = status.count / total;
                                 const circumference = 2 * Math.PI * 70;
-                                const offset = cumulativePercent * circumference;
-                                const dashArray = `${percent * circumference} ${circumference}`;
+                                const offset =
+                                  cumulativePercent * circumference;
+                                const dashArray = `${
+                                  percent * circumference
+                                } ${circumference}`;
                                 cumulativePercent += percent;
 
                                 return (
@@ -5306,21 +5341,34 @@ export default function App() {
                             })()}
                           </svg>
                           <div className="absolute inset-0 flex items-center justify-center flex-col">
-                            <div className="text-4xl font-black text-slate-900">{total}</div>
-                            <div className="text-sm text-slate-500 font-bold">总需求</div>
+                            <div className="text-2xl font-black text-slate-900">
+                              {total}
+                            </div>
+                            <div className="text-[10px] text-slate-500 font-bold">
+                              总需求
+                            </div>
                           </div>
                         </div>
 
-                        {/* 图例（移到下方） */}
-                        <div className="w-full grid grid-cols-3 gap-3">
+                        {/* 图例（垂直布局） */}
+                        <div className="w-full space-y-2">
                           {statusData.map((status, idx) => (
-                            <div key={idx} className="flex flex-col items-center p-4 bg-slate-50 rounded-xl">
-                              <div className="flex items-center gap-2 mb-2">
-                                <div className={`w-3 h-3 rounded-full ${status.color}`}></div>
-                                <span className="text-xs font-bold text-slate-700">{status.name}</span>
+                            <div
+                              key={idx}
+                              className="flex flex-col items-center p-2.5 bg-slate-50 rounded-xl"
+                            >
+                              <div className="flex items-center gap-1.5 mb-1">
+                                <div
+                                  className={`w-2 h-2 rounded-full ${status.color}`}
+                                ></div>
+                                <span className="text-[10px] font-bold text-slate-700">
+                                  {status.name}
+                                </span>
                               </div>
-                              <div className="text-2xl font-black text-slate-900 mb-1">{status.count}</div>
-                              <div className="text-xs text-slate-500 font-bold">
+                              <div className="text-lg font-black text-slate-900 mb-0.5">
+                                {status.count}
+                              </div>
+                              <div className="text-[9px] text-slate-500 font-bold">
                                 {((status.count / total) * 100).toFixed(1)}%
                               </div>
                             </div>
@@ -5331,43 +5379,75 @@ export default function App() {
                   })()}
                 </div>
 
-                {/* 右侧：按服务类型分布（大饼图） */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                {/* 右侧：按服务类型分布（大饼图） - 75% */}
+                <div className="col-span-3 bg-white rounded-2xl border border-slate-200 p-6">
                   <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
                     <PieChart size={20} className="text-emerald-600" />
                     服务类型分布
                   </h4>
                   {(() => {
-                    // 统计所有服务类型的数量
-                    const serviceTypeCounts: Record<string, number> = {};
-                    ECOSYSTEM_SERVICE_REQUESTS.forEach(r => {
-                      serviceTypeCounts[r.serviceType] = (serviceTypeCounts[r.serviceType] || 0) + 1;
+                    // 定义10种固定类别
+                    const fixedCategories = [
+                      "财税/审计",
+                      "法律/法务",
+                      "知识产权",
+                      "政策申报",
+                      "订单对接",
+                      "投融资服务",
+                      "品牌PR",
+                      "云与算力",
+                      "数据服务",
+                      "人才/猎头",
+                    ];
+
+                    // 10种类别对应的颜色
+                    const categoryColors = [
+                      { bg: "bg-blue-500", hex: "#3b82f6" },
+                      { bg: "bg-emerald-500", hex: "#10b981" },
+                      { bg: "bg-amber-500", hex: "#f59e0b" },
+                      { bg: "bg-purple-500", hex: "#a855f7" },
+                      { bg: "bg-pink-500", hex: "#ec4899" },
+                      { bg: "bg-indigo-500", hex: "#6366f1" },
+                      { bg: "bg-red-500", hex: "#ef4444" },
+                      { bg: "bg-teal-500", hex: "#14b8a6" },
+                      { bg: "bg-orange-500", hex: "#f97316" },
+                      { bg: "bg-cyan-500", hex: "#06b6d4" },
+                    ];
+
+                    // 统计每个类别的数量（使用固定的模拟数据，总数为2451）
+                    const categoryData = fixedCategories.map((name, idx) => {
+                      // 模拟不同的分布比例
+                      const counts = [
+                        312, 287, 265, 243, 228, 215, 201, 189, 276, 235,
+                      ];
+                      return {
+                        name,
+                        count: counts[idx],
+                        color: categoryColors[idx].bg,
+                        colorHex: categoryColors[idx].hex,
+                      };
                     });
 
-                    // 转换为数组并排序
-                    const categoryData = Object.entries(serviceTypeCounts)
-                      .map(([name, count], idx) => ({
-                        name,
-                        count: count as number,
-                        color: ['bg-blue-500', 'bg-emerald-500', 'bg-amber-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'][idx % 6],
-                        colorHex: ['#3b82f6', '#10b981', '#f59e0b', '#a855f7', '#ec4899', '#6366f1'][idx % 6],
-                      }))
-                      .sort((a, b) => b.count - a.count);
-
-                    const totalServices = ECOSYSTEM_SERVICE_REQUESTS.length;
+                    const totalServices = 2451;
 
                     return (
                       <div className="flex flex-col items-center">
                         {/* 大饼图 */}
                         <div className="relative w-64 h-64 mb-6">
-                          <svg viewBox="0 0 200 200" className="transform -rotate-90">
+                          <svg
+                            viewBox="0 0 200 200"
+                            className="transform -rotate-90"
+                          >
                             {(() => {
                               let cumulativePercent = 0;
                               return categoryData.map((cat, idx) => {
                                 const percent = cat.count / totalServices;
                                 const circumference = 2 * Math.PI * 70;
-                                const offset = cumulativePercent * circumference;
-                                const dashArray = `${percent * circumference} ${circumference}`;
+                                const offset =
+                                  cumulativePercent * circumference;
+                                const dashArray = `${
+                                  percent * circumference
+                                } ${circumference}`;
                                 cumulativePercent += percent;
 
                                 return (
@@ -5387,24 +5467,36 @@ export default function App() {
                             })()}
                           </svg>
                           <div className="absolute inset-0 flex items-center justify-center flex-col">
-                            <div className="text-4xl font-black text-slate-900">{totalServices}</div>
-                            <div className="text-sm text-slate-500 font-bold">总需求</div>
+                            <div className="text-4xl font-black text-slate-900">
+                              {totalServices}
+                            </div>
+                            <div className="text-sm text-slate-500 font-bold">
+                              总需求
+                            </div>
                           </div>
                         </div>
 
-                        {/* 类别图例 */}
-                        <div className="w-full grid grid-cols-2 gap-3">
+                        {/* 类别图例 - 在下方显示 */}
+                        <div className="w-full grid grid-cols-5 gap-3">
                           {categoryData.map((cat, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                              <div className="flex items-center gap-2">
-                                <div className={`w-3 h-3 rounded-full ${cat.color}`}></div>
-                                <span className="text-xs font-bold text-slate-700">{cat.name}</span>
+                            <div
+                              key={idx}
+                              className="flex flex-col items-center p-3 bg-slate-50 rounded-xl"
+                            >
+                              <div className="flex items-center gap-1.5 mb-2">
+                                <div
+                                  className={`w-2.5 h-2.5 rounded-full shrink-0 ${cat.color}`}
+                                ></div>
+                                <span className="text-xs font-bold text-slate-700 truncate">
+                                  {cat.name}
+                                </span>
                               </div>
-                              <div className="text-right">
-                                <div className="text-lg font-black text-slate-900">{cat.count}</div>
-                                <div className="text-[10px] text-slate-500">
-                                  {((cat.count / totalServices) * 100).toFixed(1)}%
-                                </div>
+                              <div className="text-xl font-black text-slate-900 mb-1">
+                                {cat.count}
+                              </div>
+                              <div className="text-[10px] text-slate-500 font-bold">
+                                {((cat.count / totalServices) * 100).toFixed(1)}
+                                %
                               </div>
                             </div>
                           ))}
@@ -5691,44 +5783,58 @@ export default function App() {
               </div>
 
               {(() => {
-                // 计算分润总额（业务分润 + 生态分润）
-                const businessProfit = BUSINESS_ORDERS
-                  .filter(o => o.status === '已完成')
-                  .reduce((sum, o) => sum + (o.amount * o.profitRate), 0);
+                // 固定累计分润总金额为 15,069,277 元
+                const totalProfit = 15069277;
+                const totalProfitInWan = (totalProfit / 10000).toFixed(2);
 
-                const ecoProfit = ECOSYSTEM_TRANSACTIONS
-                  .filter(t => t.progress === '分润完成')
-                  .reduce((sum, t) => sum + t.profitShare, 0);
+                // 统计科技产品明细（基于项目库和生态看板的实际数据）
+                const diagnosticCount = 3596; // 项目库初筛规模
+                const conversionRate = 43.6; // 转化率
+                const optimizationCount = Math.round(
+                  diagnosticCount * (conversionRate / 100)
+                ); // 1568份
 
-                const totalProfit = businessProfit + ecoProfit;
+                // 总单数 = 初步诊断服务 + 商业优化建议书
+                const totalBusinessCount = diagnosticCount + optimizationCount; // 5164份
 
-                // 统计科技产品明细
-                const diagnosticCount = BUSINESS_ORDERS.filter(o => o.serviceType === 'Uni' || o.serviceType === 'DUO').length;
-                const optimizationCount = BUSINESS_ORDERS.filter(o => o.serviceType === 'Tri' || o.serviceType === 'Omni').length;
-                const conversionRate = diagnosticCount > 0 ? ((optimizationCount / diagnosticCount) * 100).toFixed(1) : 0;
+                // 根据业务量分配分润金额
+                const projectCount = 3596; // 项目库初筛
+                const ecoCount = 2451; // 生态服务需求
+                const totalCount = projectCount + ecoCount;
 
-                // 统计生态服务明细（按服务类型分组）
-                const ecoServiceProfits: Record<string, number> = {};
-                ECOSYSTEM_TRANSACTIONS
-                  .filter(t => t.progress === '分润完成')
-                  .forEach(t => {
-                    ecoServiceProfits[t.serviceType] = (ecoServiceProfits[t.serviceType] || 0) + t.profitShare;
-                  });
+                const businessProfit = Math.round(
+                  totalProfit * (projectCount / totalCount)
+                ); // 约 8,958,683元
+                const ecoProfit = totalProfit - businessProfit; // 约 6,110,594元
 
-                // 12个月数据（2024年2月-2025年1月）
+                // 统计生态服务明细（按服务类型分组）- 使用模拟数据
+                const ecoServiceProfits: Record<string, number> = {
+                  "财税/审计": Math.round(ecoProfit * 0.127),
+                  "法律/法务": Math.round(ecoProfit * 0.117),
+                  知识产权: Math.round(ecoProfit * 0.108),
+                  政策申报: Math.round(ecoProfit * 0.099),
+                  订单对接: Math.round(ecoProfit * 0.093),
+                  投融资服务: Math.round(ecoProfit * 0.088),
+                  品牌PR: Math.round(ecoProfit * 0.082),
+                  云与算力: Math.round(ecoProfit * 0.077),
+                  数据服务: Math.round(ecoProfit * 0.113),
+                  "人才/猎头": Math.round(ecoProfit * 0.096),
+                };
+
+                // 12个月数据（2024年2月-2025年1月）- 总金额15,069,277元随机分配
                 const monthsData = [
-                  { month: "2月", amount: 1298 },
-                  { month: "3月", amount: 2053 },
-                  { month: "4月", amount: 2187 },
-                  { month: "5月", amount: 2653 },
-                  { month: "6月", amount: 2507 },
-                  { month: "7月", amount: 3054 },
-                  { month: "8月", amount: 2897 },
-                  { month: "9月", amount: 3253 },
-                  { month: "10月", amount: 3507 },
-                  { month: "11月", amount: 3853 },
-                  { month: "12月", amount: 4107 },
-                  { month: "1月", amount: 4553 },
+                  { month: "2月", amount: 1098765 },
+                  { month: "3月", amount: 1234567 },
+                  { month: "4月", amount: 1156789 },
+                  { month: "5月", amount: 1389012 },
+                  { month: "6月", amount: 1278945 },
+                  { month: "7月", amount: 1456321 },
+                  { month: "8月", amount: 1187654 },
+                  { month: "9月", amount: 1345678 },
+                  { month: "10月", amount: 1267890 },
+                  { month: "11月", amount: 1423456 },
+                  { month: "12月", amount: 1198765 },
+                  { month: "1月", amount: 1031435 }, // 总计为 15,069,277
                 ];
 
                 return (
@@ -5741,32 +5847,87 @@ export default function App() {
                           累计分润总金额
                         </div>
                         <div className="text-6xl font-black mb-3">
-                          {totalProfit.toLocaleString()}
+                          {totalProfitInWan}
                         </div>
-                        <div className="text-xl font-bold opacity-90">元</div>
+                        <div className="text-xl font-bold opacity-90">万元</div>
                       </div>
 
-                      {/* 右侧：12个月数据列表 */}
+                      {/* 右侧：12个月分润柱状图 */}
                       <div className="col-span-2 bg-white rounded-2xl border border-slate-200 p-6">
                         <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
                           <Calendar size={20} className="text-indigo-600" />
                           近12个月分润明细
                         </h4>
-                        <div className="grid grid-cols-4 gap-3">
+                        <div className="flex justify-between gap-2">
                           {monthsData.map((data, idx) => {
-                            const change = idx > 0 ? data.amount - monthsData[idx - 1].amount : 0;
+                            // 计算环比增速
+                            const change =
+                              idx > 0
+                                ? data.amount - monthsData[idx - 1].amount
+                                : 0;
+                            const growthRate =
+                              idx > 0
+                                ? (
+                                    (change / monthsData[idx - 1].amount) *
+                                    100
+                                  ).toFixed(1)
+                                : "0.0";
                             const isIncrease = change > 0;
+
+                            // 转换为万元
+                            const amountInWan = (data.amount / 10000).toFixed(
+                              2
+                            );
+
+                            // 计算柱子高度像素（基于最大值，固定最大高度160px）
+                            const maxAmount = Math.max(
+                              ...monthsData.map((m) => m.amount)
+                            );
+                            const heightPx = Math.round(
+                              (data.amount / maxAmount) * 160
+                            );
+
                             return (
-                              <div key={idx} className="bg-slate-50 rounded-xl p-4 hover:bg-slate-100 transition-colors">
-                                <div className="text-xs text-slate-500 font-bold mb-1">{data.month}</div>
-                                <div className="text-xl font-black text-slate-900 mb-1">
-                                  {data.amount.toLocaleString()}
+                              <div
+                                key={idx}
+                                className="flex-1 flex flex-col items-center gap-1"
+                              >
+                                {/* 金额显示（万元） */}
+                                <div className="text-[10px] font-black text-slate-900 mb-1 h-5">
+                                  {amountInWan}万
                                 </div>
-                                {idx > 0 && (
-                                  <div className={`text-xs font-bold ${isIncrease ? 'text-red-600' : 'text-emerald-600'}`}>
-                                    {isIncrease ? '↑' : '↓'} {Math.abs(change).toLocaleString()}
-                                  </div>
-                                )}
+
+                                {/* 柱状图容器 */}
+                                <div className="w-full h-40 flex items-end">
+                                  <div
+                                    className="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-lg hover:from-indigo-700 hover:to-indigo-500 transition-all cursor-pointer"
+                                    style={{ height: `${heightPx}px` }}
+                                    title={`${
+                                      data.month
+                                    }: ¥${data.amount.toLocaleString()}（${amountInWan}万元）`}
+                                  ></div>
+                                </div>
+
+                                {/* 环比增速 */}
+                                <div className="h-4">
+                                  {idx > 0 ? (
+                                    <div
+                                      className={`text-[10px] font-bold ${
+                                        isIncrease
+                                          ? "text-red-600"
+                                          : "text-emerald-600"
+                                      }`}
+                                    >
+                                      {isIncrease ? "↑" : "↓"}{" "}
+                                      {Math.abs(parseFloat(growthRate))}%
+                                    </div>
+                                  ) : null}
+                                </div>
+
+                                {/* 月份标签 */}
+                                <div className="text-[10px] text-slate-500 font-bold">
+                                  {data.month}
+                                </div>
                               </div>
                             );
                           })}
@@ -5777,29 +5938,55 @@ export default function App() {
                     {/* 下方：科技产品分润 + 生态服务分润 */}
                     <div className="grid grid-cols-2 gap-6">
                       {/* 左下：科技产品分润 */}
-                      <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                      <div className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col">
                         <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
                           <Package size={20} className="text-blue-600" />
                           科技产品分润
                         </h4>
                         <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white mb-4">
-                          <div className="text-sm font-bold opacity-80 mb-2">累计分润金额</div>
-                          <div className="text-5xl font-black">{businessProfit.toLocaleString()}</div>
-                          <div className="text-lg font-bold opacity-90 mt-1">元</div>
+                          <div className="text-sm font-bold opacity-80 mb-2">
+                            累计分润金额
+                          </div>
+                          <div className="text-4xl font-black">
+                            {(businessProfit / 10000).toFixed(2)}
+                          </div>
+                          <div className="text-lg font-bold opacity-90 mt-1">
+                            万元
+                          </div>
                         </div>
-                        <div className="bg-slate-50 rounded-xl p-5 space-y-3">
+                        <div className="bg-slate-50 rounded-xl p-5 space-y-3 flex-1">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-slate-700">初步诊断服务</span>
-                            <span className="text-lg font-black text-slate-900">{diagnosticCount} 份</span>
+                            <span className="text-sm font-bold text-slate-700">
+                              初步诊断服务（Uni）
+                            </span>
+                            <span className="text-lg font-black text-slate-900">
+                              {diagnosticCount} 份
+                            </span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-slate-700">商业优化建议书</span>
-                            <span className="text-lg font-black text-slate-900">{optimizationCount} 份</span>
+                            <span className="text-sm font-bold text-slate-700">
+                              商业优化建议书
+                            </span>
+                            <span className="text-lg font-black text-slate-900">
+                              {optimizationCount} 份
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-bold text-slate-700">
+                              总单数
+                            </span>
+                            <span className="text-lg font-black text-slate-900">
+                              {totalBusinessCount} 份
+                            </span>
                           </div>
                           <div className="pt-3 border-t border-slate-200">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-bold text-blue-700">转化率</span>
-                              <span className="text-2xl font-black text-blue-900">{conversionRate}%</span>
+                              <span className="text-sm font-bold text-blue-700">
+                                转化率
+                              </span>
+                              <span className="text-2xl font-black text-blue-900">
+                                {conversionRate}%
+                              </span>
                             </div>
                             <div className="text-xs text-slate-500 mt-1 text-right">
                               ({optimizationCount}/{diagnosticCount}*100%)
@@ -5809,25 +5996,64 @@ export default function App() {
                       </div>
 
                       {/* 右下：生态服务分润 */}
-                      <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                        <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
-                          <Network size={20} className="text-emerald-600" />
-                          生态服务分润
-                        </h4>
-                        <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white mb-4">
-                          <div className="text-sm font-bold opacity-80 mb-2">累计分润金额</div>
-                          <div className="text-5xl font-black">{ecoProfit.toLocaleString()}</div>
-                          <div className="text-lg font-bold opacity-90 mt-1">元</div>
+                      <div className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col">
+                        <div className="flex items-center justify-between mb-4">
+                          <h4 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                            <Network size={20} className="text-emerald-600" />
+                            生态服务分润
+                          </h4>
+                          <button
+                            onClick={() =>
+                              setIsEcoServiceExpanded(!isEcoServiceExpanded)
+                            }
+                            className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-indigo-50 transition-colors"
+                          >
+                            {isEcoServiceExpanded ? (
+                              <>
+                                <ChevronUp size={14} />
+                                收起
+                              </>
+                            ) : (
+                              <>
+                                <ChevronDown size={14} />
+                                展开全部
+                              </>
+                            )}
+                          </button>
                         </div>
-                        <div className="bg-slate-50 rounded-xl p-5 space-y-3 max-h-64 overflow-y-auto">
+                        <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white mb-4">
+                          <div className="text-sm font-bold opacity-80 mb-2">
+                            累计分润金额
+                          </div>
+                          <div className="text-4xl font-black">
+                            {(ecoProfit / 10000).toFixed(2)}
+                          </div>
+                          <div className="text-lg font-bold opacity-90 mt-1">
+                            万元
+                          </div>
+                        </div>
+                        <div
+                          className={`bg-slate-50 rounded-xl p-5 space-y-3 flex-1 overflow-hidden transition-all ${
+                            isEcoServiceExpanded
+                              ? "max-h-none overflow-y-auto"
+                              : "max-h-48"
+                          }`}
+                        >
                           {Object.entries(ecoServiceProfits)
                             .sort((a, b) => b[1] - a[1])
                             .map(([serviceType, profit]) => (
-                            <div key={serviceType} className="flex items-center justify-between py-2 border-b border-slate-200 last:border-0">
-                              <span className="text-sm font-bold text-slate-700">{serviceType}</span>
-                              <span className="text-lg font-black text-slate-900">{profit.toLocaleString()} 元</span>
-                            </div>
-                          ))}
+                              <div
+                                key={serviceType}
+                                className="flex items-center justify-between py-2 border-b border-slate-200 last:border-0"
+                              >
+                                <span className="text-sm font-bold text-slate-700">
+                                  {serviceType}
+                                </span>
+                                <span className="text-lg font-black text-slate-900">
+                                  {(profit / 10000).toFixed(2)} 万元
+                                </span>
+                              </div>
+                            ))}
                         </div>
                       </div>
                     </div>
@@ -5857,66 +6083,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 统计卡片 */}
-              <div className="grid grid-cols-4 gap-6 mb-6">
-                <div className="bg-white rounded-2xl border border-slate-200 p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-slate-500">流水总数</div>
-                      <div className="text-2xl font-black text-slate-900 mt-1">
-                        {filteredFinancialTransactions.length}
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
-                      <Receipt size={24} className="text-indigo-600" />
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl border border-slate-200 p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-slate-500">科技产品</div>
-                      <div className="text-2xl font-black text-blue-600 mt-1">
-                        {allFinancialTransactions.filter(t => t.type === '科技产品').length}
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <Briefcase size={24} className="text-blue-600" />
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl border border-slate-200 p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-slate-500">生态服务</div>
-                      <div className="text-2xl font-black text-emerald-600 mt-1">
-                        {allFinancialTransactions.filter(t => t.type === '生态服务').length}
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                      <Network size={24} className="text-emerald-600" />
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl border border-slate-200 p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-slate-500">总金额</div>
-                      <div className="text-2xl font-black text-slate-900 mt-1">
-                        ¥
-                        {filteredFinancialTransactions.reduce(
-                          (acc, t) => acc + t.amount,
-                          0
-                        ).toLocaleString()}
-                      </div>
-                    </div>
-                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                      <DollarSign size={24} className="text-amber-600" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* 流水表格 */}
               <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
                 <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
@@ -5940,15 +6106,15 @@ export default function App() {
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-50 text-xs text-slate-500 font-bold uppercase tracking-wider">
                     <tr>
-                      <th className="px-6 py-4">流水编号</th>
-                      <th className="px-6 py-4">流水类型</th>
-                      <th className="px-6 py-4">项目名称</th>
-                      <th className="px-6 py-4">类别</th>
-                      <th className="px-6 py-4">明细</th>
-                      <th className="px-6 py-4">时间</th>
-                      <th className="px-6 py-4">交易金额</th>
-                      <th className="px-6 py-4">分润金额</th>
-                      <th className="px-6 py-4">状态</th>
+                      <th className="px-6 py-4 w-32">流水编号</th>
+                      <th className="px-6 py-4 w-28">流水类型</th>
+                      <th className="px-6 py-4 w-40">项目名称</th>
+                      <th className="px-6 py-4 w-40">类别</th>
+                      <th className="px-6 py-4 w-44">明细</th>
+                      <th className="px-6 py-4 w-28">时间</th>
+                      <th className="px-6 py-4 w-24">交易金额</th>
+                      <th className="px-6 py-4 w-24">分润金额</th>
+                      <th className="px-6 py-4 w-28">状态</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
@@ -5960,7 +6126,7 @@ export default function App() {
                         <td className="px-6 py-5 font-mono text-slate-400 text-xs">
                           {trans.id}
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <span
                             className={`px-2 py-1 rounded-lg text-xs font-bold ${
                               trans.type === "科技产品"
@@ -5972,17 +6138,20 @@ export default function App() {
                           </span>
                         </td>
                         <td
-                          className="px-6 py-5 text-slate-700 font-medium text-xs max-w-[150px] truncate"
+                          className="px-6 py-5 text-slate-700 font-medium text-xs max-w-[200px] truncate"
                           title={trans.projectName}
                         >
                           {trans.projectName}
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <span className="text-xs font-bold text-slate-600">
                             {trans.category}
                           </span>
                         </td>
-                        <td className="px-6 py-5 text-slate-600 text-xs max-w-[120px] truncate">
+                        <td
+                          className="px-6 py-5 text-slate-600 text-xs max-w-[180px] truncate whitespace-nowrap"
+                          title={trans.detail}
+                        >
                           {trans.detail}
                         </td>
                         <td className="px-6 py-5 text-slate-500 text-xs">
@@ -5998,17 +6167,19 @@ export default function App() {
                             <span className="text-slate-400">-</span>
                           )}
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           {trans.type === "科技产品" ? (
-                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600">
-                              即付即结
+                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600 whitespace-nowrap">
+                              已完成
                             </span>
                           ) : (
                             <span
-                              className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                                trans.status === "已完成" || trans.status === "处理完成"
+                              className={`px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap ${
+                                trans.status === "已完成" ||
+                                trans.status === "处理完成"
                                   ? "bg-emerald-50 text-emerald-600"
-                                  : trans.status === "处理中" || trans.status === "需求匹配"
+                                  : trans.status === "处理中" ||
+                                    trans.status === "需求匹配"
                                   ? "bg-blue-50 text-blue-600"
                                   : trans.status === "需求对接"
                                   ? "bg-amber-50 text-amber-600"
@@ -6260,3 +6431,4 @@ export default function App() {
     </div>
   );
 }
+
