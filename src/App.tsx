@@ -5056,9 +5056,9 @@ export default function App() {
                     const total = statusData.reduce((sum, s) => sum + s.count, 0);
 
                     return (
-                      <div className="flex items-center gap-8">
+                      <div className="flex flex-col items-center">
                         {/* 饼图 */}
-                        <div className="relative w-48 h-48">
+                        <div className="relative w-56 h-56 mb-6">
                           <svg viewBox="0 0 200 200" className="transform -rotate-90">
                             {(() => {
                               let cumulativePercent = 0;
@@ -5086,24 +5086,22 @@ export default function App() {
                             })()}
                           </svg>
                           <div className="absolute inset-0 flex items-center justify-center flex-col">
-                            <div className="text-3xl font-black text-slate-900">{total}</div>
-                            <div className="text-xs text-slate-500">总数</div>
+                            <div className="text-4xl font-black text-slate-900">{total}</div>
+                            <div className="text-sm text-slate-500 font-bold">总需求</div>
                           </div>
                         </div>
 
-                        {/* 图例 */}
-                        <div className="flex-1 space-y-3">
+                        {/* 图例（移到下方） */}
+                        <div className="w-full grid grid-cols-3 gap-3">
                           {statusData.map((status, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                              <div className="flex items-center gap-3">
-                                <div className={`w-4 h-4 rounded-full ${status.color}`}></div>
-                                <span className="text-sm font-bold text-slate-700">{status.name}</span>
+                            <div key={idx} className="flex flex-col items-center p-4 bg-slate-50 rounded-xl">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className={`w-3 h-3 rounded-full ${status.color}`}></div>
+                                <span className="text-xs font-bold text-slate-700">{status.name}</span>
                               </div>
-                              <div className="text-right">
-                                <div className="text-lg font-black text-slate-900">{status.count}</div>
-                                <div className="text-xs text-slate-500">
-                                  {((status.count / total) * 100).toFixed(1)}%
-                                </div>
+                              <div className="text-2xl font-black text-slate-900 mb-1">{status.count}</div>
+                              <div className="text-xs text-slate-500 font-bold">
+                                {((status.count / total) * 100).toFixed(1)}%
                               </div>
                             </div>
                           ))}
@@ -5113,21 +5111,16 @@ export default function App() {
                   })()}
                 </div>
 
-                {/* 右侧：按服务类型分布（取消三大货架概念） */}
+                {/* 右侧：按服务类型分布（大饼图） */}
                 <div className="bg-white rounded-2xl border border-slate-200 p-6">
                   <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
-                    <BarChart3 size={20} className="text-emerald-600" />
-                    服务类型进行中统计
+                    <PieChart size={20} className="text-emerald-600" />
+                    服务类型分布
                   </h4>
                   {(() => {
-                    // 按服务类型统计进行中的需求
-                    const inProgressRequests = ECOSYSTEM_SERVICE_REQUESTS.filter(
-                      r => r.status === '需求对接' || r.status === '需求匹配'
-                    );
-
-                    // 统计各个服务类型的数量
+                    // 统计所有服务类型的数量
                     const serviceTypeCounts: Record<string, number> = {};
-                    inProgressRequests.forEach(r => {
+                    ECOSYSTEM_SERVICE_REQUESTS.forEach(r => {
                       serviceTypeCounts[r.serviceType] = (serviceTypeCounts[r.serviceType] || 0) + 1;
                     });
 
@@ -5137,67 +5130,64 @@ export default function App() {
                         name,
                         count: count as number,
                         color: ['bg-blue-500', 'bg-emerald-500', 'bg-amber-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'][idx % 6],
+                        colorHex: ['#3b82f6', '#10b981', '#f59e0b', '#a855f7', '#ec4899', '#6366f1'][idx % 6],
                       }))
                       .sort((a, b) => b.count - a.count);
 
-                    const totalInProgress = inProgressRequests.length;
+                    const totalServices = ECOSYSTEM_SERVICE_REQUESTS.length;
 
                     return (
-                      <div className="space-y-6">
-                        {/* 总计卡片 */}
-                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-100">
-                          <div className="text-sm text-blue-600 font-bold mb-1">
-                            进行中需求总数
-                          </div>
-                          <div className="text-4xl font-black text-blue-900">
-                            {totalInProgress}
+                      <div className="flex flex-col items-center">
+                        {/* 大饼图 */}
+                        <div className="relative w-64 h-64 mb-6">
+                          <svg viewBox="0 0 200 200" className="transform -rotate-90">
+                            {(() => {
+                              let cumulativePercent = 0;
+                              return categoryData.map((cat, idx) => {
+                                const percent = cat.count / totalServices;
+                                const circumference = 2 * Math.PI * 70;
+                                const offset = cumulativePercent * circumference;
+                                const dashArray = `${percent * circumference} ${circumference}`;
+                                cumulativePercent += percent;
+
+                                return (
+                                  <circle
+                                    key={idx}
+                                    cx="100"
+                                    cy="100"
+                                    r="70"
+                                    fill="none"
+                                    stroke={cat.colorHex}
+                                    strokeWidth="40"
+                                    strokeDasharray={dashArray}
+                                    strokeDashoffset={-offset}
+                                  />
+                                );
+                              });
+                            })()}
+                          </svg>
+                          <div className="absolute inset-0 flex items-center justify-center flex-col">
+                            <div className="text-4xl font-black text-slate-900">{totalServices}</div>
+                            <div className="text-sm text-slate-500 font-bold">总需求</div>
                           </div>
                         </div>
 
-                        {/* 服务类型统计 */}
-                        <div className="space-y-3 max-h-64 overflow-y-auto">
+                        {/* 类别图例 */}
+                        <div className="w-full grid grid-cols-2 gap-3">
                           {categoryData.map((cat, idx) => (
-                            <div key={idx} className="space-y-2">
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                  <div className={`w-3 h-3 rounded-full ${cat.color}`}></div>
-                                  <span className="text-xs font-bold text-slate-700">{cat.name}</span>
-                                </div>
-                                <div className="text-right">
-                                  <span className="text-lg font-black text-slate-900">{cat.count}</span>
-                                  <span className="text-[10px] text-slate-500 ml-1">
-                                    ({totalInProgress > 0 ? ((cat.count / totalInProgress) * 100).toFixed(0) : 0}%)
-                                  </span>
-                                </div>
+                            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-3 h-3 rounded-full ${cat.color}`}></div>
+                                <span className="text-xs font-bold text-slate-700">{cat.name}</span>
                               </div>
-                              <div className="w-full bg-slate-100 rounded-full h-2">
-                                <div
-                                  className={`h-2 rounded-full ${cat.color}`}
-                                  style={{
-                                    width: `${totalInProgress > 0 ? (cat.count / totalInProgress) * 100 : 0}%`
-                                  }}
-                                ></div>
+                              <div className="text-right">
+                                <div className="text-lg font-black text-slate-900">{cat.count}</div>
+                                <div className="text-[10px] text-slate-500">
+                                  {((cat.count / totalServices) * 100).toFixed(1)}%
+                                </div>
                               </div>
                             </div>
                           ))}
-                        </div>
-
-                        {/* 详细说明 */}
-                        <div className="pt-4 border-t border-slate-200">
-                          <div className="text-xs text-slate-500 space-y-1">
-                            <div className="flex justify-between">
-                              <span>需求对接中</span>
-                              <span className="font-bold text-slate-700">
-                                {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === '需求对接').length}
-                              </span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span>需求匹配中</span>
-                              <span className="font-bold text-slate-700">
-                                {ECOSYSTEM_SERVICE_REQUESTS.filter(r => r.status === '需求匹配').length}
-                              </span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     );
@@ -5491,150 +5481,133 @@ export default function App() {
                   .reduce((sum, t) => sum + t.profitShare, 0);
 
                 const totalProfit = businessProfit + ecoProfit;
-                const totalCount = BUSINESS_ORDERS.length + ECOSYSTEM_TRANSACTIONS.length;
 
-                // 月度数据（确保累计总和等于总分润）
+                // 统计科技产品明细
+                const diagnosticCount = BUSINESS_ORDERS.filter(o => o.serviceType === 'Uni' || o.serviceType === 'DUO').length;
+                const optimizationCount = BUSINESS_ORDERS.filter(o => o.serviceType === 'Tri' || o.serviceType === 'Omni').length;
+                const conversionRate = diagnosticCount > 0 ? ((optimizationCount / diagnosticCount) * 100).toFixed(1) : 0;
+
+                // 统计生态服务明细（按服务类型分组）
+                const ecoServiceProfits: Record<string, number> = {};
+                ECOSYSTEM_TRANSACTIONS
+                  .filter(t => t.progress === '分润完成')
+                  .forEach(t => {
+                    ecoServiceProfits[t.serviceType] = (ecoServiceProfits[t.serviceType] || 0) + t.profitShare;
+                  });
+
+                // 12个月数据（2025年2月-2026年1月）
                 const monthsData = [
-                  { month: "9月", amount: 8.75 },
-                  { month: "10月", amount: 10.5 },
-                  { month: "11月", amount: 12.85 },
-                  { month: "12月", amount: 11.3 },
-                  { month: "1月", amount: 13.5 },
+                  { month: "2月", amount: 8756 },
+                  { month: "3月", amount: 10520 },
+                  { month: "4月", amount: 12850 },
+                  { month: "5月", amount: 11300 },
+                  { month: "6月", amount: 13500 },
+                  { month: "7月", amount: 15200 },
+                  { month: "8月", amount: 14800 },
+                  { month: "9月", amount: 16900 },
+                  { month: "10月", amount: 18500 },
+                  { month: "11月", amount: 17200 },
+                  { month: "12月", amount: 19800 },
+                  { month: "1月", amount: 21500 },
                 ];
-
-                // 计算累计和
-                const monthlyTotal = monthsData.reduce((sum, m) => sum + m.amount, 0);
-
-                // 计算环比增长率
-                const monthsWithGrowth = monthsData.map((data, idx) => {
-                  if (idx === 0) {
-                    return { ...data, growth: 0 };
-                  }
-                  const prevAmount = monthsData[idx - 1].amount;
-                  const growth = ((data.amount - prevAmount) / prevAmount) * 100;
-                  return { ...data, growth: parseFloat(growth.toFixed(1)) };
-                });
 
                 return (
                   <>
-                    {/* 顶部：累计分润总金额 + 环比趋势 */}
+                    {/* 顶部：大金额 + 12个月数据 */}
                     <div className="grid grid-cols-3 gap-6">
-                      {/* 左侧：累计分润总金额（大字报） */}
-                      <div className="col-span-1 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-2xl">
-                        <div className="text-sm font-bold uppercase tracking-wider opacity-90 mb-3">
+                      {/* 左侧：累计分润总金额（超大字报） */}
+                      <div className="col-span-1 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-10 text-white shadow-2xl">
+                        <div className="text-xs font-bold uppercase tracking-wider opacity-80 mb-4">
                           累计分润总金额
                         </div>
-                        <div className="text-5xl font-black mb-2">
-                          {(totalProfit / 10000).toFixed(2)}
+                        <div className="text-6xl font-black mb-3">
+                          {totalProfit.toLocaleString()}
                         </div>
-                        <div className="text-2xl font-bold opacity-90">万元</div>
-                        <div className="mt-6 pt-6 border-t border-white/20 flex items-center gap-2 text-sm">
-                          <TrendingUp size={16} />
-                          <span>较上月增长 {monthsWithGrowth[monthsWithGrowth.length - 1].growth}%</span>
-                        </div>
+                        <div className="text-xl font-bold opacity-90">元</div>
                       </div>
 
-                      {/* 右侧：月度分润趋势与环比增长率 */}
+                      {/* 右侧：12个月数据列表 */}
                       <div className="col-span-2 bg-white rounded-2xl border border-slate-200 p-6">
-                        <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
-                          <LineChart size={20} className="text-indigo-600" />
-                          月度分润趋势与环比增长率
+                        <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+                          <Calendar size={20} className="text-indigo-600" />
+                          近12个月分润明细
                         </h4>
-                        <div className="space-y-4">
-                          {/* 图表 */}
-                          <div className="flex items-end justify-between h-64 relative">
-                            {/* 绘制连接线 */}
-                            <svg className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-                              {monthsWithGrowth.map((data, idx) => {
-                                if (idx === monthsWithGrowth.length - 1) return null;
-                                const x1 = ((idx + 0.5) / monthsWithGrowth.length) * 100;
-                                const x2 = ((idx + 1.5) / monthsWithGrowth.length) * 100;
-                                const maxAmount = Math.max(...monthsWithGrowth.map(d => d.amount));
-                                const y1 = 100 - (data.amount / maxAmount) * 80;
-                                const y2 = 100 - (monthsWithGrowth[idx + 1].amount / maxAmount) * 80;
-                                return (
-                                  <line
-                                    key={idx}
-                                    x1={`${x1}%`}
-                                    y1={`${y1}%`}
-                                    x2={`${x2}%`}
-                                    y2={`${y2}%`}
-                                    stroke="#10b981"
-                                    strokeWidth="2"
-                                  />
-                                );
-                              })}
-                            </svg>
-
-                            {monthsWithGrowth.map((data, idx) => {
-                              const maxAmount = Math.max(...monthsWithGrowth.map(d => d.amount));
-                              const barHeight = (data.amount / maxAmount) * 200;
-                              return (
-                                <div key={idx} className="flex flex-col items-center gap-2 flex-1 relative" style={{ zIndex: 1 }}>
-                                  {/* 折线图点 */}
-                                  <div className="relative" style={{ height: '20px' }}>
-                                    <div className="absolute bottom-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white shadow-lg"></div>
-                                  </div>
-                                  {/* 柱状图 */}
-                                  <div className="relative w-full flex flex-col items-center">
-                                    <div className="text-xs font-bold text-slate-700 mb-1">
-                                      {data.amount}万
-                                    </div>
-                                    <div
-                                      className="w-16 bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-lg"
-                                      style={{ height: `${barHeight}px` }}
-                                    ></div>
-                                    <div className="mt-2 text-xs font-bold text-slate-600">
-                                      {data.month}
-                                    </div>
-                                    {idx > 0 && (
-                                      <div className={`text-[10px] font-bold mt-1 ${
-                                        data.growth >= 0 ? 'text-emerald-600' : 'text-red-600'
-                                      }`}>
-                                        {data.growth >= 0 ? '+' : ''}{data.growth}%
-                                      </div>
-                                    )}
-                                  </div>
+                        <div className="grid grid-cols-4 gap-3">
+                          {monthsData.map((data, idx) => {
+                            const change = idx > 0 ? data.amount - monthsData[idx - 1].amount : 0;
+                            const isIncrease = change > 0;
+                            return (
+                              <div key={idx} className="bg-slate-50 rounded-xl p-4 hover:bg-slate-100 transition-colors">
+                                <div className="text-xs text-slate-500 font-bold mb-1">{data.month}</div>
+                                <div className="text-xl font-black text-slate-900 mb-1">
+                                  {data.amount.toLocaleString()}
                                 </div>
-                              );
-                            })}
-                          </div>
-
-                          <div className="flex items-center justify-center gap-8 pt-4 border-t border-slate-200">
-                            <div className="flex items-center gap-2">
-                              <div className="w-4 h-4 bg-indigo-500 rounded"></div>
-                              <span className="text-sm text-slate-600">月度分润</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
-                              <span className="text-sm text-slate-600">环比增长</span>
-                            </div>
-                          </div>
+                                {idx > 0 && (
+                                  <div className={`text-xs font-bold ${isIncrease ? 'text-red-600' : 'text-emerald-600'}`}>
+                                    {isIncrease ? '↑' : '↓'} {Math.abs(change).toLocaleString()}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
 
-                    {/* 下方：累计单量 */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                      <h4 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-2">
-                        <Receipt size={24} className="text-indigo-600" />
-                        累计单量统计
-                      </h4>
-                      <div className="grid grid-cols-3 gap-6">
-                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
-                          <div className="text-sm text-blue-700 font-bold mb-2">科技产品订单</div>
-                          <div className="text-4xl font-black text-blue-900 mb-1">{BUSINESS_ORDERS.length}</div>
-                          <div className="text-xs text-blue-600">份订单</div>
+                    {/* 下方：科技产品分润 + 生态服务分润 */}
+                    <div className="grid grid-cols-2 gap-6">
+                      {/* 左下：科技产品分润 */}
+                      <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                        <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+                          <Package size={20} className="text-blue-600" />
+                          科技产品分润
+                        </h4>
+                        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white mb-4">
+                          <div className="text-sm font-bold opacity-80 mb-2">累计分润金额</div>
+                          <div className="text-5xl font-black">{businessProfit.toLocaleString()}</div>
+                          <div className="text-lg font-bold opacity-90 mt-1">元</div>
                         </div>
-                        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-6 border border-emerald-200">
-                          <div className="text-sm text-emerald-700 font-bold mb-2">生态服务交易</div>
-                          <div className="text-4xl font-black text-emerald-900 mb-1">{ECOSYSTEM_TRANSACTIONS.length}</div>
-                          <div className="text-xs text-emerald-600">笔交易</div>
+                        <div className="bg-slate-50 rounded-xl p-5 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-bold text-slate-700">初步诊断服务</span>
+                            <span className="text-lg font-black text-slate-900">{diagnosticCount} 份</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-bold text-slate-700">商业优化建议书</span>
+                            <span className="text-lg font-black text-slate-900">{optimizationCount} 份</span>
+                          </div>
+                          <div className="pt-3 border-t border-slate-200">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm font-bold text-blue-700">转化率</span>
+                              <span className="text-2xl font-black text-blue-900">{conversionRate}%</span>
+                            </div>
+                            <div className="text-xs text-slate-500 mt-1 text-right">
+                              ({optimizationCount}/{diagnosticCount}*100%)
+                            </div>
+                          </div>
                         </div>
-                        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
-                          <div className="text-sm text-purple-700 font-bold mb-2">累计总单量</div>
-                          <div className="text-4xl font-black text-purple-900 mb-1">{totalCount}</div>
-                          <div className="text-xs text-purple-600">笔</div>
+                      </div>
+
+                      {/* 右下：生态服务分润 */}
+                      <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                        <h4 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+                          <Network size={20} className="text-emerald-600" />
+                          生态服务分润
+                        </h4>
+                        <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white mb-4">
+                          <div className="text-sm font-bold opacity-80 mb-2">累计分润金额</div>
+                          <div className="text-5xl font-black">{ecoProfit.toLocaleString()}</div>
+                          <div className="text-lg font-bold opacity-90 mt-1">元</div>
+                        </div>
+                        <div className="bg-slate-50 rounded-xl p-5 space-y-3 max-h-64 overflow-y-auto">
+                          {Object.entries(ecoServiceProfits)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([serviceType, profit]) => (
+                            <div key={serviceType} className="flex items-center justify-between py-2 border-b border-slate-200 last:border-0">
+                              <span className="text-sm font-bold text-slate-700">{serviceType}</span>
+                              <span className="text-lg font-black text-slate-900">{profit.toLocaleString()} 元</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -5711,13 +5684,10 @@ export default function App() {
                       <div className="text-sm text-slate-500">总金额</div>
                       <div className="text-2xl font-black text-slate-900 mt-1">
                         ¥
-                        {(
-                          filteredFinancialTransactions.reduce(
-                            (acc, t) => acc + t.amount,
-                            0
-                          ) / 10000
-                        ).toFixed(1)}
-                        万
+                        {filteredFinancialTransactions.reduce(
+                          (acc, t) => acc + t.amount,
+                          0
+                        ).toLocaleString()}
                       </div>
                     </div>
                     <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
@@ -5799,31 +5769,35 @@ export default function App() {
                           {trans.time}
                         </td>
                         <td className="px-6 py-5 text-slate-900 font-bold">
-                          ¥{(trans.amount / 10000).toFixed(2)}万
+                          ¥{trans.amount.toLocaleString()}
                         </td>
                         <td className="px-6 py-5 text-emerald-600 font-bold">
                           {trans.profitShare > 0 ? (
-                            `¥${(trans.profitShare / 10000).toFixed(2)}万`
+                            `¥${trans.profitShare.toLocaleString()}`
                           ) : (
                             <span className="text-slate-400">-</span>
                           )}
                         </td>
                         <td className="px-6 py-5">
-                          <span
-                            className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                              trans.status === "已完成" || trans.status === "处理完成"
-                                ? "bg-emerald-50 text-emerald-600"
-                                : trans.status === "处理中" || trans.status === "需求匹配"
-                                ? "bg-blue-50 text-blue-600"
-                                : trans.status === "需求对接"
-                                ? "bg-amber-50 text-amber-600"
-                                : trans.status === "待支付"
-                                ? "bg-purple-50 text-purple-600"
-                                : "bg-red-50 text-red-600"
-                            }`}
-                          >
-                            {trans.status}
-                          </span>
+                          {trans.type === "科技产品" ? (
+                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600">
+                              即付即结
+                            </span>
+                          ) : (
+                            <span
+                              className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                                trans.status === "已完成" || trans.status === "处理完成"
+                                  ? "bg-emerald-50 text-emerald-600"
+                                  : trans.status === "处理中" || trans.status === "需求匹配"
+                                  ? "bg-blue-50 text-blue-600"
+                                  : trans.status === "需求对接"
+                                  ? "bg-amber-50 text-amber-600"
+                                  : "bg-slate-50 text-slate-600"
+                              }`}
+                            >
+                              {trans.status}
+                            </span>
+                          )}
                         </td>
                       </tr>
                     ))}
