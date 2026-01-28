@@ -589,7 +589,7 @@ const ECOSYSTEM_TRANSACTIONS = [
     id: "ECO-20240104-004",
     projectName: "星舰商业航天发射服务",
     serviceType: "人才",
-    dealStatus: "需求匹配",
+    dealStatus: "处理中需求",
     progress: "已签约未付款",
     partnerName: "海德思哲猎头",
     amount: 15000,
@@ -601,7 +601,7 @@ const ECOSYSTEM_TRANSACTIONS = [
     id: "ECO-20240105-005",
     projectName: "云边协同智能工厂",
     serviceType: "云资源",
-    dealStatus: "需求匹配",
+    dealStatus: "处理中需求",
     progress: "待签约",
     partnerName: "阿里云",
     amount: 20000,
@@ -625,7 +625,7 @@ const ECOSYSTEM_TRANSACTIONS = [
     id: "ECO-20240107-007",
     projectName: "智航低空物流网络",
     serviceType: "品牌PR",
-    dealStatus: "需求对接",
+    dealStatus: "待处理需求",
     progress: "待签约",
     partnerName: "蓝色光标",
     amount: 10000,
@@ -649,7 +649,7 @@ const ECOSYSTEM_TRANSACTIONS = [
     id: "ECO-20240109-009",
     projectName: "绿能储能聚合平台",
     serviceType: "FA顾问",
-    dealStatus: "需求匹配",
+    dealStatus: "处理中需求",
     progress: "已签约未付款",
     partnerName: "华兴资本",
     amount: 18000,
@@ -661,7 +661,7 @@ const ECOSYSTEM_TRANSACTIONS = [
     id: "ECO-20240110-010",
     projectName: "星舰商业航天发射服务",
     serviceType: "数据",
-    dealStatus: "需求对接",
+    dealStatus: "待处理需求",
     progress: "待签约",
     partnerName: "明略科技",
     amount: 9000,
@@ -683,7 +683,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
       "寻求Pre-A轮融资，金额3000万元，用于扩大无人机物流网络覆盖范围",
     potentialPartner: "华兴资本",
     uploadTime: "2026-01-15 09:30",
-    status: "对接成功",
+    status: "已完成需求对接",
     createdAt: new Date("2026-01-15"),
   },
   {
@@ -694,7 +694,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
       "需要医疗AI领域合规审查，涉及数据安全和隐私保护相关法律咨询",
     potentialPartner: "金杜律师事务所",
     uploadTime: "2026-01-16 14:20",
-    status: "需求匹配",
+    status: "处理中需求",
     createdAt: new Date("2026-01-16"),
   },
   {
@@ -704,7 +704,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "准备上市辅导，需要财务审计和IPO咨询服务",
     potentialPartner: "普华永道",
     uploadTime: "2026-01-17 10:15",
-    status: "需求匹配",
+    status: "处理中需求",
     createdAt: new Date("2026-01-17"),
   },
   {
@@ -714,7 +714,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "首次发射成功，需要进行品牌宣传和媒体报道",
     potentialPartner: "36氪",
     uploadTime: "2026-01-18 16:45",
-    status: "对接成功",
+    status: "已完成需求对接",
     createdAt: new Date("2026-01-18"),
   },
   {
@@ -725,7 +725,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
       "招聘CTO和技术总监各1名，要求有工业互联网和边缘计算背景",
     potentialPartner: "猎聘网、科锐国际",
     uploadTime: "2026-01-19 11:30",
-    status: "需求对接",
+    status: "待处理需求",
     createdAt: new Date("2026-01-19"),
   },
   {
@@ -735,7 +735,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "寻求A轮融资，金额1.5亿元，用于固态电池生产线建设",
     potentialPartner: "红杉资本",
     uploadTime: "2026-01-20 08:00",
-    status: "需求匹配",
+    status: "处理中需求",
     createdAt: new Date("2026-01-20"),
   },
   {
@@ -745,7 +745,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "需要医疗器械认证咨询和专利申请相关法律咨询",
     potentialPartner: "待匹配",
     uploadTime: "2026-01-21 15:20",
-    status: "需求对接",
+    status: "待处理需求",
     createdAt: new Date("2026-01-21"),
   },
   {
@@ -755,7 +755,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "需要知识产权保护和专利申请相关法律咨询",
     potentialPartner: "君合律师事务所",
     uploadTime: "2026-01-18 13:40",
-    status: "对接成功",
+    status: "已完成需求对接",
     createdAt: new Date("2026-01-18"),
   },
   {
@@ -765,7 +765,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "需要云计算资源和大数据分析平台支持，优化农业数据处理",
     potentialPartner: "阿里云、华为云",
     uploadTime: "2026-01-19 09:00",
-    status: "需求匹配",
+    status: "处理中需求",
     createdAt: new Date("2026-01-19"),
   },
   {
@@ -775,7 +775,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "需要用户行为分析和数据挖掘服务，优化产品体验",
     potentialPartner: "神策数据",
     uploadTime: "2026-01-20 14:30",
-    status: "需求对接",
+    status: "待处理需求",
     createdAt: new Date("2026-01-20"),
   },
   {
@@ -785,7 +785,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "申请新能源基础设施补贴和地方政策扶持",
     potentialPartner: "待匹配",
     uploadTime: "2026-01-21 10:00",
-    status: "需求匹配",
+    status: "处理中需求",
     createdAt: new Date("2026-01-21"),
   },
   {
@@ -795,7 +795,7 @@ const ECOSYSTEM_SERVICE_REQUESTS = [
     requirementDetails: "寻找跨境电商大客户，建立长期供应链合作关系",
     potentialPartner: "待匹配",
     uploadTime: "2026-01-21 16:20",
-    status: "需求对接",
+    status: "待处理需求",
     createdAt: new Date("2026-01-21"),
   },
 ];
@@ -5075,9 +5075,9 @@ export default function App() {
                     onChange={(e) => setEcoStatus(e.target.value)}
                   >
                     <option value="">全部状态</option>
-                    <option value="需求对接">需求对接</option>
-                    <option value="需求匹配">需求匹配</option>
-                    <option value="对接成功">对接成功</option>
+                    <option value="待处理需求">待处理需求</option>
+                    <option value="处理中需求">处理中需求</option>
+                    <option value="已完成需求对接">已完成需求对接</option>
                   </select>
                   <button className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
                     <Download size={16} />
@@ -5168,9 +5168,9 @@ export default function App() {
                           <td className="px-6 py-4 whitespace-nowrap">
                             <span
                               className={`px-3 py-1 rounded-full text-xs font-bold ${
-                                req.status === "对接成功"
+                                req.status === "已完成需求对接"
                                   ? "bg-emerald-100 text-emerald-700"
-                                  : req.status === "需求匹配"
+                                  : req.status === "处理中需求"
                                   ? "bg-blue-100 text-blue-700"
                                   : "bg-amber-100 text-amber-700"
                               }`}
@@ -5242,33 +5242,45 @@ export default function App() {
 
               {/* 统计卡片（大字报形式） */}
               <div className="grid grid-cols-4 gap-6">
-                <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-3xl p-5 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-80 mb-1">
+                <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-3xl p-8 text-white shadow-xl">
+                  <div className="text-sm font-bold uppercase tracking-wider opacity-80 mb-2">
                     总需求数
                   </div>
-                  <div className="text-4xl font-black mb-1">2451</div>
-                  <div className="text-xs opacity-80">条</div>
-                </div>
-                <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-5 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
-                    需求对接
+                  <div className="text-6xl font-black mb-2">2451</div>
+                  <div className="text-base opacity-80 mb-3">条</div>
+                  <div className="text-xs opacity-70 border-t border-white/20 pt-3">
+                    包含所有已提交的生态服务需求
                   </div>
-                  <div className="text-4xl font-black mb-1">1044</div>
-                  <div className="text-xs opacity-90">条</div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-5 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
-                    需求匹配
+                <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-8 text-white shadow-xl">
+                  <div className="text-sm font-bold uppercase tracking-wider opacity-90 mb-2">
+                    待处理需求
                   </div>
-                  <div className="text-4xl font-black mb-1">560</div>
-                  <div className="text-xs opacity-90">条</div>
+                  <div className="text-6xl font-black mb-2">1044</div>
+                  <div className="text-base opacity-90 mb-3">条</div>
+                  <div className="text-xs opacity-80 border-t border-white/20 pt-3">
+                    等待资源方对接的新需求
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-3xl p-5 text-white shadow-xl">
-                  <div className="text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
-                    对接成功
+                <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-8 text-white shadow-xl">
+                  <div className="text-sm font-bold uppercase tracking-wider opacity-90 mb-2">
+                    处理中需求
                   </div>
-                  <div className="text-4xl font-black mb-1">847</div>
-                  <div className="text-xs opacity-90">条</div>
+                  <div className="text-6xl font-black mb-2">560</div>
+                  <div className="text-base opacity-90 mb-3">条</div>
+                  <div className="text-xs opacity-80 border-t border-white/20 pt-3">
+                    正在与资源方洽谈匹配中
+                  </div>
+                </div>
+                <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-3xl p-8 text-white shadow-xl">
+                  <div className="text-sm font-bold uppercase tracking-wider opacity-90 mb-2">
+                    已完成需求对接
+                  </div>
+                  <div className="text-6xl font-black mb-2">847</div>
+                  <div className="text-base opacity-90 mb-3">条</div>
+                  <div className="text-xs opacity-80 border-t border-white/20 pt-3">
+                    成功匹配并完成服务对接
+                  </div>
                 </div>
               </div>
 
@@ -5284,19 +5296,19 @@ export default function App() {
                     // 按状态统计 - 使用固定数据与大字报一致
                     const statusData = [
                       {
-                        name: "对接成功",
+                        name: "已完成需求对接",
                         count: 847,
                         color: "bg-emerald-500",
                         colorHex: "#10b981",
                       },
                       {
-                        name: "需求匹配",
+                        name: "处理中需求",
                         count: 560,
                         color: "bg-blue-500",
                         colorHex: "#3b82f6",
                       },
                       {
-                        name: "需求对接",
+                        name: "待处理需求",
                         count: 1044,
                         color: "bg-amber-500",
                         colorHex: "#f59e0b",
@@ -6176,12 +6188,13 @@ export default function App() {
                             <span
                               className={`px-2.5 py-1 rounded-full text-[10px] font-bold whitespace-nowrap ${
                                 trans.status === "已完成" ||
-                                trans.status === "处理完成"
+                                trans.status === "处理完成" ||
+                                trans.status === "已完成需求对接"
                                   ? "bg-emerald-50 text-emerald-600"
                                   : trans.status === "处理中" ||
-                                    trans.status === "需求匹配"
+                                    trans.status === "处理中需求"
                                   ? "bg-blue-50 text-blue-600"
-                                  : trans.status === "需求对接"
+                                  : trans.status === "待处理需求"
                                   ? "bg-amber-50 text-amber-600"
                                   : "bg-slate-50 text-slate-600"
                               }`}
