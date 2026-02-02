@@ -4465,7 +4465,7 @@ export default function App() {
       </QuotaDrawer>
 
       {/* 侧边导航栏 */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col shadow-2xl z-20 shrink-0">
+      <aside className="w-72 bg-slate-900 text-white flex flex-col shadow-2xl z-20 shrink-0">
         <div className="p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="bg-indigo-600 p-2 rounded-lg">
