@@ -4472,7 +4472,7 @@ export default function App() {
               <LayoutGrid size={20} strokeWidth={2.5} />
             </div>
             <span className="font-bold text-lg tracking-tight">
-              BP 智能中台
+              Acture 智能运营中台
             </span>
           </div>
           {/* 身份状态指示器 */}
@@ -4483,7 +4483,7 @@ export default function App() {
               }`}
             />
             <span className="text-xs font-bold text-slate-300">
-              {isAdmin ? "超级管理员 (Admin)" : "租户 (Tenant)"}
+              {isAdmin ? "超级管理员 (Admin)" : "云创未来产业园"}
             </span>
           </div>
         </div>
@@ -4740,7 +4740,7 @@ export default function App() {
                   当前身份
                 </p>
                 <p className="text-sm font-bold text-slate-700">
-                  {isAdmin ? "超级管理员" : "普通租户"}
+                  {isAdmin ? "超级管理员" : "云创未来产业园"}
                 </p>
               </div>
               <div className="w-9 h-9 bg-slate-200 rounded-full flex items-center justify-center text-slate-500">
