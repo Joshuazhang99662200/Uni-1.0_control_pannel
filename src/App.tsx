@@ -4472,7 +4472,7 @@ export default function App() {
               <LayoutGrid size={20} strokeWidth={2.5} />
             </div>
             <span className="font-bold text-lg tracking-tight">
-              Acture 智能运营中台
+              Acture 智能运营系统
             </span>
           </div>
           {/* 身份状态指示器 */}
