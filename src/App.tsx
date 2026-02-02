@@ -4136,7 +4136,7 @@ export default function App() {
   // 生态流水筛选状态
   const [ecosystemCategory, setEcosystemCategory] = useState("全部");
 
-  // 财务流水筛选状态
+  // 收入流水筛选状态
   const [financialTransactionType, setFinancialTransactionType] =
     useState("全部");
 
@@ -4300,7 +4300,7 @@ export default function App() {
     return filtered;
   }, [ecosystemCategory]);
 
-  // 财务流水筛选逻辑（合并业务流水和生态流水）
+  // 收入流水筛选逻辑（合并业务流水和生态流水）
   const allFinancialTransactions = useMemo(() => {
     // 将业务流水转换为统一格式（计算分润金额）
     const businessTrans = BUSINESS_ORDERS.map((order) => ({
@@ -4489,10 +4489,10 @@ export default function App() {
         </div>
 
         <nav className="flex-1 px-4 overflow-y-auto space-y-8 pb-8 custom-scrollbar">
-          {/* 1. 数据看板 */}
+          {/* 1. 项目管理平台 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              数据看板
+              项目管理平台
             </div>
             <div className="space-y-1">
               <button
@@ -4504,7 +4504,7 @@ export default function App() {
                 }`}
               >
                 <LayoutDashboard size={18} />
-                <span className="text-sm font-bold">仪表盘</span>
+                <span className="text-sm font-bold">项目概览</span>
               </button>
               <button
                 onClick={() => setActiveTab("project_library")}
@@ -4520,10 +4520,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* 2. 生态服务 */}
+          {/* 2. 生态服务平台 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              生态服务
+              生态服务平台
             </div>
             <div className="space-y-1">
               <button
@@ -4565,10 +4565,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* 3. 财务管理 */}
+          {/* 3. 智能分润系统 */}
           <div>
             <div className="px-2 mb-2 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              财务管理
+              智能分润系统
             </div>
             <div className="space-y-1">
               <button
@@ -4580,7 +4580,7 @@ export default function App() {
                 }`}
               >
                 <BarChart3 size={18} />
-                <span className="text-sm font-bold">财务看板</span>
+                <span className="text-sm font-bold">收入看板</span>
               </button>
               <button
                 onClick={() => setActiveTab("financial_transactions")}
@@ -4591,7 +4591,7 @@ export default function App() {
                 }`}
               >
                 <Receipt size={18} />
-                <span className="text-sm font-bold">财务流水</span>
+                <span className="text-sm font-bold">收入流水</span>
               </button>
             </div>
           </div>
@@ -4682,7 +4682,7 @@ export default function App() {
           <div className="flex items-center gap-4">
             <h2 className="font-bold text-xl text-slate-800">
               {activeTab === "dashboard"
-                ? "仪表盘"
+                ? "项目概览"
                 : activeTab === "project_library"
                 ? "项目库"
                 : activeTab === "ecosystem_connect"
@@ -4692,9 +4692,9 @@ export default function App() {
                 : activeTab === "ecosystem_partners"
                 ? "生态资源方"
                 : activeTab === "financial_dashboard"
-                ? "财务看板"
+                ? "收入看板"
                 : activeTab === "financial_transactions"
-                ? "财务流水"
+                ? "收入流水"
                 : activeTab === "configs"
                 ? "配置管理器"
                 : activeTab === "orders"
@@ -5779,14 +5779,14 @@ export default function App() {
             </div>
           )}
 
-          {/* --- 财务看板页面 --- */}
+          {/* --- 收入看板页面 --- */}
           {activeTab === "financial_dashboard" && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* 页面头部 */}
               <div className="flex justify-between items-end mb-6">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">
-                    财务看板
+                    收入看板
                   </h3>
                   <p className="text-slate-500 mt-2">
                     查看所有流水的大盘统计和分润分析
@@ -6075,14 +6075,14 @@ export default function App() {
             </div>
           )}
 
-          {/* --- 财务流水页面（合并业务流水与生态流水） --- */}
+          {/* --- 收入流水页面（合并业务流水与生态流水） --- */}
           {activeTab === "financial_transactions" && (
             <div className="space-y-6 animate-in fade-in duration-500">
               {/* 页面头部 */}
               <div className="flex justify-between items-end mb-6">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">
-                    财务流水
+                    收入流水
                   </h3>
                   <p className="text-slate-500 mt-2">
                     查看所有业务订单与生态服务交易的流水记录
@@ -6098,7 +6098,7 @@ export default function App() {
               {/* 流水表格 */}
               <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
                 <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                  <h3 className="font-bold text-slate-800">财务流水明细</h3>
+                  <h3 className="font-bold text-slate-800">收入流水明细</h3>
                   <div className="flex gap-2">
                     {["全部", "科技产品", "生态服务"].map((type) => (
                       <button
